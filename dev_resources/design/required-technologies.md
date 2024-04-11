@@ -5,7 +5,7 @@ During Project 2, you will need to use the following tools and technologies. Bol
 - React with TypeScript
 - Jest
 - Redux
-- **Trussworks**
+- Trussworks
 - **i18n**
 - **MongoDB and DocumentDB with AWS**
 - **AWS**
