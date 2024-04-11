@@ -6,7 +6,7 @@ I will be referencing a lot of build scripts. I recommend using the Task Runner 
 
 ## How (and where) to make a change and see it happen
 
-Firstly, make sure you ask the administrator for the `secret.env` file, otherwise none of the build scripts will be able to load the correct environment variables.
+Firstly, make sure you ask the administrator for the `secret.env` file, otherwise none of the build scripts will be able to load the correct environment variables. Also, make sure your [node](https://nodejs.org/en) installation is up to date. 
 
 Secondly, ensure you `git pull` and run `mvn clean`. Then, ensure you installed all front end dependencies locally by navigating to [src\main\resources\frontend](src\main\resources\frontend) and running `npm install`. Alternatively, just call the build script [clean_install.bat](build-scripts\clean_install.bat) from the root directory.
 
