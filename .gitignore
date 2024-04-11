@@ -35,3 +35,14 @@ build/
 
 ### ENV File ###
 secret.env
+
+### Coverage
+src/main/react/coverage/
+src/main/react/coverage/clover.xml
+src/main/react/coverage/coverage-final.json
+src/main/react/coverage/lcov-report/base.css
+src/main/react/coverage/lcov-report/block-navigation.js
+src/main/react/coverage/lcov-report/index.html
+src/main/react/coverage/lcov-report/prettify.css
+src/main/react/coverage/lcov-report/prettify.js
+src/main/react/coverage/lcov-report/sorter.js
