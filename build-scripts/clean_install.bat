@@ -1,5 +1,5 @@
 call mvn clean
 
-pushd ".\src\main\resources\frontend\"
+pushd ".\src\main\react\"
 call npm install
 popd

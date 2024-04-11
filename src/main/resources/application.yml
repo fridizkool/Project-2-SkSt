@@ -4,7 +4,7 @@ spring:
   web:
     resources:
         static-locations: 
-          - classpath:/frontend/dist
+          - classpath:/react/dist
 
 #   datasource:
 #       url: ${DB_URL}

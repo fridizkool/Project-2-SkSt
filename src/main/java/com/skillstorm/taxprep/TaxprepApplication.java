@@ -1,5 +1,4 @@
 package com.skillstorm.taxprep;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

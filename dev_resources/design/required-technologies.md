@@ -6,7 +6,7 @@ During Project 2, you will need to use the following tools and technologies. Bol
 - Jest
 - Redux
 - Trussworks
-- **i18n**
+- i18n
 - **MongoDB and DocumentDB with AWS**
 - **AWS**
 - **Spring Security**
