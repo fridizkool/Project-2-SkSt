@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Counter/>
-      {/* <LandingPage/> */}
+      <LandingPage/>
       <InternationalizationHello/>
     </>
   )

@@ -46,3 +46,5 @@ src/main/react/coverage/lcov-report/index.html
 src/main/react/coverage/lcov-report/prettify.css
 src/main/react/coverage/lcov-report/prettify.js
 src/main/react/coverage/lcov-report/sorter.js
+
+src/main/resources/dist
