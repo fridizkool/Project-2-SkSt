@@ -89,7 +89,7 @@ const config = {
   // ],
 
   testMatch: [
-    // "**/__tests__/**/*.[jt]s?(x)",
+    "**/__tests__/**/*.[jt]s?(x)",
     // "**/?(*.)+(spec|test).[tj]s?(x)",
     "<rootDir>/../../../test/java/com/skillstorm/taxprep/jest-tests/*.js"
   ],
