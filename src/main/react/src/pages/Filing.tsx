@@ -75,12 +75,11 @@ export default function Filing() {
     return (
         <>
             <GridContainer>
-                <Grid row><Card layout='standardDefault'><Title>Tax Filing 2024</Title></Card></Grid>
-                <Grid row className=''>
-                    <Grid  col={6} tablet={{ col: true }}>
-                        <Accordion items={formItems} multiselectable={true} />
+                <Grid row className='padding-1'>
+                    <Grid col={6}>
+                        <Accordion items={formItems} multiselectable={true}/>
                     </Grid>
-                    <Grid col={6} tablet={{ col: true }}>
+                    <Grid col={6}>
                         <Card>Computing!</Card>
                     </Grid>
                 </Grid>

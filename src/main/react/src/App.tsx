@@ -9,17 +9,17 @@ import { useState } from 'react'
 import Home from './pages/Home.js'
 import Login from './pages/Login.js'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CreateAccount from './pages/CreateAccount.js';
 
 function App() {
-  const [expanded, setExpanded] = useState(false);
   const navItems = [
     <Link variant="nav" href={'/'}>Home</Link>,
     <Link variant="nav" href={'/login'}>Login</Link>,
-    <Link variant="nav" href={'/filing'}>Calculator</Link>
+    <Link variant="nav" href={'/filing'}>Calculator</Link>  //TODO only on auth available
   ];
   return (
     <>
-      <Header basic extended showMobileOverlay={expanded} className='pin-top position-sticky bg-base-light z-top padding-top-05 padding-left-1'>
+      <Header basic extended className='pin-top position-sticky bg-base-lightest z-top padding-top-05 padding-left-1'>
         <Title id="extended-logo" className='padding-0'>
           <a href="/" title="home" aria-label="Home">Tax calculator</a>
         </Title>
@@ -27,13 +27,18 @@ function App() {
           <PrimaryNav items={navItems}></PrimaryNav>
         </Grid>
       </Header>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/filing" element={<Filing />}></Route>
-        </Routes>
-      </BrowserRouter>
+      <main id="main-content">
+        <div className="height-viewport">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/filing" element={<Filing />}></Route>
+              <Route path="/create" element={<CreateAccount />}></Route>
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </main>
       {/* <Counter />
       <InternationalizationHello /> */}
     </>
