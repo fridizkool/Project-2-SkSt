@@ -1,6 +1,6 @@
 import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
-import { Title, Header, Grid, Accordion, Form, Fieldset, Label, Radio, Card, GridContainer, DatePicker, TextInput } from '@trussworks/react-uswds';
+import { Grid, Accordion, Form, Fieldset, Label, Radio, Card, GridContainer, DatePicker, TextInput } from '@trussworks/react-uswds';
 
 export default function Filing() {
     const formItems: any = [
@@ -17,8 +17,9 @@ export default function Filing() {
                             <Radio id="headofHouseholdStatus" name="status" label="Head of Household" value="headOfHousehold" />
                             <Label htmlFor="birthday" id='birthdayLabel'>Birthday</Label>
                             <DatePicker id="birthday" name="generalInfo" required aria-labelledby='birthdayLabel'></DatePicker>
-                            <Radio id="dependantYes" name="generalInfo" label="Yes" value='true' />
-                            <Radio id="dependantNo" name="generalInfo" label="No" value='false' defaultChecked />
+                            <span>Dependent</span>
+                            <Radio id="dependentYes" name="generalInfo" label="Yes" value='true' />
+                            <Radio id="dependentNo" name="generalInfo" label="No" value='false' defaultChecked />
                         </Fieldset>
                     </Form>
                 </Card>,
@@ -51,12 +52,12 @@ export default function Filing() {
                 <Card>
                     <Form onSubmit={() => { }} large>
                         <Fieldset>
-                            <Label htmlFor="dependantsChildren">Under 17 dependants</Label>
-                            <TextInput id="dependantsChildren" name="family" type={'number'}></TextInput>
-                            <Label htmlFor="dependantsStudents">Student dependants</Label>
-                            <TextInput id="dependantsStudents" name="family" type={'number'}></TextInput>
-                            <Label htmlFor="dependantsOther">Other dependants</Label>
-                            <TextInput id="dependantsOther" name="family" type={'number'}></TextInput>
+                            <Label htmlFor="dependentsChildren">Under 17 dependents</Label>
+                            <TextInput id="dependentsChildren" name="family" type={'number'}></TextInput>
+                            <Label htmlFor="dependentsStudents">Student dependents</Label>
+                            <TextInput id="dependentsStudents" name="family" type={'number'}></TextInput>
+                            <Label htmlFor="dependentsOther">Other dependents</Label>
+                            <TextInput id="dependentsOther" name="family" type={'number'}></TextInput>
                             <Label htmlFor="childcareChildren">Children in childcare</Label>
                             <TextInput id="childcareChildren" name="family" type={'number'}></TextInput>
                             <Label htmlFor="childcare">Childcare expense</Label>
