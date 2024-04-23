@@ -136,5 +136,20 @@ public class TaxInfo {
         this.specialDeductions = specialDeductions;
     }
 
-    
+    @Override
+    public String toString() {
+        return "TaxInfo{" +
+                "userId=" + userId +
+                ", user=" + user +
+                ", income=" + income +
+                ", selfEmployedIncome=" + selfEmployedIncome +
+                ", filingStatus='" + filingStatus + '\'' +
+                ", withheldFederal=" + withheldFederal +
+                ", withheldSS=" + withheldSS +
+                ", withheldMedicare=" + withheldMedicare +
+                ", dependents=" + dependents +
+                ", studentStatus=" + studentStatus +
+                ", specialDeductions=" + specialDeductions +
+                '}';
+    }
 }
