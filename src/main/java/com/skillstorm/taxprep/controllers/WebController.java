@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.taxprep.models.TaxInfo;
-import com.skillstorm.taxprep.models.User;
+import com.skillstorm.taxprep.models.AppUser;
 import com.skillstorm.taxprep.service.CalculationService;
 import com.skillstorm.taxprep.service.DatabaseService;
 import com.skillstorm.taxprep.service.TestService;
@@ -30,7 +30,7 @@ public class WebController {
     private CalculationService cS;
 
     @GetMapping("/api/users")
-    public List<User> getUsers() {
+    public List<AppUser> getUsers() {
         return s.getUsers();
     }
 

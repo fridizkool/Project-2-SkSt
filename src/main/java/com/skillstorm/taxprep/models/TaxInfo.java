@@ -20,7 +20,7 @@ public class TaxInfo {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private AppUser user;
 
     @Column(nullable = false)
     private Double income;
@@ -56,11 +56,11 @@ public class TaxInfo {
         this.userId = userId;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 

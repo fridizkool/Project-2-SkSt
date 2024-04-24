@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skillstorm.taxprep.models.TaxInfo;
-import com.skillstorm.taxprep.models.User;
+import com.skillstorm.taxprep.models.AppUser;
 import com.skillstorm.taxprep.repository.TaxInfoRepository;
 import com.skillstorm.taxprep.repository.UserRepository;
 
@@ -17,7 +17,7 @@ public class TestService {
     @Autowired
     private TaxInfoRepository taxInfoRepo;
 
-    public List<User> getUsers() {
+    public List<AppUser> getUsers() {
         return userRepo.findAll();
     }
 
