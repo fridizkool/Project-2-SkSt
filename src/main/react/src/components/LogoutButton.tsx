@@ -1,20 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LogoutButton: React.FC = () => {
+    const navigate = useNavigate();
+
     const handleLogout = async () => {
         try {
             // Send a POST request to the /logout endpoint
             const response = await fetch('/logout', {
                 method: 'POST',
-                // headers: {
-                //     'Content-Type': 'application/json'
-                // },
             });
 
             if (response.ok) {
-                // TODO Perform logout logic here
+                // Redirect to the landing page
+                navigate('/');
             } else {
-                // TODO Handle logout failure, if needed
+                // Handle logout failure, if needed
                 console.error('Logout failed:', response.statusText);
             }
         } catch (error) {

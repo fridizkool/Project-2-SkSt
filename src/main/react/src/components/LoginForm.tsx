@@ -1,11 +1,13 @@
 import { Fieldset, Label, TextInput, Button, Form} from '@trussworks/react-uswds';
 import { FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const YourComponent = () => {
     const [showPassword, setShowPassword] = useState(false);
-
+    const navigate = useNavigate();
+    
     const submitInfo = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault(); // Prevent default form submission behavior
+        event.preventDefault(); 
         
         const formData = new FormData(event.currentTarget); // Create FormData object from the form
         
@@ -13,6 +15,7 @@ const YourComponent = () => {
             // Retrieve CSRF token from the page (assuming it's available as a meta tag with name="_csrf")
             // const csrfToken = document.querySelector<HTMLInputElement>('meta[name="_csrf"]')?.content;
 
+            //TODO Consider reenabling CSRF
             // if (!csrfToken) {
             //     console.error('CSRF token not found');
             //     return;
@@ -22,18 +25,17 @@ const YourComponent = () => {
             const headers = new Headers();
             // headers.append('X-CSRF-TOKEN', csrfToken);
 
-            // Send a POST request to a relative route using Fetch API
             const response = await fetch('/login', {
                 method: 'POST',
                 headers: headers,
                 body: formData
             });
             
-            // Handle the response as needed
+            //TODO Use more sophisticated redirects from Spring Security
             if (response.ok) {
-                // Success handling
+                navigate("/");
             } else {
-                // Error handling
+                navigate("/login");
             }
         } catch (error) {
             console.error('Error submitting form:', error);
