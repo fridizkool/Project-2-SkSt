@@ -2,6 +2,7 @@ import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
 import { Grid, Accordion, Form, Fieldset, Label, Radio, Card, GridContainer, DatePicker, TextInput } from '@trussworks/react-uswds';
 import LogoutButton from '../components/LogoutButton';
+import LoginStatus from '../components/LoginStatus';
 
 export default function Filing() {
     const formItems: any = [
@@ -87,6 +88,8 @@ export default function Filing() {
                 </Grid>
             </GridContainer>
             <LogoutButton/>
+            <LoginStatus/>
+
         </>
     );
 }
