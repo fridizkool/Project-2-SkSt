@@ -10,7 +10,7 @@ export default function Login() {
     function onSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
-        {/*login work*/ }
+        {/*login work*/}
     }
 
     return (
