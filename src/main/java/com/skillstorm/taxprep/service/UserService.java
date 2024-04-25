@@ -22,66 +22,38 @@ public class UserService implements UserDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    /**
-     * search through the db for a user with username, or throw an exception if it can't find it
-     * 
-     * Spring Security will use this method to find users
-     */
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username + " not found."));
-
         return user;
     }
 
-    public void register(AppUser user) {
-
-        // first we need to check if the username is taken
+    public void registerUser(AppUser user) {
         Optional<AppUser> foundUser = userRepository.findByUsername(user.getUsername());
         if(foundUser.isPresent()) {
             
-            // [insert some logic to tell fronted that the username already exists]
+            // TODO Check for existing user
 
             throw new RuntimeException("User with that username already exists.");
         };
 
-        /**
-         * next we need to ENCODE the user's password
-         *      spring security is expecting you to use BCrypt
-         *          - otherwise error: "Password doesn't look like BCrypt"
-         */
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        // setting the incoming user to the default level of access
         user.setRole("ROLE_USER");
-
-        // finally save to db
         userRepository.save(user);
     }
 
     public void registerAdmin(AppUser user) {
 
-        // first we need to check if the username is taken
         Optional<AppUser> foundUser = userRepository.findByUsername(user.getUsername());
         if(foundUser.isPresent()) {
-            
-            // [insert some logic to tell fronted that the username already exists]
+
+            // TODO Check for existing user
 
             throw new RuntimeException("User with that username already exists.");
         }
 
-        /**
-         * next we need to ENCODE the user's password
-         *      spring security is expecting you to use BCrypt
-         *          - otherwise error: "Password doesn't look like BCrypt"
-         */
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        // setting the incoming user to the default level of access
-        user.setRole("ROLE_USER");
-
-        // finally save to db
+        user.setRole("ROLE_ADMIN");
         userRepository.save(user);
     }
 

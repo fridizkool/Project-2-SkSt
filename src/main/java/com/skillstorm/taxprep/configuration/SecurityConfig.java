@@ -5,20 +5,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.session.HttpSessionEventPublisher;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -27,23 +20,21 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
-            //TODO Consider turning back on and only disable to necessary endpoints
+            //TODO Consider CSRF turning back on and only disable to necessary endpoints
             .csrf((csrf) -> csrf.
                 disable())
+            // TODO Assign appropriate authorization requirements
 			.authorizeHttpRequests((authorize) -> authorize
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/*").permitAll()
                 .requestMatchers("/auth/*").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/user/**").hasAnyRole("ADMIN", "USER")
-                // .anyRequest().authenticated()
 			)
-			// .formLogin(Customizer.withDefaults())
-            //TODO https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/index.html
-            // Get login form to work, then get default logout page to load or try the POST logout
-            // https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html
 			.formLogin(formLogin -> formLogin
                 .loginPage("/login")
+                .defaultSuccessUrl("/") // Specify default success URL after successful login
+                .failureUrl("/login?error=true") // Specify URL to redirect after failed login
                 .permitAll()
             )
             .rememberMe(Customizer.withDefaults())
@@ -67,7 +58,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
-
 
 }
 

@@ -1,8 +1,9 @@
 import { Fieldset, Label, TextInput, Button, Form} from '@trussworks/react-uswds';
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { checkAuthStatus } from '../service/authService';
 
-const YourComponent = () => {
+const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     
@@ -12,37 +13,33 @@ const YourComponent = () => {
         const formData = new FormData(event.currentTarget); // Create FormData object from the form
         
         try {
-            // Retrieve CSRF token from the page (assuming it's available as a meta tag with name="_csrf")
-            // const csrfToken = document.querySelector<HTMLInputElement>('meta[name="_csrf"]')?.content;
-
-            //TODO Consider reenabling CSRF
-            // if (!csrfToken) {
-            //     console.error('CSRF token not found');
-            //     return;
-            // }
-
-            // Add CSRF token to headers
+            //TODO Add CSRF token to header
             const headers = new Headers();
-            // headers.append('X-CSRF-TOKEN', csrfToken);
 
             const response = await fetch('/login', {
                 method: 'POST',
                 headers: headers,
                 body: formData
             });
-            
-            //TODO Use more sophisticated redirects from Spring Security
+
             if (response.status === 200) {
-                navigate("/");
+                // Check authentication status after successful login
+                const isAuthenticated = await checkAuthStatus();
+                if (isAuthenticated) {
+                    // Navigate to the authenticated user's dashboard or home page
+                    navigate('/');
+                } else {
+                    // Handle case where user is not authenticated after login
+                    navigate('/login?error=true');
+                    console.error('User is not authenticated after login');
+                }
             } else {
-                navigate("/login");
+                // Handle other status codes (e.g., login failed)
             }
         } catch (error) {
             console.error('Error submitting form:', error);
         }
     };
-
-
 
     return (
         <Form onSubmit={submitInfo}>
@@ -60,4 +57,4 @@ const YourComponent = () => {
     );
 };
 
-export default YourComponent;
+export default LoginForm;

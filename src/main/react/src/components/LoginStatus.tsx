@@ -1,27 +1,18 @@
+// LoginStatus.tsx
+
 import React, { useEffect, useState } from 'react';
+import { checkAuthStatus } from '../service/authService';
 
 const LoginStatus: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const checkAuthStatus = async () => {
-            try {
-                // Send a GET request to a /auth/status endpoint to check authentication status
-                const response = await fetch('/auth/status');
-
-                if (response.ok) {
-                    const data = await response.text();
-                    setIsLoggedIn(data === 'true');
-                } else {
-                    setIsLoggedIn(false);
-                }
-            } catch (error) {
-                console.error('Error checking authentication status:', error);
-                setIsLoggedIn(false);
-            }
+        const fetchAuthStatus = async () => {
+            const isAuthenticated = await checkAuthStatus(); // Call the checkAuthStatus function
+            setIsLoggedIn(isAuthenticated);
         };
 
-        checkAuthStatus();
+        fetchAuthStatus();
     }, []);
 
     return (
