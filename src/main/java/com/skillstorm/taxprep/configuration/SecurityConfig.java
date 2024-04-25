@@ -27,6 +27,9 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
+            //TODO Consider turning back on and only disable to necessary endpoints
+            .csrf((csrf) -> csrf.
+                disable())
 			.authorizeHttpRequests((authorize) -> authorize
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/*").permitAll()
@@ -34,29 +37,29 @@ public class SecurityConfig {
                 .requestMatchers("/user/**").hasAnyRole("ADMIN", "USER")
                 // .anyRequest().authenticated()
 			)
-			.formLogin(Customizer.withDefaults())
+			// .formLogin(Customizer.withDefaults())
             //TODO https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/index.html
             // Get login form to work, then get default logout page to load or try the POST logout
             // https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html
-			// .formLogin(formLogin -> formLogin
-            //     .loginPage("/login")
-            //     .permitAll()
-            // )
-            .rememberMe(Customizer.withDefaults());
-            // .logout(
-            //     logout -> logout
-            //     .logoutUrl("/logout")
-            //     .logoutSuccessUrl("/")
-            //     .invalidateHttpSession(true)
-            //     .deleteCookies("JSESSIONID")
-            // );
+			.formLogin(formLogin -> formLogin
+                .loginPage("/login")
+                .permitAll()
+            )
+            .rememberMe(Customizer.withDefaults())
+            .logout(
+                logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+            );
             
 		return http.build();
 	}
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/assets/**", "/login");
+        return (web) -> web.ignoring().requestMatchers("/assets/**");
     }
 
 
