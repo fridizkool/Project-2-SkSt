@@ -5,9 +5,15 @@ import { useState } from 'react';
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
-    function submitInfo() {
-
+    const [validLogin, setValidLogin] = useState(true);
+    
+    function onSubmit(event : React.FormEvent<HTMLFormElement>)
+    {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        {/*login work*/}
     }
+
     return (
         <>
             <GridContainer className='usa-section'>
@@ -15,7 +21,7 @@ export default function Login() {
                     <Grid col={12}>
                         <div className="bg-base-lightest padding-y-3 padding-x-5 border border-base-lighter">
                             <h1>Sign in</h1>
-                            <Form onSubmit={submitInfo}>
+                            <Form onSubmit={() => { }}>
                                 <Fieldset legend="">
                                     <Label htmlFor="username-in">Username</Label>
                                     <TextInput id="username-in" type="text" name='username' required />
