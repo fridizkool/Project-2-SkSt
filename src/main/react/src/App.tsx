@@ -8,16 +8,18 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateAccount from './pages/CreateAccount.js';
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(0);
   const navItems = [
     <Link variant="nav" href={'/'}>Home</Link>,
     <Link variant="nav" href={'/login'}>Login</Link>,
     <Link variant="nav" href={'/filing'}>Calculator</Link>  //TODO only on auth available
   ];
+
   return (
     <>
       <Header basic extended className='pin-top position-sticky bg-base-lightest z-top padding-top-05 padding-left-1'>
         <Title id="extended-logo" className='padding-0'>
-          <a href="/" title="home" aria-label="Home">Tax calculator</a>
+          <a href="/" title="home" aria-label="Home">Clairevoyant Tax Prep</a>
         </Title>
         <Grid col={12}>
           <PrimaryNav items={navItems}></PrimaryNav>
