@@ -6,10 +6,9 @@ export default function Home()
 {
     return (
         <>
-            <LandingPage />
             <LogoutButton/>
             <LoginStatus/>
-
+            <LandingPage />
         </>
     )
 }

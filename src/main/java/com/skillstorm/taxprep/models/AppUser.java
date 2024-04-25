@@ -25,14 +25,14 @@ public class AppUser implements UserDetails {
     @Column(nullable = false)
     private String username;
 
-    @Column(name = "password_hash", nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
     
     @Column(name = "role")
     private String role;        // USER, ADMIN, MOD, etc.
 
-    @Column(name = "zipcode")
-    private String zipcode;
+    // @Column(name = "zipcode")
+    // private String zipcode;
 
     public AppUser() {
 
@@ -83,13 +83,13 @@ public class AppUser implements UserDetails {
         this.password = password;
     }
 
-    public String getZipcode() {
-        return zipcode;
-    }
+    // public String getZipcode() {
+    //     return zipcode;
+    // }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
+    // public void setZipcode(String zipcode) {
+    //     this.zipcode = zipcode;
+    // }
 
     
     @Override

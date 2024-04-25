@@ -52,10 +52,10 @@ public class DemoController {
     }
 
     //Can query database with information from the authenticated user
-    @GetMapping("/user/getaddress")
-    public String getAddress(Authentication authentication) {
-        AppUser curUser = dbS.getUserByName(authentication.getName());
-        String zipcode = curUser.getZipcode();
-        return "Your address is, " + zipcode + ".";
-    }
+    // @GetMapping("/user/getaddress")
+    // public String getAddress(Authentication authentication) {
+    //     AppUser curUser = dbS.getUserByName(authentication.getName());
+    //     String zipcode = curUser.getZipcode();
+    //     return "Your address is, " + zipcode + ".";
+    // }
 }

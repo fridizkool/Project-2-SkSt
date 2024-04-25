@@ -32,7 +32,7 @@ const YourComponent = () => {
             });
             
             //TODO Use more sophisticated redirects from Spring Security
-            if (response.ok) {
+            if (response.status === 200) {
                 navigate("/");
             } else {
                 navigate("/login");

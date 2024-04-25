@@ -63,30 +63,11 @@ public class SecurityConfig {
         return (web) -> web.ignoring().requestMatchers("/assets/**");
     }
 
-
-    //TODO Uncomment once switched to database storage
-    // @Bean
-    // public PasswordEncoder passwordEncoder() {
-    //     return new BCryptPasswordEncoder(10);
-    // }
-
-    //TODO Switch from in-memory to datastore 
     @Bean
-    public UserDetailsService users() {
-        // The builder will ensure the passwords are encoded before saving in memory
-        UserBuilder users = User.withDefaultPasswordEncoder();
-        UserDetails user = users
-            .username("user")
-            .password("password")
-            .roles("USER")
-            .build();
-        UserDetails admin = users
-            .username("admin")
-            .password("password")
-            .roles("USER", "ADMIN")
-            .build();
-        return new InMemoryUserDetailsManager(user, admin);
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(10);
     }
+
 
 }
 
