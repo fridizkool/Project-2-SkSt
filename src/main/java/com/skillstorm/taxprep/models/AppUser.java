@@ -31,9 +31,6 @@ public class AppUser implements UserDetails {
     @Column(name = "role")
     private String role;        // USER, ADMIN, MOD, etc.
 
-    // @Column(name = "zipcode")
-    // private String zipcode;
-
     public AppUser() {
 
     }
@@ -82,15 +79,6 @@ public class AppUser implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    // public String getZipcode() {
-    //     return zipcode;
-    // }
-
-    // public void setZipcode(String zipcode) {
-    //     this.zipcode = zipcode;
-    // }
-
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
