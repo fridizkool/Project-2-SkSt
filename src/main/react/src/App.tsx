@@ -8,7 +8,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateAccount from './pages/CreateAccount.js';
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(0);
   const navItems = [
     <Link variant="nav" href={'/'}>Home</Link>,
     <Link variant="nav" href={'/login'}>Login</Link>,

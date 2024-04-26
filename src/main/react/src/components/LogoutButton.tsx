@@ -14,6 +14,7 @@ const LogoutButton: React.FC = () => {
             if (response.ok) {
                 // Redirect to the landing page
                 navigate('/');
+                window.location.reload();
             } else {
                 // Handle logout failure, if needed
                 console.error('Logout failed:', response.statusText);
