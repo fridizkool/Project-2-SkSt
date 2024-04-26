@@ -6,7 +6,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE tax_info (
-    user_id SERIAL PRIMARY KEY,
+    user_id INTEGER PRIMARY KEY,
     income NUMERIC(15, 2) NOT NULL,
     self_employed_income NUMERIC(15, 2),
     filing_status VARCHAR(50) NOT NULL,

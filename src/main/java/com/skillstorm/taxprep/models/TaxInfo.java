@@ -14,7 +14,6 @@ import jakarta.persistence.Table;
 @Table(name = "tax_info")
 public class TaxInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long userId;
 
