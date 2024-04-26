@@ -1,7 +1,7 @@
 import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
 import { Grid, Accordion, Form, Fieldset, Label, Radio, Card, GridContainer, DatePicker, TextInput, CardGroup, CardHeader, CardBody } from '@trussworks/react-uswds';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 const url = "http://localhost:8080";
 interface TaxFile {
@@ -18,7 +18,7 @@ interface TaxFile {
 }
 
 export default function Filing() {
-    const [taxState, setForm] = useState({});
+    const [_, setForm] = useState({}); //taxState
     const calcRef = useRef(null);
 
     function updateForm(event: React.FormEvent<HTMLFormElement>) {
@@ -53,11 +53,11 @@ export default function Filing() {
     }
 
 
-    function sendChanges(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        // const general = new FormData(generalRef.current);
+    // function sendChanges(event: React.FormEvent<HTMLFormElement>) {
+    //     event.preventDefault();
+    //     // const general = new FormData(generalRef.current);
 
-    }
+    // }
 
     const formItems: any = [
         {
