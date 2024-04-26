@@ -6,7 +6,6 @@ import Home from './pages/Home.js'
 import Login from './pages/Login.js'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateAccount from './pages/CreateAccount.js';
-import ProtectedRoute from './components/PrivateRoutes.js';
 import PrivateRoutes from './components/PrivateRoutes.js';
 
 function App() {
