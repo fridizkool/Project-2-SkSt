@@ -4,7 +4,7 @@ package com.skillstorm.taxprep.util;
 public class TaxBracketHelper {
 
     /**
-     * TODO a static method that returns the tax on the given amount, based on the currently set tax bracket. 
+     * TODO a static method that returns the cumulative progressive tax on the given amount. References tax brackets from the tax-brackets.json file. 
      * @param number the number to be returned
      * @return the same number as the input parameter
      */
