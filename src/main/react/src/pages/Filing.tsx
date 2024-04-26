@@ -2,62 +2,107 @@ import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
 import { Grid, Accordion, Form, Fieldset, Label, Radio, Card, GridContainer, DatePicker, TextInput, CardGroup, CardHeader, CardBody } from '@trussworks/react-uswds';
 import React, { useRef, useState } from 'react';
+import LogoutButton from '../components/LogoutButton';
+import LoginStatus from '../components/LoginStatus';
 
-const url = "http://localhost:8080";
 interface TaxFile {
-    status?: string,
+    filingStatus?: string,
     dependent?: boolean,
     dependents?: number,
     income?: number,
-    selfEmployed?: number,
+    selfEmployedIncome?: number,
     withheldFederal?: number,
-    withheldSocial?: number,
+    withheldSS?: number,
     withheldMedicare?: number,
-    student?: boolean,
-    deductions?: number
+    studentStatus?: boolean,
+    specialDeductions?: number
+    userId?: number
 }
 
 export default function Filing() {
     const [_, setForm] = useState({}); //taxState
-    const calcRef = useRef(null);
+    const calcRef = useRef<HTMLDivElement>(null);
 
     function updateForm(event: React.FormEvent<HTMLFormElement>) {
+        // sendChange.start();
         if (event.currentTarget == null) return;
         const formData = new FormData(event.currentTarget);
         // if(formData == null) return;
         let tax: TaxFile = {
-            status: formData.get('status')?.toString(),
-            dependent: Boolean(formData.get('dependent')?.toString()),
-            dependents: Number(formData.get('dependents')?.toString()),
-            income: Number(formData.get('income')?.toString()),
-            selfEmployed: Number(formData.get('selfEmployedIncome')?.toString()),
-            withheldFederal: Number(formData.get('withheldFederal')?.toString()),
-            withheldSocial: Number(formData.get('withheldSocial')?.toString()),
-            withheldMedicare: Number(formData.get('withheldMedicare')?.toString()),
-            student: Boolean(formData.get('studentInfo')?.toString()),
-            deductions: Number(formData.get('deductions')?.toString())
+            userId: 1,
+            filingStatus: (formData.get('status')?.toString() ? formData.get('status')?.toString() : ''),
+            dependent: formData.get('dependent')?.toString() == 'True' ? true : false,
+            dependents: (Number(formData.get('dependents')?.toString()) ? Number(formData.get('dependents')?.toString()) : 0),
+            income: (Number(formData.get('income')?.toString()) ? Number(formData.get('income')?.toString()) : 0),
+            selfEmployedIncome: (Number(formData.get('selfEmployedIncome')?.toString()) ? Number(formData.get('selfEmployedIncome')?.toString()) : 0),
+            withheldFederal: (Number(formData.get('withheldFederal')?.toString()) ? Number(formData.get('withheldFederal')?.toString()) : 0),
+            withheldSS: (Number(formData.get('withheldSocial')?.toString()) ? Number(formData.get('withheldSocial')?.toString()) : 0),
+            withheldMedicare: (Number(formData.get('withheldMedicare')?.toString()) ? Number(formData.get('withheldMedicare')?.toString()) : 0),
+            studentStatus: formData.get('studentInfo')?.toString() == 'True' ? true : false,
+            specialDeductions: (Number(formData.get('deductions')?.toString()) ? Number(formData.get('deductions')?.toString()) : 0),
         };
         setForm(tax);
-        // console.log(JSON.stringify(tax));
-        fetch(url + "/taxinfo", {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify(tax)
-        })
-        .then( data => data.json())
-        .then(returnedData => {
-            calcRef.current = returnedData; //todo actual stuff
-        })
+        console.log(tax);
+        // timeoutUpdate = setTimeout(() => {
+        //     fetch("/taxinfo", {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(tax)
+        //     })
+        //         .then(data => {
+        //             if (calcRef.current == null) return;
+        //             calcRef.current.innerText = JSON.stringify(tax);
+        //             return data.json()
+        //         })
+        //     // .then(returnedData => {
+        //     //     if(calcRef.current == null) return;
+        //     //     calcRef.current.innerText = JSON.stringify(tax); //todo actual stuff
+        //     // })
+        // }, 2000);
+        sendChange.setup(tax);
     }
 
 
-    // function sendChanges(event: React.FormEvent<HTMLFormElement>) {
-    //     event.preventDefault();
-    //     // const general = new FormData(generalRef.current);
+    const sendChange = {    //not working yet
+        timeoutID: -100,
+        start() {
+            this.timeoutID = -100;
+        },
+        setup(tax: TaxFile) {
+            console.log(this.timeoutID);
+            if (this.timeoutID > 0) {
+                this.cancel();
+            }
+            this.timeoutID = window.setTimeout(
+                (taxFile: TaxFile) => {
+                    this.update(taxFile);
+                }, 1000, tax
+            )
+            console.log(this.timeoutID);
+        },
+        update(taxFile: TaxFile) {
+            if (calcRef.current == null) return;
+            fetch("/taxinfo", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(taxFile)
+            })
+                .then(data => {
+                    if (calcRef.current == null) return;
+                    calcRef.current.innerText = JSON.stringify(taxFile);
+                    data.json();
+                })
+            this.start();
 
-    // }
+        },
+        cancel() {
+            window.clearTimeout(this.timeoutID);
+        },
+    };
 
     const formItems: any = [
         {
@@ -71,10 +116,10 @@ export default function Filing() {
                         <Radio id="marriedSeperateStatus" name="status" label="Married filed seperately" value="marriedSeperate" />
                         <Radio id="headofHouseholdStatus" name="status" label="Head of Household" value="headOfHousehold" />
                         <Label htmlFor="birthday" id='birthdayLabel'>Birthday</Label>
-                        <DatePicker id="birthday" name="birthday" required aria-labelledby='birthdayLabel'></DatePicker>
+                        <DatePicker id="birthday" name="birthday" aria-labelledby='birthdayLabel' required></DatePicker>
                         <span>Are you a dependent?</span>
-                        <Radio id="dependentYes" name="dependent" label="Yes" value='true' />
-                        <Radio id="dependentNo" name="dependent" label="No" value='false' defaultChecked />
+                        <Radio id="dependentYes" name="dependent" label="Yes" value="True" />
+                        <Radio id="dependentNo" name="dependent" label="No" value="False" defaultChecked />
                         <Label htmlFor="dependents">Dependents</Label>
                         <TextInput id="dependents" name="dependents" type={'number'}></TextInput>
                     </Fieldset>
@@ -121,8 +166,8 @@ export default function Filing() {
                 <Card>
                     <Fieldset>
                         <span>Are you a student?</span>
-                        <Radio id="studentYes" name="studentInfo" label="Yes" value='true' />
-                        <Radio id="studentNo" name="studentInfo" label="No" value='false' defaultChecked />
+                        <Radio id="studentYes" name="studentInfo" label="Yes" value='True' />
+                        <Radio id="studentNo" name="studentInfo" label="No" value='False' defaultChecked />
                         <Label htmlFor="deductions">Deductions</Label>
                         <TextInput id="deductions" name="deductions" type={'number'}></TextInput>
                     </Fieldset>
@@ -145,10 +190,22 @@ export default function Filing() {
                         </Form>
                     </Grid>
                     <Grid col={5} offset={1}>
-                        <CardGroup><Card gridLayout={{ col: 12 }}><CardHeader><h3 className="usa-card__heading">Tax calculations</h3></CardHeader><CardBody ref={calcRef}></CardBody></Card></CardGroup>
+                        <CardGroup>
+                            <Card gridLayout={{ col: 12 }}>
+                                <CardHeader>
+                                    <h3 className="usa-card__heading">Tax calculations</h3>
+                                </CardHeader>
+                                <CardBody>
+                                    <div ref={calcRef}>
+                                    </div>
+                                </CardBody>
+                            </Card>
+                        </CardGroup>
                     </Grid>
                 </Grid>
             </GridContainer>
+            <LogoutButton />
+            <LoginStatus />
         </>
     );
 }
