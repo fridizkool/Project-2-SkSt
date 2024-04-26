@@ -1,5 +1,7 @@
 package com.skillstorm.taxprep.controllers;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,10 +9,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.taxprep.models.AppUser;
 import com.skillstorm.taxprep.service.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class AuthController {
@@ -37,5 +45,17 @@ public class AuthController {
         userService.registerAdmin(user);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
+
+
+    @GetMapping("/admin/hello")
+    public String adminHello(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return "admin logged in";
+    }
+    @GetMapping("/user/hello")
+    public String userHello(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return "user logged in";
+    }
+
+
     
 }

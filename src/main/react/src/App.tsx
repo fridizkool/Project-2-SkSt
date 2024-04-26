@@ -6,6 +6,7 @@ import Home from './pages/Home.js'
 import Login from './pages/Login.js'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateAccount from './pages/CreateAccount.js';
+import PrivateRoutes from './components/PrivateRoutes.js';
 
 function App() {
   const navItems = [
@@ -28,10 +29,12 @@ function App() {
         <div className="height-viewport">
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/filing" element={<Filing />}></Route>
-              <Route path="/create" element={<CreateAccount />}></Route>
+              <Route path="/" element={<Home />}/>
+              <Route path="/login" element={<Login />}/>
+              <Route element={<PrivateRoutes/>}>
+                  <Route path='/filing' element={<Filing/>} />
+              </Route>
+              <Route path="/create" element={<CreateAccount />}/>
             </Routes>
           </BrowserRouter>
         </div>
