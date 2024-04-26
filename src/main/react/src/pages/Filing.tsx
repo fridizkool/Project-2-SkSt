@@ -38,7 +38,7 @@ export default function Filing() {
             deductions: Number(formData.get('deductions')?.toString())
         };
         setForm(tax);
-        console.log(JSON.stringify(tax));
+        // console.log(JSON.stringify(tax));
         fetch(url + "/taxinfo", {
             method: 'POST',
             headers: {
