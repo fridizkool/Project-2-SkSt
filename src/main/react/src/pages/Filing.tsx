@@ -2,6 +2,8 @@ import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
 import { Grid, Accordion, Form, Fieldset, Label, Radio, Card, GridContainer, DatePicker, TextInput, CardGroup, CardHeader, CardBody } from '@trussworks/react-uswds';
 import React, { useEffect, useRef, useState } from 'react';
+import LogoutButton from '../components/LogoutButton';
+import LoginStatus from '../components/LoginStatus';
 
 const url = "http://localhost:8080";
 interface TaxFile {
@@ -38,18 +40,17 @@ export default function Filing() {
             deductions: Number(formData.get('deductions')?.toString())
         };
         setForm(tax);
-        // console.log(JSON.stringify(tax));
         fetch(url + "/taxinfo", {
             method: 'POST',
             headers: {
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(tax)
         })
-        .then( data => data.json())
-        .then(returnedData => {
-            calcRef.current = returnedData; //todo actual stuff
-        })
+            .then(data => data.json())
+            .then(returnedData => {
+                calcRef.current = returnedData; //todo actual stuff
+            })
     }
 
 
@@ -149,6 +150,8 @@ export default function Filing() {
                     </Grid>
                 </Grid>
             </GridContainer>
+            <LogoutButton />
+            <LoginStatus />
         </>
     );
 }
