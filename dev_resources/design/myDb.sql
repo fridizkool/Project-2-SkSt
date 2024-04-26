@@ -2,7 +2,7 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     role VARCHAR(50) NOT NULL,
     username VARCHAR(255) NOT NULL,
-    password_hash CHAR(64) NOT NULL
+    password VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE tax_info (
@@ -19,14 +19,8 @@ CREATE TABLE tax_info (
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
--- Insert dummy data into users table
-INSERT INTO users (role, username, password_hash) VALUES
-    ('Admin', 'admin1', 'password1'),
-    ('User', 'user1', 'password2'),
-    ('User', 'user2', 'password3'),
-    ('User', 'user3', 'password4'),
-    ('User', 'user4', 'password5');
-    
+-- For User table, send a POST to the /auth/register/user endpoint or use the in app page to make users.
+
 -- Insert dummy data into tax_info table
 INSERT INTO tax_info (user_id, income, filing_status, special_deductions, withheld_federal, withheld_ss, withheld_medicare, dependents, student_status, self_employed_income) VALUES
     (1, 50000.00, 'Single', 0.00, 5000.00, 1000.00, 200.00, 1, FALSE, 0.00),
