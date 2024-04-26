@@ -20,7 +20,7 @@ interface TaxFile {
 }
 
 export default function Filing() {
-    const [taxState, setForm] = useState({});
+    const [_, setForm] = useState({}); //taxState
     const calcRef = useRef(null);
 
     function updateForm(event: React.FormEvent<HTMLFormElement>) {
@@ -54,11 +54,11 @@ export default function Filing() {
     }
 
 
-    function sendChanges(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        // const general = new FormData(generalRef.current);
+    // function sendChanges(event: React.FormEvent<HTMLFormElement>) {
+    //     event.preventDefault();
+    //     // const general = new FormData(generalRef.current);
 
-    }
+    // }
 
     const formItems: any = [
         {

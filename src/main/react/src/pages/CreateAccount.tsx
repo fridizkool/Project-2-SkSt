@@ -1,4 +1,4 @@
-import { Button, Card, Fieldset, Form, Grid, GridContainer, Label, Link, TextInput } from "@trussworks/react-uswds";
+import { Button, Card, Fieldset, Form, Grid, GridContainer, Label, TextInput } from "@trussworks/react-uswds";
 import { useState } from "react";
 
 export default function CreateAccount() {
