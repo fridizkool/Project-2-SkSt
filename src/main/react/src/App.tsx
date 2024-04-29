@@ -10,24 +10,25 @@ import PrivateRoutes from './components/PrivateRoutes.js';
 import ContentNotFound from './pages/ContentNotFound.js';
 import Account from './pages/Account.js';
 import Users from './pages/Users.js';
+import { NavSystem } from './components/nav/NavSystem.js';
 
 function App() {
-  const navItems = [
-    <Link variant="nav" href={'/'}>Home</Link>,
-    <Link variant="nav" href={'/login'}>Login</Link>,
-    <Link variant="nav" href={'/filing'}>Calculator</Link>  //TODO only on auth available
-  ];
+
 
   return (
     <>
-      <Header basic extended className='pin-top position-sticky bg-base-lightest z-top padding-top-05 padding-left-1'>
+      <Header basic extended className=''>
         <Title id="extended-logo" className='padding-0'>
           <a href="/" title="home" aria-label="Home">Clairevoyant Tax Prep</a>
         </Title>
-        <Grid col={12}>
+        {/* <Grid col={12}>
           <PrimaryNav items={navItems}></PrimaryNav>
-        </Grid>
+        </Grid> */}
+
       </Header>
+
+      <NavSystem/>
+
       <main id="main-content">
         <div className="height-viewport">
           <BrowserRouter>
@@ -37,19 +38,7 @@ function App() {
               <Route element={<PrivateRoutes />}>
                 <Route path='/filing' element={<Filing />} />
                 <Route path='/account' element={<Account />} />
-                <Route path='/users' element={<Users userData={/**temp */ 
-                  [
-                    {
-                      "id" : "1",
-                      "username" : "user"
-                    },
-                    {
-                      "id" : "2",
-                      "username" : "test"
-                    }
-                    
-                  ]
-                }/>} />
+                <Route path='/users' element={<Users/>} />
               </Route>
               <Route path="/404" element={<ContentNotFound />} />
               <Route path="/create" element={<CreateAccount />} />

@@ -2,9 +2,10 @@ import { Button, DatePicker, Fieldset, Form, Grid, GridContainer, Label, Modal, 
 import React from "react";
 import { MutableRefObject, useRef } from "react";
 
-export default function Users({ userData } :any ) {
-    // const modalRef = useRef<ModalRef>(null);
+export default function Users() {
     const roleOptions = [<option value="ROLE_ADMIN">Admin</option>, <option value="ROLE_USER">User</option>];
+
+    //TODO refactor
     function editModal(user: any, ref: MutableRefObject<ModalRef | null>) {
         return (
             <>
@@ -43,6 +44,19 @@ export default function Users({ userData } :any ) {
             </>
         )
     }
+
+    //TODO Use a GET request to query admin-accessible Users list from server
+    const userData = [
+        {
+          id: "1",
+          username: "user"
+        },
+        {
+          id: "2",
+          username: "test"
+        }
+      ];
+      
 
     return (
         <>
