@@ -7,6 +7,9 @@ import Login from './pages/Login.js'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateAccount from './pages/CreateAccount.js';
 import PrivateRoutes from './components/PrivateRoutes.js';
+import ContentNotFound from './pages/ContentNotFound.js';
+import Account from './pages/Account.js';
+import Users from './pages/Users.js';
 
 function App() {
   const navItems = [
@@ -29,12 +32,27 @@ function App() {
         <div className="height-viewport">
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home />}/>
-              <Route path="/login" element={<Login />}/>
-              <Route element={<PrivateRoutes/>}>
-                  <Route path='/filing' element={<Filing/>} />
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route element={<PrivateRoutes />}>
+                <Route path='/filing' element={<Filing />} />
+                <Route path='/account' element={<Account />} />
+                <Route path='/users' element={<Users userData={/**temp */ 
+                  [
+                    {
+                      "id" : "1",
+                      "username" : "user"
+                    },
+                    {
+                      "id" : "2",
+                      "username" : "test"
+                    }
+                    
+                  ]
+                }/>} />
               </Route>
-              <Route path="/create" element={<CreateAccount />}/>
+              <Route path="/404" element={<ContentNotFound />} />
+              <Route path="/create" element={<CreateAccount />} />
             </Routes>
           </BrowserRouter>
         </div>

@@ -115,8 +115,6 @@ export default function Filing() {
                         <Radio id="marriedJointStatus" name="status" label="Married filed jointly" value="marriedJoint" />
                         <Radio id="marriedSeperateStatus" name="status" label="Married filed seperately" value="marriedSeperate" />
                         <Radio id="headofHouseholdStatus" name="status" label="Head of Household" value="headOfHousehold" />
-                        <Label htmlFor="birthday" id='birthdayLabel'>Birthday</Label>
-                        <DatePicker id="birthday" name="birthday" aria-labelledby='birthdayLabel' required></DatePicker>
                         <span>Are you a dependent?</span>
                         <Radio id="dependentYes" name="dependent" label="Yes" value="True" />
                         <Radio id="dependentNo" name="dependent" label="No" value="False" defaultChecked />
