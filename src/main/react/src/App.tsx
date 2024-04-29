@@ -6,7 +6,6 @@ import Home from './pages/Home.js'
 import Login from './pages/Login.js'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateAccount from './pages/CreateAccount.js';
-import PrivateRoutes from './components/PrivateRoutes.js';
 import ContentNotFound from './pages/ContentNotFound.js';
 import Account from './pages/Account.js';
 import Users from './pages/Users.js';
@@ -17,7 +16,7 @@ function App() {
 
   return (
     <>
-      <Header basic extended className=''>
+      <Header basic extended className='pin-top position-sticky bg-base-lightest z-top padding-top-05 padding-left-1'>
         <Title id="extended-logo" className='padding-0'>
           <a href="/" title="home" aria-label="Home">Clairevoyant Tax Prep</a>
         </Title>
@@ -35,11 +34,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
-              <Route element={<PrivateRoutes />}>
                 <Route path='/filing' element={<Filing />} />
                 <Route path='/account' element={<Account />} />
                 <Route path='/users' element={<Users/>} />
-              </Route>
               <Route path="/404" element={<ContentNotFound />} />
               <Route path="/create" element={<CreateAccount />} />
             </Routes>

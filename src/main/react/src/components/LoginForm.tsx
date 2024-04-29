@@ -1,7 +1,7 @@
 import { Fieldset, Label, TextInput, Button, Form} from '@trussworks/react-uswds';
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { checkAuthStatus } from '../service/authService';
+import { queryAuthStatus } from '../service/authService';
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -24,10 +24,11 @@ const LoginForm = () => {
 
             if (response.status === 200) {
                 // Check authentication status after successful login
-                const isAuthenticated = await checkAuthStatus();
-                if (isAuthenticated) {
+                const authStatus = await queryAuthStatus();
+                if (authStatus.authenticated) {
                     // Navigate to the authenticated user's dashboard or home page
                     navigate('/');
+                    console.log("naving")
                 } else {
                     // Handle case where user is not authenticated after login
                     navigate('/login?error=true');

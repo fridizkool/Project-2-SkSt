@@ -1,17 +1,22 @@
-const checkAuthStatus = async () => {
+const queryAuthStatus = async () => {
+    let authStatus = {
+        authenticated: false,
+        userRole: "NONE"
+    }
     try {
         const response = await fetch('/auth/status');
 
         if (response.ok) {
-            const data = await response.text();
-            return data === 'true';
+            const data = await response.json();
+            authStatus = data;
         } else {
-            return false;
+
         }
     } catch (error) {
         console.error('Error checking authentication status:', error);
-        return false;
     }
+
+    return authStatus;
 };
 
-export { checkAuthStatus };
+export { queryAuthStatus };
