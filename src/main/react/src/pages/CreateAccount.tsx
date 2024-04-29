@@ -1,4 +1,4 @@
-import { Button, Card, DatePicker, Fieldset, Form, Grid, GridContainer, Label, TextInput } from "@trussworks/react-uswds";
+import { Button, DatePicker, Fieldset, Form, Grid, GridContainer, Label, TextInput } from "@trussworks/react-uswds";
 import { useState } from "react";
 
 export default function CreateAccount() {
@@ -74,7 +74,6 @@ export default function CreateAccount() {
                                     </Form>
                                 </Grid>
                                 <Grid col={6}>
-                                    {/* <Card>SSO stuff</Card> */}
                                 </Grid>
                             </Grid>
                         </div>

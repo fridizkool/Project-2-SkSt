@@ -1,12 +1,11 @@
 import { Button, DatePicker, Fieldset, Form, Grid, GridContainer, Label, Modal, ModalHeading, ModalRef, ModalToggleButton, Select, Table, TextInput } from "@trussworks/react-uswds";
 import React from "react";
-import { MutableRefObject, Ref, useRef } from "react";
+import { MutableRefObject, useRef } from "react";
 
-export default function Users({ userData }) {
+export default function Users({ userData } :any ) {
     // const modalRef = useRef<ModalRef>(null);
     const roleOptions = [<option value="ROLE_ADMIN">Admin</option>, <option value="ROLE_USER">User</option>];
-    
-    function editModal(user: any, ref: MutableRefObject<ModalRef>) {
+    function editModal(user: any, ref: MutableRefObject<ModalRef | null>) {
         return (
             <>
                 <Modal ref={ref} id={"modal" + user.id} isLarge>

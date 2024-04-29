@@ -27,5 +27,23 @@ public class ReactController {
         return new ModelAndView("forward:/");
     }
 
+    @RequestMapping("/create")
+    public ModelAndView toCreate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return new ModelAndView("forward:/");
+    }
 
+    @RequestMapping("/account")
+    public ModelAndView toAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return new ModelAndView("forward:/");
+    }
+
+    @RequestMapping("/users")
+    public ModelAndView toUsers(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return new ModelAndView("forward:/");
+    }
+
+    @RequestMapping("/404")
+    public ModelAndView toContentNotFound(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return new ModelAndView("forward:/");
+    }
 }
