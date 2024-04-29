@@ -5,6 +5,7 @@ import { MutableRefObject, Ref, useRef } from "react";
 export default function Users({ userData }) {
     // const modalRef = useRef<ModalRef>(null);
     const roleOptions = [<option value="ROLE_ADMIN">Admin</option>, <option value="ROLE_USER">User</option>];
+    
     function editModal(user: any, ref: MutableRefObject<ModalRef>) {
         return (
             <>
