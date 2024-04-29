@@ -1,7 +1,7 @@
 import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
 import Filing from './pages/Filing.js'
-import { Grid, Header, Link, PrimaryNav, Title } from '@trussworks/react-uswds'
+import { Header, Title } from '@trussworks/react-uswds'
 import Home from './pages/Home.js'
 import Login from './pages/Login.js'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
