@@ -27,68 +27,57 @@ public class AppUser implements UserDetails {
 
     @Column(name = "password", nullable = false)
     private String password;
-    
+
     @Column(name = "role")
-    private String role;        // USER, ADMIN, MOD, etc.
+    private String role; // USER, ADMIN, MOD, etc.
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column
+    private String initial;
+
+    @Column
+    private String suffix;
+
+    @Column
+    private String address;
+
+    @Column(name = "telephone_number")
+    private String telephoneNumber;
+
+    @Column(name = "social_security_number")
+    private Long ssn;
 
     public AppUser() {
 
     }
 
-    public AppUser(String username, String password, String role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
-    }
-
-    public AppUser(long id, String username, String password, String role) {
+    public AppUser(Long id, String username, String password, String role, String firstName, String lastName,
+            String initial, String suffix, String address, String telephoneNumber) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.initial = initial;
+        this.suffix = suffix;
+        this.address = address;
+        this.telephoneNumber = telephoneNumber;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         SimpleGrantedAuthority userRole = new SimpleGrantedAuthority(role);
         authorities.add(userRole);
 
-        return authorities;     //USER -> USER_ROLE
+        return authorities; // USER -> USER_ROLE
     }
-
 
     @Override
     public boolean isAccountNonExpired() {
@@ -110,5 +99,84 @@ public class AppUser implements UserDetails {
         return true;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getInitial() {
+        return initial;
+    }
+
+    public void setInitial(String initial) {
+        this.initial = initial;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
+    }
 
 }

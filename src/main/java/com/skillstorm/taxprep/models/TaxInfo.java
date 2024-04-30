@@ -3,8 +3,6 @@ package com.skillstorm.taxprep.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -21,24 +19,13 @@ public class TaxInfo {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private AppUser user;
 
-    @Column(nullable = false)
-    private Double income;
-
-    @Column(name = "self_employed_income")
-    private Double selfEmployedIncome;
+    @Column(name = "supplemental_income")
+    private Double supplementalIncome;
 
     @Column(name = "filing_status", nullable = false)
     private String filingStatus;
 
-    @Column(name = "withheld_federal")
-    private Double withheldFederal;
-
-    @Column(name = "withheld_ss")
-    private Double withheldSS;
-
-    @Column(name = "withheld_medicare")
-    private Double withheldMedicare;
-
+    @Column
     private Integer dependents;
 
     @Column(name = "student_status")
@@ -46,6 +33,20 @@ public class TaxInfo {
 
     @Column(name = "special_deductions")
     private Double specialDeductions;
+
+    public TaxInfo() {
+    }
+
+    public TaxInfo(Long userId, AppUser user, Double supplementalIncome, String filingStatus, Integer dependents,
+            Boolean studentStatus, Double specialDeductions) {
+        this.userId = userId;
+        this.user = user;
+        this.supplementalIncome = supplementalIncome;
+        this.filingStatus = filingStatus;
+        this.dependents = dependents;
+        this.studentStatus = studentStatus;
+        this.specialDeductions = specialDeductions;
+    }
 
     public Long getUserId() {
         return userId;
@@ -63,20 +64,12 @@ public class TaxInfo {
         this.user = user;
     }
 
-    public Double getIncome() {
-        return income;
+    public Double getSupplementalIncome() {
+        return supplementalIncome;
     }
 
-    public void setIncome(Double income) {
-        this.income = income;
-    }
-
-    public Double getSelfEmployedIncome() {
-        return selfEmployedIncome;
-    }
-
-    public void setSelfEmployedIncome(Double selfEmployedIncome) {
-        this.selfEmployedIncome = selfEmployedIncome;
+    public void setSupplementalIncome(Double supplementalIncome) {
+        this.supplementalIncome = supplementalIncome;
     }
 
     public String getFilingStatus() {
@@ -85,30 +78,6 @@ public class TaxInfo {
 
     public void setFilingStatus(String filingStatus) {
         this.filingStatus = filingStatus;
-    }
-
-    public Double getWithheldFederal() {
-        return withheldFederal;
-    }
-
-    public void setWithheldFederal(Double withheldFederal) {
-        this.withheldFederal = withheldFederal;
-    }
-
-    public Double getWithheldSS() {
-        return withheldSS;
-    }
-
-    public void setWithheldSS(Double withheldSS) {
-        this.withheldSS = withheldSS;
-    }
-
-    public Double getWithheldMedicare() {
-        return withheldMedicare;
-    }
-
-    public void setWithheldMedicare(Double withheldMedicare) {
-        this.withheldMedicare = withheldMedicare;
     }
 
     public Integer getDependents() {
@@ -137,18 +106,8 @@ public class TaxInfo {
 
     @Override
     public String toString() {
-        return "TaxInfo{" +
-                "userId=" + userId +
-                ", user=" + user +
-                ", income=" + income +
-                ", selfEmployedIncome=" + selfEmployedIncome +
-                ", filingStatus='" + filingStatus + '\'' +
-                ", withheldFederal=" + withheldFederal +
-                ", withheldSS=" + withheldSS +
-                ", withheldMedicare=" + withheldMedicare +
-                ", dependents=" + dependents +
-                ", studentStatus=" + studentStatus +
-                ", specialDeductions=" + specialDeductions +
-                '}';
+        return "TaxInfo [userId=" + userId + ", user=" + user + ", supplementalIncome=" + supplementalIncome
+                + ", filingStatus=" + filingStatus + ", dependents=" + dependents + ", studentStatus=" + studentStatus
+                + ", specialDeductions=" + specialDeductions + "]";
     }
 }
