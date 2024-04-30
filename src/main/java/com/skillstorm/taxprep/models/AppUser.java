@@ -54,13 +54,13 @@ public class AppUser implements UserDetails {
     @Column(name = "social_security_number")
     private Long ssn;
 
-    @OneToOne(targetEntity = TaxInfo.class, mappedBy = "userId")
+    @OneToOne(targetEntity = TaxInfo.class, mappedBy = "user")
     private TaxInfo taxInfo;
 
-    @OneToMany(targetEntity = TaxInfoW2.class, mappedBy = "userId")
+    @OneToMany(targetEntity = TaxInfoW2.class, mappedBy = "user")
     private Set<TaxInfoW2> taxInfoW2;
 
-    @OneToMany(targetEntity = TaxInfo1099.class, mappedBy = "userId")
+    @OneToMany(targetEntity = TaxInfo1099.class, mappedBy = "user")
     private Set<TaxInfo1099> taxInfo1099;
 
     public AppUser() {
