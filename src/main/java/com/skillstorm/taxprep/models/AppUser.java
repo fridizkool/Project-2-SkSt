@@ -68,7 +68,7 @@ public class AppUser implements UserDetails {
     }
 
     public AppUser(Long id, String username, String password, String role, String firstName, String lastName,
-            String initial, String suffix, String address, String telephoneNumber) {
+            String initial, String suffix, String address, String telephoneNumber, Long ssn) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -79,6 +79,7 @@ public class AppUser implements UserDetails {
         this.suffix = suffix;
         this.address = address;
         this.telephoneNumber = telephoneNumber;
+        this.ssn = ssn;
     }
 
     @Override
@@ -190,4 +191,37 @@ public class AppUser implements UserDetails {
         this.telephoneNumber = telephoneNumber;
     }
 
+    public Long getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(Long ssn) {
+        this.ssn = ssn;
+    }
+
+    public TaxInfo getTaxInfo() {
+        return taxInfo;
+    }
+
+    public void setTaxInfo(TaxInfo taxInfo) {
+        this.taxInfo = taxInfo;
+    }
+
+    public Set<TaxInfoW2> getTaxInfoW2() {
+        return taxInfoW2;
+    }
+
+    public void setTaxInfoW2(Set<TaxInfoW2> taxInfoW2) {
+        this.taxInfoW2 = taxInfoW2;
+    }
+
+    public Set<TaxInfo1099> getTaxInfo1099() {
+        return taxInfo1099;
+    }
+
+    public void setTaxInfo1099(Set<TaxInfo1099> taxInfo1099) {
+        this.taxInfo1099 = taxInfo1099;
+    }
+
+    
 }
