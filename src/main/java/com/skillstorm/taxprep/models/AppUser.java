@@ -13,6 +13,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -51,6 +53,15 @@ public class AppUser implements UserDetails {
 
     @Column(name = "social_security_number")
     private Long ssn;
+
+    @OneToOne(targetEntity = TaxInfo.class, mappedBy = "userId")
+    private TaxInfo taxInfo;
+
+    @OneToMany(targetEntity = TaxInfoW2.class, mappedBy = "userId")
+    private Set<TaxInfoW2> taxInfoW2;
+
+    @OneToMany(targetEntity = TaxInfo1099.class, mappedBy = "userId")
+    private Set<TaxInfo1099> taxInfo1099;
 
     public AppUser() {
 
