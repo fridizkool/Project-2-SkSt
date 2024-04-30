@@ -34,7 +34,7 @@ CREATE TABLE tax_info_w2 (
     retirement_13 BOOLEAN,
     sick_pay_13 BOOLEAN,
     other_14 VARCHAR(1023),
-    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
     -- FOREIGN KEY (employer_id) REFERENCES employer (id)
 );
 
