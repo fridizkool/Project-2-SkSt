@@ -1,3 +1,4 @@
+import { Link } from "@trussworks/react-uswds";
 import { useRouteError } from "react-router-dom";
 
 // TODO Add automatic redirect set to timer. And a manual 'back to home' button.
@@ -15,6 +16,7 @@ export default function ErrorPage() {
       <p>
         <i>{routeError.statusText || routeError.message}</i>
       </p>
+      <Link variant="nav" href={'/'}>Return to Home</Link>,
     </div>
   );
 }
