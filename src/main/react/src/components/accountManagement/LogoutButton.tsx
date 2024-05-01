@@ -1,9 +1,7 @@
 import React from 'react';
-import { redirect, useNavigate } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
 const LogoutButton: React.FC = () => {
-    const navigate = useNavigate();
-
     const handleLogout = async () => {
         try {
             // Send a POST request to the /logout endpoint

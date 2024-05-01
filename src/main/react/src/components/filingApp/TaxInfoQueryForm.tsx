@@ -1,5 +1,8 @@
-import { CardGroup, Card, CardHeader, CardBody, Accordion, Fieldset, Form, Label, Radio, TextInput } from "@trussworks/react-uswds"
+import { Card, Accordion, Fieldset, Form, Label, Radio, TextInput } from "@trussworks/react-uswds"
 import { useState, useRef } from "react";
+import Form1099 from "./TaxInfoQuerySubForms/Form1099";
+import FormMisc from "./TaxInfoQuerySubForms/FormMisc";
+import FormW2 from "./TaxInfoQuerySubForms/FormW2";
 
 export default function TaxInfoQueryForm() {
 
@@ -147,6 +150,9 @@ export default function TaxInfoQueryForm() {
         <Form onSubmit={() => { }} onChange={updateForm} large>
             <Accordion items={formItems} multiselectable={true} />
         </Form>
+        <Form1099/>
+        <FormW2/>
+        <FormMisc/>
     </>
 }
 

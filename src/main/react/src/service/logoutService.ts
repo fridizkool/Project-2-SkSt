@@ -1,5 +1,3 @@
-import { redirect } from "react-router-dom";
-
 // Sends a logout request to the server. Does not redirect.
 export const handleLogout = async () => {
     try {
