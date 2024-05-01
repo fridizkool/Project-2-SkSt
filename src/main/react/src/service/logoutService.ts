@@ -7,8 +7,6 @@ export const handleLogout = async () => {
         });
 
         if (response.ok) {
-            // Redirect to the landing page
-            // window.location.reload();
             return true;
         } else {
             // Handle logout failure, if needed

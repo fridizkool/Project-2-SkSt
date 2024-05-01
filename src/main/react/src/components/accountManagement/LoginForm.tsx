@@ -2,7 +2,6 @@ import { Fieldset, Label, TextInput, Button, Form} from '@trussworks/react-uswds
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { queryAuthStatus } from '../../service/authService';
-import { springUrl } from '../../util/CONSTANTS';
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -17,7 +16,7 @@ const LoginForm = () => {
             //TODO Add CSRF token to header
             const headers = new Headers();
 
-            const response = await fetch(`${springUrl}/login`, {
+            const response = await fetch('/login', {
                 method: 'POST',
                 headers: headers,
                 body: formData
@@ -29,7 +28,6 @@ const LoginForm = () => {
                 if (authStatus.authenticated) {
                     // Navigate to the authenticated user's dashboard or home page
                     navigate('/');
-                    console.log("naving")
                 } else {
                     // Handle case where user is not authenticated after login
                     navigate('/login?error=true');
