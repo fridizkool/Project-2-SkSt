@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.taxprep.models.AppUser;
+import com.skillstorm.taxprep.models.AuthStatus;
 import com.skillstorm.taxprep.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,8 +29,24 @@ public class AuthController {
 
     // Used by the front end to check if the user is logged in or not. Does not provide any other information.
     @GetMapping("/auth/status")
-    public boolean checkAuthStatus(Authentication authentication) {
-        return authentication != null && authentication.isAuthenticated();
+    public AuthStatus returnAuthStatus(Authentication authentication) {
+        AuthStatus authStatus = new AuthStatus();
+        try{
+            boolean isAuthenticated = authentication.isAuthenticated();
+            String userRole = authentication.getAuthorities().stream()
+                .findFirst()
+                .map(Object::toString)
+                .orElse("NONE");
+
+            authStatus.setAuthenticated(isAuthenticated);;
+            authStatus.setUserRole(userRole);
+        } catch (NullPointerException e){
+            // Do nothing, return default AuthStatus object
+        } catch (Exception e){
+            System.out.println("That was not supposed to happen.");
+        }
+
+        return authStatus;
     }
 
     // Register a new user

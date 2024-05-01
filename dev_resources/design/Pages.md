@@ -1,0 +1,13 @@
+- Home page
+- Login
+  - 
+- Calculator
+  - User access only
+- Users
+  - Admin access only
+- My Account
+  - User access only
+  - Reroutes if not logged in
+- Account Creation
+  - Unauthenticated only
+- Error

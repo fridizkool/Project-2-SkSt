@@ -1,8 +1,8 @@
 import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
 import { Grid, GridContainer, Link } from '@trussworks/react-uswds';
-import LoginForm from '../components/LoginForm';
-import LoginStatus from '../components/LoginStatus';
+import LoginForm from '../components/accountManagement/LoginForm';
+import LoginStatus from '../components/accountManagement/LoginStatus';
 
 export default function Login() {
     return (
