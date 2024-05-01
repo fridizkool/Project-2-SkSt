@@ -8,7 +8,7 @@ function Root() {
   return (
     <>
       <TitleBanner />
-      <NavSystem navOptions={navOptions} />
+      <NavSystem navOptions={navOptions} enabled={true} />
       <Outlet />
     </>
   );

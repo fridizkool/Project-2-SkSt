@@ -4,12 +4,20 @@ import { JSX } from "react/jsx-runtime";
 import UserAccountDropdown from "./UserAccountDropdown";
 
 
+interface NavOptions {
+  showAdminPriviledgedInfo: boolean,
+  showUserPrivilegedInfo: boolean
+}
 
-export function NavSystem(props : any): React.ReactElement {
-    const [mobileNavOpen, setMobileNavOpen] = useState(false);
+interface NavSystemProps {
+  navOptions: NavOptions;
+  enabled: boolean;
+}
+
+export const NavSystem: React.FC<NavSystemProps> = ({ navOptions, enabled }) => {
+      const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
     let primaryNavItems: JSX.Element[] | React.ReactNode[] = [];
-    const navOptions = props.navOptions
     if(navOptions.showAdminPriviledgedInfo){
       primaryNavItems = [
         <Link variant="nav" href={'/'}>Home</Link>,
@@ -37,13 +45,15 @@ export function NavSystem(props : any): React.ReactElement {
     };
 
   return <>
-      <Header extended showMobileOverlay={mobileNavOpen}>
+    {enabled &&
+      <Header showMobileOverlay={mobileNavOpen}>
         <div className="usa-navbar">
           <NavMenuButton label="Menu" onClick={toggleMobileNav} className="usa-menu-btn" />
         </div>
         <PrimaryNav aria-label="Primary navigation" items={primaryNavItems} onToggleMobileNav={toggleMobileNav} mobileExpanded={mobileNavOpen}>
         </PrimaryNav>
       </Header>
+    }  
   </>
 
 }
