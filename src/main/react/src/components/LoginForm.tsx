@@ -2,6 +2,7 @@ import { Fieldset, Label, TextInput, Button, Form} from '@trussworks/react-uswds
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { queryAuthStatus } from '../service/authService';
+import { springUrl } from '../util/CONSTANTS';
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +17,7 @@ const LoginForm = () => {
             //TODO Add CSRF token to header
             const headers = new Headers();
 
-            const response = await fetch('/login', {
+            const response = await fetch(`${springUrl}/login`, {
                 method: 'POST',
                 headers: headers,
                 body: formData

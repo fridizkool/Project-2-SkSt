@@ -1,5 +1,7 @@
 import { useRouteError } from "react-router-dom";
 
+// TODO Add automatic redirect set to timer. And a manual 'back to home' button.
+
 export default function ErrorPage() {
   const error = useRouteError();
   console.error(error);
