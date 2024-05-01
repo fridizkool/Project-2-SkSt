@@ -10,7 +10,7 @@ export default function ErrorPage() {
 
   return (
     <div id="error-page">
-      <h1>Oops!</h1>
+      <h1>Standard error page, redirecting...</h1>
       <p>Sorry, an unexpected error has occurred.</p>
       <p>
         <i>{routeError.statusText || routeError.message}</i>

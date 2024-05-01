@@ -8,7 +8,7 @@ import i18n from './i18n/i18next.js'
 import {
   RouterProvider,
 } from "react-router-dom";
-import { router } from './util/Router.tsx'
+import { router } from './routing/Router.tsx'
 
 
 
