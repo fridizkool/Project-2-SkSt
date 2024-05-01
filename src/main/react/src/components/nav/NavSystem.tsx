@@ -4,11 +4,6 @@ import { JSX } from "react/jsx-runtime";
 import UserAccountDropdown from "./UserAccountDropdown";
 
 
-interface NavOptions {
-  showAdminPriviledgedInfo: boolean,
-  showUserPrivilegedInfo: boolean
-}
-
 interface NavSystemProps {
   navOptions: NavOptions;
   enabled: boolean;
