@@ -7,9 +7,8 @@ const queryAuthStatus = async () => {
         userRole: "NONE"
     }
     
-    //A silly debug variable. Set to false for production.
-    let indev = true;
-    if(indev){
+    //Using debug environment
+    if (import.meta.env.DEV){
         let cur = "USER"
         if(cur === "NONE"){
            return {

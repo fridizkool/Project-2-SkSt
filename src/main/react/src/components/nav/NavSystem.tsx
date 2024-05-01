@@ -1,6 +1,7 @@
 import { Header, NavMenuButton, PrimaryNav, Link } from "@trussworks/react-uswds";
 import React, { useState } from "react";
 import { JSX } from "react/jsx-runtime";
+import UserAccountDropdown from "./UserAccountDropdown";
 
 
 
@@ -20,7 +21,8 @@ export function NavSystem(props : any): React.ReactElement {
       primaryNavItems = [
         <Link variant="nav" href={'/'}>Home</Link>,
         <Link variant="nav" href={'/filing'}>Calculator</Link>,  
-        <Link variant="nav" href={'/account'}>My Account</Link> //TODO Organize into drop downs   
+        <Link variant="nav" href={'/account'}>My Account</Link>, //TODO Organize into drop downs 
+        <UserAccountDropdown/>  
       ]
     } else {
       primaryNavItems = [
@@ -31,13 +33,12 @@ export function NavSystem(props : any): React.ReactElement {
     }
 
     const toggleMobileNav = (): void => {
-    setMobileNavOpen(prevOpen => !prevOpen);
+      setMobileNavOpen(prevOpen => !prevOpen);
     };
 
   return <>
       <Header extended showMobileOverlay={mobileNavOpen}>
         <div className="usa-navbar">
-
           <NavMenuButton label="Menu" onClick={toggleMobileNav} className="usa-menu-btn" />
         </div>
         <PrimaryNav aria-label="Primary navigation" items={primaryNavItems} onToggleMobileNav={toggleMobileNav} mobileExpanded={mobileNavOpen}>
