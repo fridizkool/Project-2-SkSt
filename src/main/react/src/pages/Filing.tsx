@@ -2,8 +2,8 @@ import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
 import { Grid, Accordion, Form, Fieldset, Label, Radio, Card, GridContainer, TextInput, CardGroup, CardHeader, CardBody } from '@trussworks/react-uswds';
 import React, { useRef, useState } from 'react';
-import LogoutButton from '../components/LogoutButton';
-import LoginStatus from '../components/LoginStatus';
+import LogoutButton from '../components/accountManagement/LogoutButton';
+import LoginStatus from '../components/accountManagement/LoginStatus';
 
 interface TaxFile {
     filingStatus?: string,

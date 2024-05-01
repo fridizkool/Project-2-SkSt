@@ -29,6 +29,7 @@ export function NavSystem(props : any): React.ReactElement {
         <Link variant="nav" href={'/'}>Home</Link>,
         <Link variant="nav" href={'/filing'}>Calculator</Link>, 
         <Link variant="nav" href={'/login'}>Login</Link>,
+        <Link variant="nav" href={'/create'}>Sign up</Link>,
       ]
     }
 

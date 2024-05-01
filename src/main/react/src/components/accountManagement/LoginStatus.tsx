@@ -1,7 +1,7 @@
 // LoginStatus.tsx
 
 import React, { useEffect, useState } from 'react';
-import { queryAuthStatus } from '../service/authService';
+import { queryAuthStatus } from '../../service/authService';
 
 const LoginStatus: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);

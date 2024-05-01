@@ -1,4 +1,4 @@
-import { springUrl } from "../util/CONSTANTS";
+// import { springUrl } from "../util/CONSTANTS";
 
 const queryAuthStatus = async () => {
 
@@ -9,7 +9,7 @@ const queryAuthStatus = async () => {
     
     //Using debug environment
     if (import.meta.env.DEV){
-        let cur = "USER"
+        let cur = "NONE"
         if(cur === "NONE"){
            return {
                 authenticated: false,
@@ -29,7 +29,7 @@ const queryAuthStatus = async () => {
     }
     
     try {
-        const response = await fetch(`${springUrl}/auth/status`);
+        const response = await fetch('/auth/status');
 
         if (response.ok) {
             const data = await response.json();

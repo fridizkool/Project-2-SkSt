@@ -1,8 +1,8 @@
 import { Fieldset, Label, TextInput, Button, Form} from '@trussworks/react-uswds';
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { queryAuthStatus } from '../service/authService';
-import { springUrl } from '../util/CONSTANTS';
+import { queryAuthStatus } from '../../service/authService';
+import { springUrl } from '../../util/CONSTANTS';
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);

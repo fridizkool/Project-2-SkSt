@@ -1,5 +1,5 @@
-import LoginStatus from "../components/LoginStatus";
-import LogoutButton from "../components/LogoutButton";
+import LoginStatus from "../components/accountManagement/LoginStatus";
+import LogoutButton from "../components/accountManagement/LogoutButton";
 
 export default function Home()
 {

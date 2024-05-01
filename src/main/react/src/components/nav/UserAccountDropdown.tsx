@@ -1,4 +1,4 @@
-import { Header, Link, Menu, NavDropDownButton, NavMenuButton, PrimaryNav, Search, Title } from "@trussworks/react-uswds";
+import { Link, Menu, NavDropDownButton } from "@trussworks/react-uswds";
 import { useState } from "react";
 
 const UserAccountDropdown: React.FC = () => {
