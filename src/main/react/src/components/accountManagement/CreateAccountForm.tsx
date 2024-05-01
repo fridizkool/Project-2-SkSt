@@ -1,14 +1,16 @@
-import { Button, Checkbox, DatePicker, Fieldset, Form, Grid, GridContainer, Label, TextInput } from "@trussworks/react-uswds";
+import { Alert, Button, Checkbox, DatePicker, Fieldset, Form, Grid, GridContainer, Label, TextInput } from "@trussworks/react-uswds";
 import { useState } from "react";
 
 export default function CreateAccount() {
+    const [error, setError] = useState<string | null>(null);
     const [showPassword, setShowPassword] = useState(false);
 
     function isUserValid(formData:any){
         if(
-            formData.get("password") != formData.get("password-confirm") 
+            formData.get("password") === formData.get("password-confirm") 
             && formData.get("terms-and-conditions") === "on"
         ){
+            setError(null);
             return true;
         } else {
             return false;
@@ -21,13 +23,25 @@ export default function CreateAccount() {
 
         if (isUserValid(formData)){
             // Submit post request
+            try {
+                // fetch request
+                // On success, redirect to desired page
+            } catch (e:any) {
+                setError(e.message);
+            }
         } else {
             // Redirect with error
+            setError("Passwords do not match");
         }
     }
 
     return (
         <>
+            {error && (
+                <Alert type="error" heading="Error status" headingLevel="h4">
+                Error
+              </Alert>
+            )}
             <div className="bg-white padding-y-3 padding-x-5 border border-base-lighter">
                   <h1 className="margin-bottom-0">Create account</h1>
                   <Form onSubmit={submitAccount}>

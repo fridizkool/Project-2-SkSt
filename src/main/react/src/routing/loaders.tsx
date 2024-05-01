@@ -30,7 +30,7 @@ export async function loadFilingPage() {
     if(authStatus.authenticated){
         return null;
     } else {
-        return redirect("/inaccessible");
+        return redirect("/login");
     }
 }
 
