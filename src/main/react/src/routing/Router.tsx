@@ -7,7 +7,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Root from "../pages/Root";
 import Users from "../pages/Users";
-import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadNavBar, loadUsersPage } from "./loaders";
+import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadLogout, loadNavBar, loadUsersPage } from "./loaders";
 import InaccessibleResource from "../pages/InaccessibleResource";
 
 export const router = createBrowserRouter(
@@ -54,6 +54,7 @@ export const router = createBrowserRouter(
             {/* Not sure if this makes sense */}
             <Route
                 path="logout"
+                loader={loadLogout}
             />
         </Route>
       </Route>

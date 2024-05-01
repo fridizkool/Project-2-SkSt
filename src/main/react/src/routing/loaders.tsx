@@ -1,5 +1,6 @@
 import { redirect } from "react-router-dom";
 import { queryAuthStatus } from "../service/authService";
+import { handleLogout } from "../service/logoutService";
 
 export async function loadNavBar() {
     const navOptions = {
@@ -69,3 +70,12 @@ export async function loadAccountCreationPage() {
     }
 }
 
+export async function loadLogout() {   
+    let isLoggedOut = await handleLogout();
+
+    if(isLoggedOut){
+        return redirect('/');
+    } else {
+        return redirect('/error');
+    }
+}

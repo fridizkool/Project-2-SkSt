@@ -6,7 +6,6 @@ export default function Home()
     return (
         <>
         <p> The Home Page</p>
-            <LogoutButton/>
             <LoginStatus/>
         </>
     )

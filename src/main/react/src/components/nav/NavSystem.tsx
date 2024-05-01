@@ -15,13 +15,12 @@ export function NavSystem(props : any): React.ReactElement {
         <Link variant="nav" href={'/'}>Home</Link>,
         <Link variant="nav" href={'/filing'}>Calculator</Link>,  
         <Link variant="nav" href={'/users'}>Users</Link>,  
-        <Link variant="nav" href={'/account'}>My Account</Link> //TODO Organize into drop downs   
+        <UserAccountDropdown/>  
       ]
     } else if (navOptions.showUserPrivilegedInfo){
       primaryNavItems = [
         <Link variant="nav" href={'/'}>Home</Link>,
         <Link variant="nav" href={'/filing'}>Calculator</Link>,  
-        <Link variant="nav" href={'/account'}>My Account</Link>, //TODO Organize into drop downs 
         <UserAccountDropdown/>  
       ]
     } else {

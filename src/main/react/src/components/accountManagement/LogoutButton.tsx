@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 
 const LogoutButton: React.FC = () => {
     const navigate = useNavigate();
@@ -13,8 +13,8 @@ const LogoutButton: React.FC = () => {
 
             if (response.ok) {
                 // Redirect to the landing page
-                navigate('/');
-                window.location.reload();
+                redirect('/');
+                // window.location.reload();
             } else {
                 // Handle logout failure, if needed
                 console.error('Logout failed:', response.statusText);

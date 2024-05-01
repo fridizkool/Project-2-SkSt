@@ -17,7 +17,7 @@ const UserAccountDropdown: React.FC = () => {
         menuId="UserAccountDropDown" 
         onToggle={(): void => {onToggle()}} 
         isOpen={isOpen} 
-        label="Nav Label" 
+        label="My account" 
         isCurrent={true} 
       />
       <Menu key="one" items={testMenuItems} isOpen={isOpen} id="testDropDownOne" />
