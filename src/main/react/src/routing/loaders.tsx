@@ -1,6 +1,21 @@
 import { redirect } from "react-router-dom";
 import { queryAuthStatus } from "../service/authService";
 
+export async function loadNavBar() {
+    const navOptions = {
+        showUserPrivilegedInfo: false,
+        showAdminPriviledgedInfo: false
+    }
+    const authStatus = await queryAuthStatus();
+    
+    if(authStatus.authenticated) navOptions.showUserPrivilegedInfo = true;        
+
+    if(authStatus.userRole === "ADMIN") navOptions.showAdminPriviledgedInfo = true;        
+
+    return navOptions;
+}
+
+
 export async function loadLoginPage() {
     const authStatus = await queryAuthStatus();
     if(authStatus.authenticated){
@@ -53,3 +68,4 @@ export async function loadAccountCreationPage() {
         return null;
     }
 }
+

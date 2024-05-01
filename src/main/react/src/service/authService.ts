@@ -10,7 +10,7 @@ const queryAuthStatus = async () => {
     //A silly debug variable. Set to false for production.
     let indev = true;
     if(indev){
-        let cur = "NONE"
+        let cur = "USER"
         if(cur === "NONE"){
            return {
                 authenticated: false,

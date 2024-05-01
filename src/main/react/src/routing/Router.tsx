@@ -7,7 +7,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Root from "../pages/Root";
 import Users from "../pages/Users";
-import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadUsersPage } from "./loaders";
+import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadNavBar, loadUsersPage } from "./loaders";
 import InaccessibleResource from "../pages/InaccessibleResource";
 
 export const router = createBrowserRouter(
@@ -16,6 +16,8 @@ export const router = createBrowserRouter(
         path="/"
         element={<Root/>}
         errorElement={<ErrorPage />}
+        loader={loadNavBar}
+
       >
         <Route errorElement={<ErrorPage/>}>
             <Route index element={<Home />} />
