@@ -1,5 +1,7 @@
 package com.skillstorm.taxprep.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,18 +14,28 @@ import jakarta.persistence.Table;
 @Table(name = "tax_info_1099")
 public class TaxInfo1099 {
     @Id
+    @Column
+    private Long id;
+
     @Column(name = "user_id")
     private Long userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(insertable = false, updatable = false, name = "user_id", referencedColumnName = "id")
+    @JsonBackReference
     private AppUser user;
 
     @Column(name = "payer_information")
     private String payerInformation;
 
     @Column(name = "payer_tin")
-    private Long payerTin;
+    private String payerTin;
+
+    @Column(name = "recipient_tin")
+    private String recipientTin;
+
+    @Column(name = "recipient_information")
+    private String recipientInformation;
 
     @Column(name = "account_number")
     private Long accountNumber;
@@ -76,15 +88,18 @@ public class TaxInfo1099 {
     public TaxInfo1099() {
     }
 
-    public TaxInfo1099(Long userId, AppUser user, String payerInformation, Long payerTin, Long accountNumber,
-            Double rents, Double royalties, Double otherIncome, Double withheldFederal, Double fishingBoat,
-            Double healthcare, boolean over5000, Double substitute, Double cropInsurance, Double attorney,
-            Double fishPurchased, Double deferrals, boolean fatca, Double goldenParachute,
-            Double nonqualifiedDeferrals) {
+    public TaxInfo1099(Long id, Long userId, AppUser user, String payerInformation, String payerTin,
+            String recipientTin, String recipientInformation, Long accountNumber, Double rents, Double royalties,
+            Double otherIncome, Double withheldFederal, Double fishingBoat, Double healthcare, boolean over5000,
+            Double substitute, Double cropInsurance, Double attorney, Double fishPurchased, Double deferrals,
+            boolean fatca, Double goldenParachute, Double nonqualifiedDeferrals) {
+        this.id = id;
         this.userId = userId;
         this.user = user;
         this.payerInformation = payerInformation;
         this.payerTin = payerTin;
+        this.recipientTin = recipientTin;
+        this.recipientInformation = recipientInformation;
         this.accountNumber = accountNumber;
         this.rents = rents;
         this.royalties = royalties;
@@ -101,6 +116,14 @@ public class TaxInfo1099 {
         this.fatca = fatca;
         this.goldenParachute = goldenParachute;
         this.nonqualifiedDeferrals = nonqualifiedDeferrals;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getUserId() {
@@ -127,12 +150,28 @@ public class TaxInfo1099 {
         this.payerInformation = payerInformation;
     }
 
-    public Long getPayerTin() {
+    public String getPayerTin() {
         return payerTin;
     }
 
-    public void setPayerTin(Long payerTin) {
+    public void setPayerTin(String payerTin) {
         this.payerTin = payerTin;
+    }
+
+    public String getRecipientTin() {
+        return recipientTin;
+    }
+
+    public void setRecipientTin(String recipientTin) {
+        this.recipientTin = recipientTin;
+    }
+
+    public String getRecipientInformation() {
+        return recipientInformation;
+    }
+
+    public void setRecipientInformation(String recipientInformation) {
+        this.recipientInformation = recipientInformation;
     }
 
     public Long getAccountNumber() {

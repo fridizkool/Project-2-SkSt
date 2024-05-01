@@ -7,7 +7,7 @@ CREATE TABLE users (
     suffix VARCHAR(50),
     address VARCHAR(50),
     telephone_number VARCHAR(50),
-    social_security INTEGER,
+    social_security VARCHAR(12),
     username VARCHAR(255) NOT NULL,
     password VARCHAR(64) NOT NULL
 );
@@ -17,7 +17,7 @@ CREATE TABLE tax_info_w2 (
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
     employer_id_b INTEGER,    --employer boxes
-    employer_infomation_c VARCHAR(1023),
+    employer_information_c VARCHAR(1023),
     control_number_d INTEGER, --box d
     income_1 NUMERIC(15, 2) NOT NULL, --box 1
     withheld_federal_2 NUMERIC(15, 2),    --box 2
@@ -35,14 +35,15 @@ CREATE TABLE tax_info_w2 (
     sick_pay_13 BOOLEAN,
     other_14 VARCHAR(1023),
     FOREIGN KEY (user_id) REFERENCES users (id)
-    -- FOREIGN KEY (employer_id) REFERENCES employer (id)
 );
 
 CREATE TABLE tax_info_1099 (
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
     payer_information VARCHAR(1023),
-    payer_tin INTEGER,
+    payer_tin VARCHAR(12),
+    recipient_tin VARCHAR(12),
+    recipient_information VARCHAR(1023),
     account_number INTEGER,
     rents_1 NUMERIC(15, 2),
     royalties_2 NUMERIC(15, 2),
@@ -72,11 +73,3 @@ CREATE TABLE tax_info (
 );
 
 -- For User table, send a POST to the /auth/register/user endpoint or use the in app page to make users.
-
--- Insert dummy data into tax_info table
--- INSERT INTO tax_info (user_id, income, filing_status, special_deductions, withheld_federal, withheld_ss, withheld_medicare, dependents, student_status, self_employed_income) VALUES
---     (1, 50000.00, 'Single', 0.00, 5000.00, 1000.00, 200.00, 1, FALSE, 0.00),
---     (2, 60000.00, 'Single', 0.00, 6000.00, 1200.00, 240.00, 2, TRUE, 0.00),
---     (3, 70000.00, 'Married', 2000.00, 7000.00, 1400.00, 280.00, 3, FALSE, 1000.00),
---     (4, 80000.00, 'Married', 3000.00, 8000.00, 1600.00, 320.00, 0, TRUE, 2000.00),
---     (5, 90000.00, 'Head of Household', 4000.00, 9000.00, 1800.00, 360.00, 1, FALSE, 3000.00);

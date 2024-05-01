@@ -24,7 +24,7 @@ public class CalculationService {
         TaxInfo userTaxInfo = dbS.getTaxInfoFor(user_id);
 
         //TODO Finish calculations
-        Double taxesOwed = returnTaxesOwedOn(userTaxInfo.getIncome());
+        Double taxesOwed = returnTaxesOwedOn(1.0);
 
         return "Calculated taxes: " + taxesOwed;
     }

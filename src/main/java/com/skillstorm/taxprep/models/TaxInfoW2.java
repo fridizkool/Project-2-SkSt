@@ -1,7 +1,10 @@
 package com.skillstorm.taxprep.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,8 +19,12 @@ public class TaxInfoW2 {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Column(name = "user_id")
+    private Long userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(insertable = false, updatable = false, name = "user_id", referencedColumnName = "id")
+    @JsonBackReference
     private AppUser user;
 
     @Column(name = "employer_id_b")
@@ -54,7 +61,7 @@ public class TaxInfoW2 {
     private Double allocatedTips;
 
     @Column(name = "dependent_care_10")
-    private Double dependantCare;
+    private Double dependentCare;
 
     @Column(name = "nonqualified_plan_11")
     private String nonqualifiedPlan;
@@ -77,12 +84,13 @@ public class TaxInfoW2 {
     public TaxInfoW2() {
     }
 
-    public TaxInfoW2(Long id, AppUser user, Long employerId, String employerInformation, Long controlNumber,
+    public TaxInfoW2(Long id, Long userId, AppUser user, Long employerId, String employerInformation, Long controlNumber,
             Long income, Double withheldFederal, Double socialSecurity, Double withheldSS, Double medicare,
             Double withheldMedicare, Double socialSecurityTips, Double allocatedTips, Double dependantCare,
             String nonqualifiedPlan, String defferals, boolean statutory, boolean retirement, boolean sickPay,
             String other) {
         this.id = id;
+        this.userId = userId;
         this.user = user;
         this.employerId = employerId;
         this.employerInformation = employerInformation;
@@ -95,7 +103,7 @@ public class TaxInfoW2 {
         this.withheldMedicare = withheldMedicare;
         this.socialSecurityTips = socialSecurityTips;
         this.allocatedTips = allocatedTips;
-        this.dependantCare = dependantCare;
+        this.dependentCare = dependantCare;
         this.nonqualifiedPlan = nonqualifiedPlan;
         this.deferrals = defferals;
         this.statutory = statutory;
@@ -110,6 +118,14 @@ public class TaxInfoW2 {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public AppUser getUser() {
@@ -208,12 +224,12 @@ public class TaxInfoW2 {
         this.allocatedTips = allocatedTips;
     }
 
-    public Double getDependantCare() {
-        return dependantCare;
+    public Double getDependentCare() {
+        return dependentCare;
     }
 
-    public void setDependantCare(Double dependantCare) {
-        this.dependantCare = dependantCare;
+    public void setDependentCare(Double dependantCare) {
+        this.dependentCare = dependantCare;
     }
 
     public String getNonqualifiedPlan() {
