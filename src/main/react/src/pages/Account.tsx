@@ -1,10 +1,13 @@
 import { Grid, GridContainer } from "@trussworks/react-uswds";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useSearchParams } from "react-router-dom";
 import UpdateProfileForm from "../components/accountManagement/UpdateProfileForm";
 
 export default function Account() {      
     const userProfile: UserProfile = useLoaderData() as UserProfile;
     
+    //TODO Show error message with valid query string
+    let [searchParams, setSearchParams] = useSearchParams();
+
     return (
         <>
             <GridContainer className='usa-section'>

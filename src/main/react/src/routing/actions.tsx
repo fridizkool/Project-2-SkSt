@@ -23,13 +23,15 @@ export async function attemptLogin({ request }: { request: any, params: any }) {
                 
             } else {
                 // Handle case where user is not authenticated after login
-                return redirect("/login?error=true")
+                return redirect("/login?error=login_failed")
             }
         } else {
             // Handle other status codes (e.g., login failed)
+            return redirect("/login?error=login_failed")
         }
     } catch (error) {
         console.error('Error submitting form:', error);
+        return redirect("/login?error=login_failed")
     }
 
 }
@@ -73,14 +75,14 @@ export async function attemptAccountCreation({ request }: { request: any, params
                 return redirect("/login")
             } else {
                 // Handle other status codes (e.g., login failed)
-                return redirect("/create?error=true")
+                return redirect("/create?error=account_exists")
             }
         } catch (error) {
             console.error('Error submitting form:', error);
-            return redirect("/create?error=true")
+            return redirect("/create?error=error")
         }
     } else {
-        return redirect("/create?error=true")
+        return redirect("/create?error=error")
     }
     
 
@@ -109,11 +111,11 @@ export async function attemptProfileEdit({ request }: { request: any, params: an
             return redirect("/account")
         } else {
             // Handle other status codes (e.g., login failed)
-            return redirect("/account?error=true")
+            return redirect("/account?error=error")
         }
     } catch (error) {
         console.error('Error submitting form:', error);
-        return redirect("/account?error=true")
+        return redirect("/account?error=error")
     }
 
 }

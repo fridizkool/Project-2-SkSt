@@ -1,6 +1,6 @@
-import { Fieldset, Label, TextInput, Button, Link } from '@trussworks/react-uswds';
-import React, { useState } from 'react';
-import { Form } from 'react-router-dom';
+import { Fieldset, Label, TextInput, Button, Link, Alert } from '@trussworks/react-uswds';
+import React, { useEffect, useState } from 'react';
+import { Form, useLocation } from 'react-router-dom';
 
   
 const UpdateProfileForm: React.FC<UserProfileFormProps> = ({userProfile}: any) => {
@@ -18,8 +18,26 @@ const UpdateProfileForm: React.FC<UserProfileFormProps> = ({userProfile}: any) =
         ssn: userProfile["ssn"],
     });
     
+    const [error, setError] = useState<string | null>(null);
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const errorMessage = queryParams.get('error');
+
+    useEffect(() => {
+      setError(errorMessage);
+    })
+
+
+
+
     return (
-        <Form method="put">
+        <>
+            {error && (
+                <Alert type="error" heading="Error status" headingLevel="h4">
+                {error} 
+              </Alert>
+            )}
+          <Form method="put">
             <Fieldset>
                 <Label htmlFor="username">Email </Label>
                 <TextInput type="text" id="username" name="username" value={formData.username} disabled />
@@ -44,6 +62,8 @@ const UpdateProfileForm: React.FC<UserProfileFormProps> = ({userProfile}: any) =
                 <Button type="submit" disabled={!editState}>Submit</Button>
             </Fieldset>
         </Form>
+        </>
+      
     );
 };
 
