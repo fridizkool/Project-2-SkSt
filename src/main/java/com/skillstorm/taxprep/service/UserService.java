@@ -65,6 +65,8 @@ public class UserService implements UserDetailsService {
             foundUser.setInitial(user_update.getInitial());
             foundUser.setSuffix(user_update.getSuffix());
             foundUser.setAddress(user_update.getAddress());
+
+            // TODO For some reason SSN won't update. Fix schema first, then debug again. 
             foundUser.setSsn(user_update.getSsn());
 
             System.out.println(foundUser.getSsn());
