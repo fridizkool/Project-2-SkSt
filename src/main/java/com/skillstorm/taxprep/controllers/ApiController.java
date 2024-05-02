@@ -39,4 +39,10 @@ public class ApiController {
         return new ResponseEntity<>(x, HttpStatus.OK);
     }
 
+    @GetMapping("/income")
+    public ResponseEntity<Double> getIncome(@RequestParam Long userId)
+    {
+        return ResponseEntity.ok(cS.getIncomeByID(userId));
+    }
+
 }
