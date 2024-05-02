@@ -1,15 +1,15 @@
 // LoginStatus.tsx
 
 import React, { useEffect, useState } from 'react';
-import { checkAuthStatus } from '../service/authService';
+import { queryAuthStatus } from '../../service/authService';
 
 const LoginStatus: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         const fetchAuthStatus = async () => {
-            const isAuthenticated = await checkAuthStatus(); // Call the checkAuthStatus function
-            setIsLoggedIn(isAuthenticated);
+            const authStatus = await queryAuthStatus(); // Call the checkAuthStatus function
+            setIsLoggedIn(authStatus.authenticated);
         };
 
         fetchAuthStatus();
