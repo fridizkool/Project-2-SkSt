@@ -21,3 +21,14 @@ interface TaxFile {
 interface UserProfile {
   [key: string]: string;
 }
+
+
+interface NavSystemProps {
+  navOptions: NavOptions;
+  enabled: boolean;
+}
+
+
+interface UserProfileFormProps {
+  userProfile: any;
+}
