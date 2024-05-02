@@ -54,7 +54,7 @@ public class AppUser implements UserDetails {
     private String telephoneNumber;
 
     @Column(name = "social_security")
-    private Long ssn;
+    private String ssn;
 
     @OneToOne(targetEntity = TaxInfo.class, mappedBy = "user")
     @JsonIgnore
@@ -73,7 +73,7 @@ public class AppUser implements UserDetails {
     }
 
     public AppUser(Long id, String username, String password, String role, String firstName, String lastName,
-            String initial, String suffix, String address, String telephoneNumber, Long ssn) {
+            String initial, String suffix, String address, String telephoneNumber, String ssn) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -196,11 +196,11 @@ public class AppUser implements UserDetails {
         this.telephoneNumber = telephoneNumber;
     }
 
-    public Long getSsn() {
+    public String getSsn() {
         return ssn;
     }
 
-    public void setSsn(Long ssn) {
+    public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 
