@@ -1,4 +1,4 @@
-import { Button, DatePicker, Fieldset, Form, Grid, GridContainer, Label, TextInput } from "@trussworks/react-uswds";
+import { Button, DatePicker, Fieldset, Form, Grid, GridContainer, Label, Link, TextInput } from "@trussworks/react-uswds";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
@@ -28,11 +28,7 @@ export default function Account() {
                                     <Button title="Show SSN" type="button" className="usa-show-password" aria-controls="social" onClick={(): void => setShowSocial(showSocial => !showSocial)}>
                                         {showSocial ? 'Hide SSN' : 'Show SSN'}<br />
                                     </Button>
-                                    <Label htmlFor="password">Password</Label>
-                                    <TextInput type={showPassword ? 'text' : 'password'} id="password" name="password" disabled={!editState}></TextInput>
-                                    <Button title="Show password" type="button" className="usa-show-password" aria-controls="password" onClick={(): void => setShowPassword(showPassword => !showPassword)}>
-                                        {showPassword ? 'Hide password' : 'Show password'}<br />
-                                    </Button>
+                                    <Link variant="nav" href={'/changepassword'}>Change Password</Link>
                                     <Button type="button" onClick={() => { isEdit(editState => !editState); if(editState){setShowPassword(false); setShowSocial(false)} }} className="bg-accent-cool-dark">Edit</Button><Button type="submit" disabled={!editState}>Submit</Button>
                                 </Fieldset>
                             </Form>
