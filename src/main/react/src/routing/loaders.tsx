@@ -46,8 +46,8 @@ export async function loadAccountPage() {
             return (
                 {
                     "id": 6,
-                    "username": "asd@asd.s",
-                    "password": "$2a$10$tGhXwvF5bSrdvp47Au.CROIjb9Glp4I0eH5Z6vhD7llU60NCVdnDa",
+                    "username": "null",
+                    "password": "null",
                     "role": "ROLE_USER",
                     "firstName": "first",
                     "lastName": "last",

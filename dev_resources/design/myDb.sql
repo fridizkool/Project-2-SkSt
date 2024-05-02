@@ -3,11 +3,11 @@ CREATE TABLE users (
     role VARCHAR(50) NOT NULL,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
-    initial VARCHAR(1),
+    middle_name VARCHAR(50),
     suffix VARCHAR(50),
     address VARCHAR(50),
     telephone_number VARCHAR(50),
-    social_security VARCHAR(12),
+    social_security NUMERIC(9),
     username VARCHAR(255) NOT NULL,
     password VARCHAR(64) NOT NULL
 );

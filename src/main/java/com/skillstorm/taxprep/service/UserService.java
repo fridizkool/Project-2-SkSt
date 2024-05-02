@@ -55,5 +55,24 @@ public class UserService implements UserDetailsService {
     public long countAllUsers() {
         return userRepository.count();
     }
+    public void updateUser(String user_name, AppUser user_update) {
+        Optional<AppUser> foundUserOptional = userRepository.findByUsername(user_name);
+        if (foundUserOptional.isPresent()) {
+            AppUser foundUser = foundUserOptional.get();
+
+            foundUser.setFirstName(user_update.getFirstName());
+            foundUser.setLastName(user_update.getLastName());
+            foundUser.setInitial(user_update.getInitial());
+            foundUser.setSuffix(user_update.getSuffix());
+            foundUser.setAddress(user_update.getAddress());
+            foundUser.setSsn(user_update.getSsn());
+
+            System.out.println(foundUser.getSsn());
+        
+            userRepository.save(foundUser);
+        } else {
+            throw new RuntimeException("User with that username does not exist.");
+        }
+    }
 
 }
