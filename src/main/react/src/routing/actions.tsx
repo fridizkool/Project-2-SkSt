@@ -33,3 +33,63 @@ export async function attemptLogin({ request }: { request: any, params: any }) {
     }
 
 }
+
+export async function attemptAccountCreation({ request }: { request: any, params: any }) {
+    let formData = await request.formData();
+    
+   function isUserValid(formData:any){
+        if(
+            formData.get("password") === formData.get("password-confirm") 
+            && formData.get("terms-and-conditions") === "on"
+        ){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    // TODO Deal with potential user overwrite on backend
+    if(isUserValid(formData)){
+        try {
+
+            const modifiedFormData = new FormData();
+            for (let [key, value] of formData.entries()) {
+                if (key === "password" || key === "username") {
+                    modifiedFormData.append(key, value);
+                }
+            }
+
+            const jsonObject: any = {};
+            formData.forEach((value: any, key: any) => {
+                if (key === "password" || key === "username") {
+                    jsonObject[key] = value;
+                }
+            });
+
+            const headers = {
+                'Content-Type': 'application/json',
+            };    
+            const response = await fetch('/auth/register/user', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(jsonObject)
+            });
+    
+            if (response.status === 201) {
+                // Check authentication status after successful login
+                return redirect("/login")
+            } else {
+                // Handle other status codes (e.g., login failed)
+                return redirect("/create?error=true")
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            return redirect("/create?error=true")
+        }
+    } else {
+        return redirect("/create?error=true")
+    }
+    
+
+}
