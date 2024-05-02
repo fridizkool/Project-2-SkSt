@@ -9,7 +9,7 @@ import Root from "../pages/Root";
 import Users from "../pages/Users";
 import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadLogout, loadNavBar, loadUsersPage } from "./loaders";
 import InaccessibleResource from "../pages/InaccessibleResource";
-import { attemptLogin } from "./actions";
+import { attemptAccountCreation, attemptLogin } from "./actions";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -47,6 +47,7 @@ export const router = createBrowserRouter(
                 path="create"
                 element={<CreateAccount/>}
                 loader={loadAccountCreationPage}
+                action= {attemptAccountCreation}
             />
             <Route
                 path="inaccessible"

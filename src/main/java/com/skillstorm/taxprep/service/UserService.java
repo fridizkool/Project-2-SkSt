@@ -31,9 +31,6 @@ public class UserService implements UserDetailsService {
     public void registerUser(AppUser user) {
         Optional<AppUser> foundUser = userRepository.findByUsername(user.getUsername());
         if(foundUser.isPresent()) {
-            
-            // TODO Check for existing user
-
             throw new RuntimeException("User with that username already exists.");
         };
 

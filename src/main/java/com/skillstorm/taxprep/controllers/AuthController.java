@@ -2,6 +2,7 @@ package com.skillstorm.taxprep.controllers;
 
 import java.io.IOException;
 
+import org.hibernate.internal.ExceptionConverterImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,14 +51,19 @@ public class AuthController {
     // Register a new user
     @PostMapping("/auth/register/user")
     public ResponseEntity<Void> registerUser(@RequestBody AppUser user) {
-        userService.registerUser(user);
+        try{
+            userService.registerUser(user);
+        } catch (Exception e){
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
     
     // Register a new Admin user
     @PostMapping("/auth/register/admin")
     public ResponseEntity<Void> registerAdmin(@RequestBody AppUser user) {
-        userService.registerAdmin(user);
+        // userService.registerAdmin(user);
+        System.out.println("Attempted admin creation- did nothing");
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
