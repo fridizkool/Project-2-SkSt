@@ -34,8 +34,14 @@ public class TaxInfo1099 {
     @Column(name = "recipient_tin")
     private String recipientTin;
 
-    @Column(name = "recipient_information")
-    private String recipientInformation;
+    @Column(name = "recipient_name")
+    private String recipientName;
+
+    @Column(name = "recipient_address")
+    private String recipientAddress;
+
+    @Column(name = "recipient_location")
+    private String recipientLocation;
 
     @Column(name = "account_number")
     private Long accountNumber;
@@ -89,17 +95,20 @@ public class TaxInfo1099 {
     }
 
     public TaxInfo1099(Long id, Long userId, AppUser user, String payerInformation, String payerTin,
-            String recipientTin, String recipientInformation, Long accountNumber, Double rents, Double royalties,
-            Double otherIncome, Double withheldFederal, Double fishingBoat, Double healthcare, boolean over5000,
-            Double substitute, Double cropInsurance, Double attorney, Double fishPurchased, Double deferrals,
-            boolean fatca, Double goldenParachute, Double nonqualifiedDeferrals) {
+            String recipientTin, String recipientName, String recipientAddress, String recipientLocation,
+            Long accountNumber, Double rents, Double royalties, Double otherIncome, Double withheldFederal,
+            Double fishingBoat, Double healthcare, boolean over5000, Double substitute, Double cropInsurance,
+            Double attorney, Double fishPurchased, Double deferrals, boolean fatca, Double goldenParachute,
+            Double nonqualifiedDeferrals) {
         this.id = id;
         this.userId = userId;
         this.user = user;
         this.payerInformation = payerInformation;
         this.payerTin = payerTin;
         this.recipientTin = recipientTin;
-        this.recipientInformation = recipientInformation;
+        this.recipientName = recipientName;
+        this.recipientAddress = recipientAddress;
+        this.recipientLocation = recipientLocation;
         this.accountNumber = accountNumber;
         this.rents = rents;
         this.royalties = royalties;
@@ -166,12 +175,28 @@ public class TaxInfo1099 {
         this.recipientTin = recipientTin;
     }
 
-    public String getRecipientInformation() {
-        return recipientInformation;
+    public String getRecipientName() {
+        return recipientName;
     }
 
-    public void setRecipientInformation(String recipientInformation) {
-        this.recipientInformation = recipientInformation;
+    public void setRecipientName(String recipientName) {
+        this.recipientName = recipientName;
+    }
+
+    public String getRecipientAddress() {
+        return recipientAddress;
+    }
+
+    public void setRecipientAddress(String recipientAddress) {
+        this.recipientAddress = recipientAddress;
+    }
+
+    public String getRecipientLocation() {
+        return recipientLocation;
+    }
+
+    public void setRecipientLocation(String recipientLocation) {
+        this.recipientLocation = recipientLocation;
     }
 
     public Long getAccountNumber() {
@@ -302,5 +327,6 @@ public class TaxInfo1099 {
         this.nonqualifiedDeferrals = nonqualifiedDeferrals;
     }
 
+    
     
 }
