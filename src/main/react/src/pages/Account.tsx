@@ -1,10 +1,13 @@
 import { Button, DatePicker, Fieldset, Form, Grid, GridContainer, Label, TextInput } from "@trussworks/react-uswds";
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 
-export default function Account() {
+export default function Account() {      
     const [editState, isEdit] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showSocial, setShowSocial] = useState(false);
+
+    const userProfile: UserProfile = useLoaderData() as UserProfile;
 
     return (
         <>

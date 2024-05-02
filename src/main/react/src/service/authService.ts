@@ -9,7 +9,7 @@ const queryAuthStatus = async () => {
     
     //Using debug environment
     if (import.meta.env.DEV){
-        let cur = "NONE"
+        let cur = "USER"
         if(cur === "NONE"){
            return {
                 authenticated: false,

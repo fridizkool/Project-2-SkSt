@@ -8,6 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -55,12 +57,15 @@ public class AppUser implements UserDetails {
     private String ssn;
 
     @OneToOne(targetEntity = TaxInfo.class, mappedBy = "user")
+    @JsonIgnore
     private TaxInfo taxInfo;
-
+    
     @OneToMany(targetEntity = TaxInfoW2.class, mappedBy = "user")
+    @JsonIgnore
     private Set<TaxInfoW2> taxInfoW2;
 
     @OneToMany(targetEntity = TaxInfo1099.class, mappedBy = "user")
+    @JsonIgnore
     private Set<TaxInfo1099> taxInfo1099;
 
     public AppUser() {

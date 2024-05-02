@@ -17,3 +17,7 @@ interface TaxFile {
   specialDeductions?: number
   userId?: number
 }
+
+interface UserProfile {
+  [key: string]: string;
+}
