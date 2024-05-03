@@ -42,7 +42,19 @@ public class ApiController {
     @GetMapping("/income")
     public ResponseEntity<Double> getIncome(@RequestParam Long userId)
     {
-        return ResponseEntity.ok(cS.getIncomeByID(userId));
+        return ResponseEntity.ok(cS.getIncomeById(userId));
+    }
+
+    @GetMapping("/deductions")
+    public ResponseEntity<Double> getDeductions(@RequestParam Long userId)
+    {
+        return ResponseEntity.ok(cS.getDeductionsById(userId));
+    }
+
+    @GetMapping("/withheld")
+    public ResponseEntity<Double> getWitheld(@RequestParam Long userId)
+    {
+        return ResponseEntity.ok(cS.getWithheldById(userId));
     }
 
 }

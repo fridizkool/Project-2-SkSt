@@ -17,6 +17,9 @@ public interface TaxInfoW2Repository extends JpaRepository<TaxInfoW2, Long> {
 
     public List<TaxInfoW2> getByUserId(Long userId);
 
-    @Query("select SUM(t.income) from TaxInfoW2 t where t.userId = ?1")
+    @Query("select sum(t.income) from TaxInfoW2 t where t.userId = ?1")
     public Optional<Double> getAllIncomeByUserId(Long userId);
+
+    @Query("select sum(t.withheldFederal + t.withheldSS + t.withheldMedicare) from TaxInfoW2 t where t.userId = ?1")
+    public Optional<Double> getAllWithheldByUserId(Long userId);
 }
