@@ -100,8 +100,6 @@ public class CalculationService {
         Optional<Double> income = taxInfoRepository.getSupplementalIncomeByUserId(userId);
         if (income.isPresent())
             sum += income.get();
-        // System.out.println("income:" + income.get() + "/ incomew2:" + incomesW2.get()
-        // + "/ income1099:" + incomes1099.get());
         return sum;
     }
 
