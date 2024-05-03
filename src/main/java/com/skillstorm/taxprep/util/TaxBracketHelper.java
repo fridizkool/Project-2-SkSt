@@ -1,8 +1,16 @@
 package com.skillstorm.taxprep.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
 // Calculates exact progressive income tax based on 2024 tax brackets
 public class TaxBracketHelper {
 
+    // @Value("classpath:data/tax_brackets.json")
+    // static Resource bracketResource;
+
+    @Autowired
+    ApplicationContext context;
     /**
      * TODO a static method that returns the cumulative progressive tax on the given amount. References tax brackets from the tax-brackets.json file. 
      * @param number the number to be returned
@@ -11,4 +19,5 @@ public class TaxBracketHelper {
     public static Double returnTaxesOwedOn(Double taxableIncome) {
         return taxableIncome + 1;
     }
+    
 }

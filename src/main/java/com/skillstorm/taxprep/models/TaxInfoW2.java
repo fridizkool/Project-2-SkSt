@@ -37,7 +37,7 @@ public class TaxInfoW2 {
     private Long controlNumber;
 
     @Column(name = "income_1")
-    private Long income;
+    private Double income;
 
     @Column(name = "withheld_federal_2")
     private Double withheldFederal;
@@ -85,7 +85,7 @@ public class TaxInfoW2 {
     }
 
     public TaxInfoW2(Long id, Long userId, AppUser user, Long employerId, String employerInformation, Long controlNumber,
-            Long income, Double withheldFederal, Double socialSecurity, Double withheldSS, Double medicare,
+            Double income, Double withheldFederal, Double socialSecurity, Double withheldSS, Double medicare,
             Double withheldMedicare, Double socialSecurityTips, Double allocatedTips, Double dependantCare,
             String nonqualifiedPlan, String defferals, boolean statutory, boolean retirement, boolean sickPay,
             String other) {
@@ -160,11 +160,11 @@ public class TaxInfoW2 {
         this.controlNumber = controlNumber;
     }
 
-    public Long getIncome() {
+    public Double getIncome() {
         return income;
     }
 
-    public void setIncome(Long income) {
+    public void setIncome(Double income) {
         this.income = income;
     }
 
