@@ -26,6 +26,15 @@ export async function loadLoginPage() {
     }
 }
 
+export async function loadPasswordUpdatePage() {
+    const authStatus = await queryAuthStatus();
+    if(authStatus.authenticated){
+        return null;
+    } else {
+        return redirect("/");
+    }
+}
+
 export async function loadFilingPage() {
     const authStatus = await queryAuthStatus();
     if(authStatus.authenticated){
