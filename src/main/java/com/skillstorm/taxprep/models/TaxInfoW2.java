@@ -70,13 +70,13 @@ public class TaxInfoW2 {
     private String deferrals;
 
     @Column(name = "statutory_13")
-    private boolean statutory;
+    private Boolean statutory;
 
     @Column(name = "retirement_13")
-    private boolean retirement;
+    private Boolean retirement;
 
     @Column(name = "sick_pay_13")
-    private boolean sickPay;
+    private Boolean sickPay;
 
     @Column(name = "other_14")
     private String other;
@@ -87,7 +87,7 @@ public class TaxInfoW2 {
     public TaxInfoW2(Long id, Long userId, AppUser user, Long employerId, String employerInformation, Long controlNumber,
             Double income, Double withheldFederal, Double socialSecurity, Double withheldSS, Double medicare,
             Double withheldMedicare, Double socialSecurityTips, Double allocatedTips, Double dependantCare,
-            String nonqualifiedPlan, String defferals, boolean statutory, boolean retirement, boolean sickPay,
+            String nonqualifiedPlan, String defferals, Boolean statutory, Boolean retirement, Boolean sickPay,
             String other) {
         this.id = id;
         this.userId = userId;
@@ -248,27 +248,27 @@ public class TaxInfoW2 {
         this.deferrals = defferals;
     }
 
-    public boolean isStatutory() {
+    public Boolean isStatutory() {
         return statutory;
     }
 
-    public void setStatutory(boolean statutory) {
+    public void setStatutory(Boolean statutory) {
         this.statutory = statutory;
     }
 
-    public boolean isRetirement() {
+    public Boolean isRetirement() {
         return retirement;
     }
 
-    public void setRetirement(boolean retirement) {
+    public void setRetirement(Boolean retirement) {
         this.retirement = retirement;
     }
 
-    public boolean isSickPay() {
+    public Boolean isSickPay() {
         return sickPay;
     }
 
-    public void setSickPay(boolean sickPay) {
+    public void setSickPay(Boolean sickPay) {
         this.sickPay = sickPay;
     }
 

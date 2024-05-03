@@ -59,7 +59,7 @@ public class TaxInfo1099 {
     private Double healthcare;
 
     @Column(name = "over_5000_7")
-    private boolean over5000;
+    private Boolean over5000;
 
     @Column(name = "substitute_8")
     private Double substitute;
@@ -77,7 +77,7 @@ public class TaxInfo1099 {
     private Double deferrals;
 
     @Column(name = "fatca_13")
-    private boolean fatca;
+    private Boolean fatca;
 
     @Column(name = "golden_parachute_14")
     private Double goldenParachute;
@@ -90,9 +90,9 @@ public class TaxInfo1099 {
 
     public TaxInfo1099(Long id, Long userId, AppUser user, String payerInformation, String payerTin,
             String recipientTin, String recipientInformation, Long accountNumber, Double rents, Double royalties,
-            Double otherIncome, Double withheldFederal, Double fishingBoat, Double healthcare, boolean over5000,
+            Double otherIncome, Double withheldFederal, Double fishingBoat, Double healthcare, Boolean over5000,
             Double substitute, Double cropInsurance, Double attorney, Double fishPurchased, Double deferrals,
-            boolean fatca, Double goldenParachute, Double nonqualifiedDeferrals) {
+            Boolean fatca, Double goldenParachute, Double nonqualifiedDeferrals) {
         this.id = id;
         this.userId = userId;
         this.user = user;
@@ -230,11 +230,11 @@ public class TaxInfo1099 {
         this.healthcare = healthcare;
     }
 
-    public boolean isOver5000() {
+    public Boolean isOver5000() {
         return over5000;
     }
 
-    public void setOver5000(boolean over5000) {
+    public void setOver5000(Boolean over5000) {
         this.over5000 = over5000;
     }
 
@@ -278,11 +278,11 @@ public class TaxInfo1099 {
         this.deferrals = deferrals;
     }
 
-    public boolean isFatca() {
+    public Boolean isFatca() {
         return fatca;
     }
 
-    public void setFatca(boolean fatca) {
+    public void setFatca(Boolean fatca) {
         this.fatca = fatca;
     }
 
