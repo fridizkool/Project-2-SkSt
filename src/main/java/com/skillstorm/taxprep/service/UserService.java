@@ -39,6 +39,20 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+
+    public void resetUserPassword(String username, AppUser user_updated) {
+        Optional<AppUser> foundUserOptional = userRepository.findByUsername(username);
+        if (foundUserOptional.isPresent()) {
+            // System.out.println("\n\n\n " + user_updated.getPassword() + "\n\n\n");
+            AppUser foundUser = foundUserOptional.get();
+            foundUser.setPassword(passwordEncoder.encode(user_updated.getPassword()));
+            userRepository.save(foundUser);
+            System.out.println(foundUser);
+        } else {
+            throw new RuntimeException("Could not reset password.");
+        }
+    }
+
     public void registerAdmin(AppUser user) {
 
         Optional<AppUser> foundUser = userRepository.findByUsername(user.getUsername());

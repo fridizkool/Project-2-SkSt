@@ -7,9 +7,9 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Root from "../pages/Root";
 import Users from "../pages/Users";
-import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadLogout, loadNavBar, loadUsersPage } from "./loaders";
+import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadLogout, loadNavBar, loadPasswordUpdatePage, loadUsersPage } from "./loaders";
 import InaccessibleResource from "../pages/InaccessibleResource";
-import { attemptAccountCreation, attemptLogin, attemptProfileEdit } from "./actions";
+import { attemptAccountCreation, attemptLogin, attemptPasswordChange, attemptProfileEdit } from "./actions";
 import ChangePassword from "../pages/ChangePassword";
 
 export const router = createBrowserRouter(
@@ -48,6 +48,8 @@ export const router = createBrowserRouter(
             <Route
                 path="changepassword"
                 element={<ChangePassword/>}
+                loader={loadPasswordUpdatePage}
+                action= {attemptPasswordChange}
             />
             <Route
                 path="create"
