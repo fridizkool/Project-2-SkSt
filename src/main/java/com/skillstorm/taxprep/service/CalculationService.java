@@ -80,10 +80,11 @@ public class CalculationService {
         Double tax = 0.0;
         for(TaxBracket bracket : brackets)
         {
-            if(bracket.getMin() > taxable)
+            if(taxable <= 0)
                 break;
-            Double taxedAtBracket = Math.min(bracket.getMax(), taxable) - bracket.getMin(); //clamp taxable for this bracket
+            Double taxedAtBracket = Math.min(bracket.getMax() - bracket.getMin() + 1, taxable); //clamp taxable for this bracket
             tax += taxedAtBracket * bracket.getRate();
+            taxable -= taxedAtBracket;
         }
         return tax;
     }
