@@ -1,50 +1,31 @@
-import { Alert, Button, Checkbox, Fieldset, Form, Label, TextInput } from "@trussworks/react-uswds";
-import { useState } from "react";
+import { Alert, Button, Checkbox, Fieldset, Label, TextInput } from "@trussworks/react-uswds";
+import { Form, useLocation } from 'react-router-dom';
+
+import { useEffect, useState } from "react";
 
 export default function CreateAccount() {
     const [error, setError] = useState<string | null>(null);
     const [showPassword, setShowPassword] = useState(false);
 
-    function isUserValid(formData:any){
-        if(
-            formData.get("password") === formData.get("password-confirm") 
-            && formData.get("terms-and-conditions") === "on"
-        ){
-            setError(null);
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    function submitAccount(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const errorMessage = queryParams.get('error');
 
-        if (isUserValid(formData)){
-            // Submit post request
-            try {
-                // fetch request
-                // On success, redirect to desired page
-            } catch (e:any) {
-                setError(e.message);
-            }
-        } else {
-            // Redirect with error
-            setError("Passwords do not match");
-        }
-    }
+    useEffect(() => {
+      setError(errorMessage);
+    })
 
     return (
         <>
             {error && (
                 <Alert type="error" heading="Error status" headingLevel="h4">
-                Error
+                {error} 
               </Alert>
             )}
             <div className="bg-white padding-y-3 padding-x-5 border border-base-lighter">
                   <h1 className="margin-bottom-0">Create account</h1>
-                  <Form onSubmit={submitAccount}>
+                  <Form method="post">
                     <Fieldset legend="Get started with an account.">
                       <p>
                         <abbr title="required" className="usa-hint usa-hint--required">
@@ -59,7 +40,7 @@ export default function CreateAccount() {
                           *
                         </abbr>
                       </Label>
-                      <TextInput id="email" name="email" type="email" autoCapitalize="off" autoCorrect="off" required={true} />
+                      <TextInput id="email" name="username" type="email" autoCapitalize="off" autoCorrect="off" required={true} />
 
                       <Label htmlFor="password-create-account">
                         Create password{' '}

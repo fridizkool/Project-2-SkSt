@@ -2,7 +2,9 @@ package com.skillstorm.taxprep.controllers;
 
 import java.io.IOException;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,4 +47,15 @@ public class ReactController {
     public ModelAndView toContentNotFound(HttpServletRequest request, HttpServletResponse response) throws IOException {
         return new ModelAndView("forward:/");
     }
+
+    @RequestMapping("/inaccessible")
+    public ModelAndView toInaccessibleViewPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return new ModelAndView("forward:/");
+    }
+
+
+    // @RequestMapping("/error")
+    // public ModelAndView toErrorPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    //     return new ModelAndView("forward:/");
+    // }
 }

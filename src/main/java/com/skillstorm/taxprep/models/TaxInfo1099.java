@@ -34,8 +34,14 @@ public class TaxInfo1099 {
     @Column(name = "recipient_tin")
     private String recipientTin;
 
-    @Column(name = "recipient_information")
-    private String recipientInformation;
+    @Column(name = "recipient_name")
+    private String recipientName;
+
+    @Column(name = "recipient_address")
+    private String recipientAddress;
+
+    @Column(name = "recipient_location")
+    private String recipientLocation;
 
     @Column(name = "account_number")
     private Long accountNumber;
@@ -99,7 +105,9 @@ public class TaxInfo1099 {
         this.payerInformation = payerInformation;
         this.payerTin = payerTin;
         this.recipientTin = recipientTin;
-        this.recipientInformation = recipientInformation;
+        this.recipientName = recipientName;
+        this.recipientAddress = recipientAddress;
+        this.recipientLocation = recipientLocation;
         this.accountNumber = accountNumber;
         this.rents = rents;
         this.royalties = royalties;
@@ -166,12 +174,28 @@ public class TaxInfo1099 {
         this.recipientTin = recipientTin;
     }
 
-    public String getRecipientInformation() {
-        return recipientInformation;
+    public String getRecipientName() {
+        return recipientName;
     }
 
-    public void setRecipientInformation(String recipientInformation) {
-        this.recipientInformation = recipientInformation;
+    public void setRecipientName(String recipientName) {
+        this.recipientName = recipientName;
+    }
+
+    public String getRecipientAddress() {
+        return recipientAddress;
+    }
+
+    public void setRecipientAddress(String recipientAddress) {
+        this.recipientAddress = recipientAddress;
+    }
+
+    public String getRecipientLocation() {
+        return recipientLocation;
+    }
+
+    public void setRecipientLocation(String recipientLocation) {
+        this.recipientLocation = recipientLocation;
     }
 
     public Long getAccountNumber() {
@@ -302,5 +326,6 @@ public class TaxInfo1099 {
         this.nonqualifiedDeferrals = nonqualifiedDeferrals;
     }
 
+    
     
 }

@@ -40,8 +40,46 @@ export async function loadAccountPage() {
     const authStatus = await queryAuthStatus();
     
     if(authStatus.authenticated){
-        //TODO GET user information from server and return it
-        return null;
+        
+        // DEBUG In dev mode with no server, return this:
+        if (import.meta.env.DEV){
+            return (
+                {
+                    "id": 6,
+                    "username": "null",
+                    "password": "null",
+                    "role": "ROLE_USER",
+                    "firstName": "first",
+                    "lastName": "last",
+                    "initial": "initial",
+                    "suffix": "suffix",
+                    "address": "address",
+                    "telephoneNumber": "telephoneNumber",
+                    "ssn": "ssn",
+                    "enabled": true,
+                    "authorities": [
+                      {
+                        "authority": "ROLE_USER"
+                      }
+                    ],
+                    "credentialsNonExpired": true,
+                    "accountNonExpired": true,
+                    "accountNonLocked": true
+                  }
+            )
+        }
+
+        const response = await fetch('/user', {
+            method: 'GET',
+        });
+        
+        // Convert the response to JSON
+        try {
+            const responseJSON = await response.json();
+            return responseJSON;
+        } catch (e) {
+            return redirect("/error");
+        }
     } else {        
         return redirect("/inaccessible");
     }

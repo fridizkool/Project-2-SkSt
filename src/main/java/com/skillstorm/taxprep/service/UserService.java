@@ -31,9 +31,6 @@ public class UserService implements UserDetailsService {
     public void registerUser(AppUser user) {
         Optional<AppUser> foundUser = userRepository.findByUsername(user.getUsername());
         if(foundUser.isPresent()) {
-            
-            // TODO Check for existing user
-
             throw new RuntimeException("User with that username already exists.");
         };
 
@@ -46,9 +43,6 @@ public class UserService implements UserDetailsService {
 
         Optional<AppUser> foundUser = userRepository.findByUsername(user.getUsername());
         if(foundUser.isPresent()) {
-
-            // TODO Check for existing user
-
             throw new RuntimeException("User with that username already exists.");
         }
 
@@ -60,6 +54,27 @@ public class UserService implements UserDetailsService {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")     // security advice - works like @Before 
     public long countAllUsers() {
         return userRepository.count();
+    }
+    public void updateUser(String user_name, AppUser user_update) {
+        Optional<AppUser> foundUserOptional = userRepository.findByUsername(user_name);
+        if (foundUserOptional.isPresent()) {
+            AppUser foundUser = foundUserOptional.get();
+
+            foundUser.setFirstName(user_update.getFirstName());
+            foundUser.setLastName(user_update.getLastName());
+            foundUser.setInitial(user_update.getInitial());
+            foundUser.setSuffix(user_update.getSuffix());
+            foundUser.setAddress(user_update.getAddress());
+
+            // TODO For some reason SSN won't update. Fix schema first, then debug again. 
+            foundUser.setSsn(user_update.getSsn());
+
+            System.out.println(foundUser.getSsn());
+        
+            userRepository.save(foundUser);
+        } else {
+            throw new RuntimeException("User with that username does not exist.");
+        }
     }
 
 }

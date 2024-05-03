@@ -9,7 +9,8 @@ import Root from "../pages/Root";
 import Users from "../pages/Users";
 import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadLogout, loadNavBar, loadUsersPage } from "./loaders";
 import InaccessibleResource from "../pages/InaccessibleResource";
-import { attemptLogin } from "./actions";
+import { attemptAccountCreation, attemptLogin, attemptProfileEdit } from "./actions";
+import ChangePassword from "../pages/ChangePassword";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -37,6 +38,7 @@ export const router = createBrowserRouter(
                 path="account"
                 element={<Account/>}
                 loader={loadAccountPage}
+                action= {attemptProfileEdit}
             />
             <Route
                 path="users"
@@ -44,9 +46,14 @@ export const router = createBrowserRouter(
                 loader={loadUsersPage}
             />
             <Route
+                path="changepassword"
+                element={<ChangePassword/>}
+            />
+            <Route
                 path="create"
                 element={<CreateAccount/>}
                 loader={loadAccountCreationPage}
+                action= {attemptAccountCreation}
             />
             <Route
                 path="inaccessible"

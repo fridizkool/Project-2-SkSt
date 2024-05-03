@@ -4,11 +4,6 @@ import { JSX } from "react/jsx-runtime";
 import UserAccountDropdown from "./UserAccountDropdown";
 
 
-interface NavSystemProps {
-  navOptions: NavOptions;
-  enabled: boolean;
-}
-
 export const NavSystem: React.FC<NavSystemProps> = ({ navOptions, enabled }) => {
       const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
