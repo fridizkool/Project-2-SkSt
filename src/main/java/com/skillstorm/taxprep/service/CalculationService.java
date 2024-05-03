@@ -1,17 +1,24 @@
 package com.skillstorm.taxprep.service;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import com.skillstorm.taxprep.models.TaxInfo;
 import com.skillstorm.taxprep.repository.TaxInfo1099Repository;
 import com.skillstorm.taxprep.repository.TaxInfoRepository;
 import com.skillstorm.taxprep.repository.TaxInfoW2Repository;
-import com.skillstorm.taxprep.util.TaxBracketHelper;
+import com.skillstorm.taxprep.util.TaxBracket;
+import com.skillstorm.taxprep.util.TaxStatus;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -29,26 +36,56 @@ public class CalculationService {
     @Autowired
     TaxInfoRepository taxInfoRepository;
 
+    @Autowired
+    ApplicationContext context;
+
+    private static Map<String, TaxStatus> taxBrackets = null;
+
     public CalculationService(DatabaseService dbS) {
         this.dbS = dbS;
     }
 
     @Transactional
     public String calculateTaxesOwed(Long userId) {
-        TaxInfo userTaxInfo = taxInfoRepository.getById(userId);
+        TaxInfo userTaxInfo = dbS.getTaxInfoFor(userId);
         String status = userTaxInfo.getFilingStatus();
-        JSONObject brackets = TaxBracketHelper.brackets();
-        try
-        {
-            JSONArray statusBracket = (JSONArray) brackets.get(status);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        
 
-        return "";
+        if (taxBrackets == null) {  //lazy load
+            Resource bracketResource = context.getResource("classpath:static/tax_brackets.json");
+            TypeToken<Map<String, TaxStatus>> mapType = new TypeToken<Map<String, TaxStatus>>() {
+            };
+            Gson taxJson = new Gson();
+            try {
+                taxBrackets = taxJson.fromJson(bracketResource.getContentAsString(Charset.defaultCharset()), mapType);
+            } catch (JsonSyntaxException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        double sum = 0.0;
+        sum += getIncomeById(userId);
+        sum -= getDeductionsById(userId);
+        Double tax = doProgressiveTax(sum, taxBrackets.get(status).getBrackets());
+        tax -= getWithheldById(userId);
+
+
+        return "" + tax;
+    }
+
+    private Double doProgressiveTax(Double taxable, TaxBracket[] brackets)
+    {
+        Double tax = 0.0;
+        for(TaxBracket bracket : brackets)
+        {
+            if(bracket.getMin() > taxable)
+                break;
+            Double taxedAtBracket = Math.min(bracket.getMax(), taxable) - bracket.getMin(); //clamp taxable for this bracket
+            tax += taxedAtBracket * bracket.getRate();
+        }
+        return tax;
     }
 
     public Double getIncomeById(Long userId) {
