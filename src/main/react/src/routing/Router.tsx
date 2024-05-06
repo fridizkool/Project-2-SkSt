@@ -26,19 +26,19 @@ export const router = createBrowserRouter(
             <Route
                 path="login"
                 element={<Login/>}
-                loader={loadLoginPage}
-                action= {attemptLogin}
+                // loader={loadLoginPage}
+                // action= {attemptLogin}
             />
             <Route
                 path="filing"
                 element={<Filing/>}
-                loader={loadFilingPage}
+                // loader={loadFilingPage}
             />
             <Route
                 path="account"
                 element={<Account/>}
-                loader={loadAccountPage}
-                action= {attemptProfileEdit}
+                // loader={loadAccountPage}
+                // action= {attemptProfileEdit}
             />
             <Route
                 path="users"
@@ -47,13 +47,13 @@ export const router = createBrowserRouter(
             />
             <Route
                 path="changepassword"
-                element={<ChangePassword/>}
+                // element={<ChangePassword/>}
             />
             <Route
                 path="create"
                 element={<CreateAccount/>}
-                loader={loadAccountCreationPage}
-                action= {attemptAccountCreation}
+                // loader={loadAccountCreationPage}
+                // action= {attemptAccountCreation}
             />
             <Route
                 path="inaccessible"
