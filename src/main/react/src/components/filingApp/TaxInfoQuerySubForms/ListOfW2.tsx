@@ -31,7 +31,6 @@ const ListOfW2: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(instances)
   }, [instances])
 
     const handleSpawn = () => {
@@ -56,9 +55,23 @@ const ListOfW2: React.FC = () => {
     });
   };
 
-  const submitAllForms = () => {
-    console.log(itemsMap);
-  };
+    async function submitAllForms(){
+        const listOfW2Formdata = [];
+        for(let i in itemsMap){
+            listOfW2Formdata.push(itemsMap[i]);
+        }
+
+        const headers = {
+            'Content-Type': 'application/json',
+        };    
+        const response = await fetch('/submitW2', {
+            method: 'PUT',
+            headers: headers,
+            body: JSON.stringify(listOfW2Formdata)
+        });
+
+        console.log(listOfW2Formdata);
+    };
 
   return (
     <div>
