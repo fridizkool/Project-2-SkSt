@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import FormW2 from './FormW2';
 import { Card } from '@trussworks/react-uswds';
+import Form1099 from './Form1099';
 
 interface FormData {
   [key: string]: any;
@@ -9,7 +10,7 @@ interface FormData {
 const C: React.FC<{ index: number; getDataCallback: (id: number, formData: FormData) => void, info: any; onDelete: () => void }> = ({ index, getDataCallback, info, onDelete }) => {
   return (
     <Card>
-      <FormW2 id={index} getDataCallback={getDataCallback} initInfo={info} />
+      <Form1099 id={index} getDataCallback={getDataCallback} initInfo={info} />
       <button onClick={onDelete}>Delete this form</button>
     </Card>
   );
@@ -78,7 +79,7 @@ const ListOfW2: React.FC<{existingForms: any }> = ({existingForms }) => {
         const headers = {
             'Content-Type': 'application/json',
         };    
-        const response = await fetch('/submitW2List', {
+        const response = await fetch('/submit1099List', {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(listOfW2Formdata)
@@ -89,11 +90,11 @@ const ListOfW2: React.FC<{existingForms: any }> = ({existingForms }) => {
 
   return (
     <div>
-        <button onClick={handleSpawn}>Add new W2</button>
+        <button onClick={handleSpawn}>Add new 1099</button>
             {Object.keys(instances).map(key => (
                 <div key={key}>{instances[key]}</div>
             ))}
-        <button onClick={submitAllForms}>Submit W2</button>
+        <button onClick={submitAllForms}>Submit 1099</button>
     </div>
   );
 };

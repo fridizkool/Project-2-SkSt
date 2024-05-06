@@ -38,3 +38,9 @@ interface FormW2Props {
   getDataCallback: (id: number, formData: any) => void; // Adjust the type of formData as needed
   initInfo: { [key: string]: any }; // JSON object with key-value structured information
 }
+
+interface Form1099Props {
+  id: number;
+  getDataCallback: (id: number, formData: any) => void; // Adjust the type of formData as needed
+  initInfo: { [key: string]: any }; // JSON object with key-value structured information
+}

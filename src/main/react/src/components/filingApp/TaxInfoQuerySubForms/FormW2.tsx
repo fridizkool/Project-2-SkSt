@@ -37,7 +37,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
 
     const [isChecked, setIsChecked] = useState(false);
     console.log(isChecked);
-    
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsChecked(event.target.checked);
     };
@@ -64,109 +64,108 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
         content:
             <Card>
                 <div>
-                        <label htmlFor="employerId">Employer ID:</label>
-                        <TextInput
-                            id="employerId"
-                            name="employerId"
-                            value={formData.employerId}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="employerInformation">Employer Information:</label>
-                        <TextInput
-                            id="employerInformation"
-                            name="employerInformation"
-                            value={formData.employerInformation}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="controlNumber">Control Number:</label>
-                        <TextInput
-                            id="controlNumber"
-                            name="controlNumber"
-                            value={formData.controlNumber}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="allocatedTips">Allocated Tips:</label>
-                        <TextInput
-                            id="allocatedTips"
-                            name="allocatedTips"
-                            value={formData.allocatedTips}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="nonqualifiedPlan">Nonqualified Plan:</label>
-                        <TextInput
-                            id="nonqualifiedPlan"
-                            name="nonqualifiedPlan"
-                            value={formData.nonqualifiedPlan}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="deferrals">Deferrals:</label>
-                        <TextInput
-                            id="deferrals"
-                            name="deferrals"
-                            value={formData.deferrals}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="statutory">Statutory:</label>
-                        <Checkbox
-                            id="statutory"
-                            name="statutory"
-                            checked={formData.statutory}
-                            label={"Statutory"} 
-                            onChange={handleChange}
+                    <label htmlFor="employerId">Employer ID:</label>
+                    <TextInput
+                        id="employerId"
+                        name="employerId"
+                        value={formData.employerId}
+                        type="text"
+                        onChange={handleChangeText}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="employerInformation">Employer Information:</label>
+                    <TextInput
+                        id="employerInformation"
+                        name="employerInformation"
+                        value={formData.employerInformation}
+                        type="text"
+                        onChange={handleChangeText}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="controlNumber">Control Number:</label>
+                    <TextInput
+                        id="controlNumber"
+                        name="controlNumber"
+                        value={formData.controlNumber}
+                        type="text"
+                        onChange={handleChangeText}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="allocatedTips">Allocated Tips:</label>
+                    <TextInput
+                        id="allocatedTips"
+                        name="allocatedTips"
+                        value={formData.allocatedTips}
+                        type="text"
+                        onChange={handleChangeText}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="nonqualifiedPlan">Nonqualified Plan:</label>
+                    <TextInput
+                        id="nonqualifiedPlan"
+                        name="nonqualifiedPlan"
+                        value={formData.nonqualifiedPlan}
+                        type="text"
+                        onChange={handleChangeText}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="deferrals">Deferrals:</label>
+                    <TextInput
+                        id="deferrals"
+                        name="deferrals"
+                        value={formData.deferrals}
+                        type="text"
+                        onChange={handleChangeText}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="statutory">Statutory:</label>
+                    <Checkbox
+                        id="statutory"
+                        name="statutory"
+                        checked={formData.statutory}
+                        label={"Statutory"} 
+                        onChange={handleChange}
 
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="retirement">Retirement:</label>
-                        <Checkbox
-                            id="retirement"
-                            name="retirement"
-                            checked={formData.retirement}
-                            label={"Retirement"}    
-                            onChange={handleChange}
-                
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="sickPay">Sick Pay:</label>
-                        <Checkbox
-                            id="sickPay"
-                            name="sickPay"
-                            checked={formData.sickPay}
-                            label={"Sick Pay"} 
-                            onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="retirement">Retirement:</label>
+                    <Checkbox
+                        id="retirement"
+                        name="retirement"
+                        checked={formData.retirement}
+                        label={"Retirement"}    
+                        onChange={handleChange}
+            
+                    />
+                </div>
+                <div>
+                    <label htmlFor="sickPay">Sick Pay:</label>
+                    <Checkbox
+                        id="sickPay"
+                        name="sickPay"
+                        checked={formData.sickPay}
+                        label={"Sick Pay"} 
+                        onChange={handleChange}
 
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="other">Other:</label>
-                        <TextInput
-                            id="other"
-                            name="other"
-                            value={formData.other}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
-                    </div>
-
+                    />
+                </div>
+                <div>
+                    <label htmlFor="other">Other:</label>
+                    <TextInput
+                        id="other"
+                        name="other"
+                        value={formData.other}
+                        type="text"
+                        onChange={handleChangeText}
+                    />
+                </div>
             </Card>,
         expanded: false,
         id: "general-info",
