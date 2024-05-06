@@ -111,4 +111,14 @@ public class DatabaseService {
             return null;
         }
     }
+
+    @Transactional
+    public void saveListOfW2Forms(List<TaxInfoW2> newList) {
+        //delete existing W2 records
+        
+        //insert list of items
+        for (TaxInfoW2 i : newList){
+            taxInfoW2Repo.save(i);
+        }
+    }
 }

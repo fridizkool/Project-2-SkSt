@@ -1,6 +1,6 @@
-import { Accordion, Button, Card, CardBody, CardHeader, Checkbox, Radio, TextInput } from '@trussworks/react-uswds';
+import { Accordion, Card, CardBody, CardHeader, Checkbox, TextInput } from '@trussworks/react-uswds';
 import React, { useEffect, useState } from 'react';
-import { Form, Link } from 'react-router-dom';
+import { Form } from 'react-router-dom';
 
 const FormW2: React.FC<{ id: number, getDataCallback: (id: any, formData: any) => void}> = ({id, getDataCallback }) => {
         // Define state variables to store form data
@@ -25,6 +25,7 @@ const FormW2: React.FC<{ id: number, getDataCallback: (id: any, formData: any) =
         other: ''
     });
     const [isChecked, setIsChecked] = useState(false);
+    console.log(isChecked);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsChecked(event.target.checked);
@@ -43,7 +44,7 @@ const FormW2: React.FC<{ id: number, getDataCallback: (id: any, formData: any) =
         getDataCallback(id, formData);
     });
 
-    const handleFormChange: React.ChangeEventHandler<HTMLFormElement> = (e) => {
+    const handleFormChange: React.ChangeEventHandler<HTMLFormElement> = (_) => {
         getDataCallback(id, formData);
     };
 

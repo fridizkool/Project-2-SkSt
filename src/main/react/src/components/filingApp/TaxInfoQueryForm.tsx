@@ -1,8 +1,5 @@
 import { Card, Accordion, Fieldset, Form, Label, Radio, TextInput } from "@trussworks/react-uswds"
 import { useState, useRef } from "react";
-import Form1099 from "./TaxInfoQuerySubForms/Form1099";
-import FormMisc from "./TaxInfoQuerySubForms/FormMisc";
-import FormW2 from "./TaxInfoQuerySubForms/FormW2";
 
 export default function TaxInfoQueryForm() {
 

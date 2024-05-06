@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import FormW2 from './FormW2';
-import { useSubmit } from 'react-router-dom';
 import { Card } from '@trussworks/react-uswds';
 
 interface FormData {
@@ -17,8 +16,6 @@ const C: React.FC<{ index: number; getDataCallback: (id: number, formData: FormD
 };
 
 const ListOfW2: React.FC = () => {
-  const submit = useSubmit();
-
   const [itemsMap, setItemsMap] = useState<{ [id: number]: FormData }>({});
   const [instances, setInstances] = useState<{ [key: string]: JSX.Element }>({});
   const [index, setIndex] = useState<number>(0);
@@ -64,13 +61,13 @@ const ListOfW2: React.FC = () => {
         const headers = {
             'Content-Type': 'application/json',
         };    
-        const response = await fetch('/submitW2', {
-            method: 'PUT',
+        const response = await fetch('/submitW2List', {
+            method: 'POST',
             headers: headers,
             body: JSON.stringify(listOfW2Formdata)
         });
 
-        console.log(listOfW2Formdata);
+        console.log(response);
     };
 
   return (

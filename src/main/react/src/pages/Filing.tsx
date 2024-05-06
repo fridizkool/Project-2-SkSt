@@ -4,7 +4,6 @@ import { Grid, GridContainer } from '@trussworks/react-uswds';
 import LogoutButton from '../components/accountManagement/LogoutButton';
 import LoginStatus from '../components/accountManagement/LoginStatus';
 import TaxReturnStatus from '../components/filingApp/TaxReturnStatus';
-import TaxInfoQueryForm from '../components/filingApp/TaxInfoQueryForm';
 import TaxFilingForm from '../components/filingApp/TaxFilingForm';
 
 

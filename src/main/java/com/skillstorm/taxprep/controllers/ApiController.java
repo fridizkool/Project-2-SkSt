@@ -1,5 +1,6 @@
 package com.skillstorm.taxprep.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
@@ -76,11 +77,14 @@ public class ApiController {
     @PostMapping("/submitW2List")
     public ResponseEntity<String> submitW2List(Authentication auth, @RequestBody List<TaxInfoW2> taxforms)
     {
+        List<TaxInfoW2> newList = new ArrayList();
         AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
         for (TaxInfoW2 info : taxforms){
             TaxInfoW2 newInfo = new TaxInfoW2(u, info);
-            dbS.submitW2(newInfo);
+            // dbS.submitW2(newInfo);
+            newList.add(newInfo);
         }
+        dbS.saveListOfW2Forms(newList);
         return ResponseEntity.ok("asdf");
     }
 
