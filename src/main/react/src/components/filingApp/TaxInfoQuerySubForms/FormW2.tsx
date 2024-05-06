@@ -1,10 +1,9 @@
 import { Accordion, Card, CardBody, CardHeader, Checkbox, TextInput } from '@trussworks/react-uswds';
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-router-dom';
-
-const FormW2: React.FC<{ id: number, getDataCallback: (id: any, formData: any) => void, initInfo: any}> = ({id, getDataCallback }) => {
-        // Define state variables to store form data
-    const [formData, setFormData] = React.useState({
+const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
+    // Define the default initial state
+    const defaultFormData = {
         employerId: '',
         employerInformation: '',
         controlNumber: '',
@@ -23,10 +22,22 @@ const FormW2: React.FC<{ id: number, getDataCallback: (id: any, formData: any) =
         retirement: false,
         sickPay: false,
         other: ''
-    });
+    };
+
+    const sanitizedInitInfo = Object.fromEntries(
+        Object.entries(initInfo).map(([key, value]) => [key, value === null ? '' : value])
+      );
+
+    // Merge initInfo with the default initial state
+    const mergedFormData = { ...defaultFormData, ...sanitizedInitInfo };
+
+    // Define state variable to store form data with the merged initial state
+    const [formData, setFormData] = React.useState(mergedFormData);
+
+
     const [isChecked, setIsChecked] = useState(false);
     console.log(isChecked);
-
+    
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsChecked(event.target.checked);
     };
