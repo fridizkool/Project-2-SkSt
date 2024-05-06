@@ -1,15 +1,10 @@
-- Get basic front end
-    - "Borrow" from turbotax Tax Estimator for layout
-    - Create landing page, sign on page
-- Map out algorithm
-    - What the end result tax refund is based on given information
-    - Only W2 and 1099 are required
+Integrate forms
+    - W2
+    - 1099
+    - Misc
 
-- ERD (entity relationship diagram)
-    - Draw out ERD's based on propsoed algorithm
+Admin page- able to edit, remove users
+    - Requires new backend transaction to be defined
 
-- Check how to test Spring
-    - Write tests for back end calculation
+Internationalization
 
-
-- 
