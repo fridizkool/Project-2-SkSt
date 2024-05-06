@@ -87,4 +87,17 @@ public class ApiController {
         return ResponseEntity.ok("Successful push");
     }
 
+    @GetMapping("/getAllW2")
+    public ResponseEntity<List<TaxInfoW2>> getAllW2(Authentication auth) {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+
+        try {
+            List<TaxInfoW2> newList = dbS.selectAllByUserId(u.getId());
+            return ResponseEntity.ok(newList);
+        } catch (Exception e){
+            return ResponseEntity.ok(null);
+        }
+    }
+    
+
 }

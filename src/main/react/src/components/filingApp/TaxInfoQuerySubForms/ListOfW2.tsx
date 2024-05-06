@@ -15,7 +15,8 @@ const C: React.FC<{ index: number; getDataCallback: (id: number, formData: FormD
   );
 };
 
-const ListOfW2: React.FC = () => {
+const ListOfW2: React.FC<{existingForms: any }> = ({existingForms }) => {
+    console.log(existingForms);
   const [itemsMap, setItemsMap] = useState<{ [id: number]: FormData }>({});
   const [instances, setInstances] = useState<{ [key: string]: JSX.Element }>({});
   const [index, setIndex] = useState<number>(0);

@@ -38,7 +38,16 @@ export async function loadPasswordUpdatePage() {
 export async function loadFilingPage() {
     const authStatus = await queryAuthStatus();
     if(authStatus.authenticated){
-        return null;
+        const response = await fetch('/getAllW2', {
+            method: 'GET',
+        });
+        
+        try {
+            const responseJSON = await response.json();
+            return responseJSON;
+        } catch (e) {
+            return redirect("/error");
+        }
     } else {
         return redirect("/login");
     }

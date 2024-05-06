@@ -29,4 +29,8 @@ public interface TaxInfoW2Repository extends JpaRepository<TaxInfoW2, Long> {
     @Query("delete from TaxInfoW2 t where t.userId = ?1")
     public void deleteAllByUserId(Long userId);
 
+    @Query("select t from TaxInfoW2 t where t.userId = ?1")
+    public List<TaxInfoW2> selectAllByUserId(Long userId);
+    
+
 }

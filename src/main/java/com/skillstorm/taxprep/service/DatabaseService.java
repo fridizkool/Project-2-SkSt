@@ -121,4 +121,13 @@ public class DatabaseService {
             taxInfoW2Repo.save(i);
         }
     }
+
+    public List<TaxInfoW2> selectAllByUserId(Long id) throws Exception {
+        // TODO Auto-generated method stub
+        try {
+            return taxInfoW2Repo.selectAllByUserId(id);
+        } catch (Exception e) {
+            throw new Exception("Cannot select all W2's");
+        }
+    }
 }
