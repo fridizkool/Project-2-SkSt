@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.taxprep.models.AppUser;
 import com.skillstorm.taxprep.models.TaxInfo;
+import com.skillstorm.taxprep.models.TaxInfo1099;
 import com.skillstorm.taxprep.models.TaxInfoW2;
 import com.skillstorm.taxprep.service.CalculationService;
 import com.skillstorm.taxprep.service.DatabaseService;
@@ -92,12 +93,57 @@ public class ApiController {
         AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
 
         try {
-            List<TaxInfoW2> newList = dbS.selectAllByUserId(u.getId());
+            List<TaxInfoW2> newList = dbS.selectAllW2ByUserId(u.getId());
             return ResponseEntity.ok(newList);
         } catch (Exception e){
             return ResponseEntity.ok(null);
         }
     }
     
+       
+    @PostMapping("/submit1099List")
+    public ResponseEntity<String> submit1099List(Authentication auth, @RequestBody List<TaxInfo1099> taxforms)
+    {
+        List<TaxInfo1099> newList = new ArrayList();
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+        for (TaxInfo1099 info : taxforms){
+            TaxInfo1099 newInfo = new TaxInfo1099(u, info);
+            newList.add(newInfo);
+        }
+        dbS.saveListOf1099Forms(newList, u.getId());
+        return ResponseEntity.ok("Successful push");
+    }
 
+    @GetMapping("/getAll1099")
+    public ResponseEntity<List<TaxInfo1099>> getAll1099(Authentication auth) {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+
+        try {
+            List<TaxInfo1099> newList = dbS.selectAll1099ByUserId(u.getId());
+            return ResponseEntity.ok(newList);
+        } catch (Exception e){
+            return ResponseEntity.ok(null);
+        }
+    }
+
+
+       
+    @PostMapping("/submitMisc")
+    public ResponseEntity<String> submitMisc(Authentication auth, @RequestBody TaxInfo taxInfo)
+    {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+        dbS.saveMisc(taxInfo, u.getId());
+        return ResponseEntity.ok("Successful push");
+    }
+
+    @GetMapping("/getMisc")
+    public ResponseEntity<TaxInfo> getMisc(Authentication auth) {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+
+        try {
+            return ResponseEntity.ok(dbS.selectMiscByUserId(u.getId()));
+        } catch (Exception e){
+            return ResponseEntity.ok(null);
+        }
+    }
 }

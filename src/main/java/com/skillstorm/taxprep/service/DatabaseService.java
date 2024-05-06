@@ -122,7 +122,7 @@ public class DatabaseService {
         }
     }
 
-    public List<TaxInfoW2> selectAllByUserId(Long id) throws Exception {
+    public List<TaxInfoW2> selectAllW2ByUserId(Long id) throws Exception {
         // TODO Auto-generated method stub
         try {
             return taxInfoW2Repo.selectAllByUserId(id);
@@ -130,4 +130,37 @@ public class DatabaseService {
             throw new Exception("Cannot select all W2's");
         }
     }
+
+    @Transactional
+    public void saveListOf1099Forms(List<TaxInfo1099> newList, Long userId) {
+        //delete existing W2 records
+        taxInfo1099Repo.deleteAllByUserId(userId);
+        //insert list of items
+        for (TaxInfo1099 i : newList){
+            taxInfo1099Repo.save(i);
+        }
+    }
+
+    
+    public List<TaxInfo1099> selectAll1099ByUserId(Long id) throws Exception {
+        // TODO Auto-generated method stub
+        try {
+            return taxInfo1099Repo.selectAllByUserId(id);
+        } catch (Exception e) {
+            throw new Exception("Cannot select all W2's");
+        }
+    }
+
+    public TaxInfo selectMiscByUserId(Long id) throws Exception {
+        try {
+            return taxInfoRepo.getById(id);
+        } catch (Exception e) {
+            throw new Exception("Cannot get supplemental tax info");
+        }
+    }
+
+    public void saveMisc(TaxInfo taxInfo, Long id) {
+        taxInfoRepo.save(taxInfo);
+    }
+
 }
