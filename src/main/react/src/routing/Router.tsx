@@ -9,7 +9,7 @@ import Root from "../pages/Root";
 import Users from "../pages/Users";
 import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadLogout, loadNavBar, loadPasswordUpdatePage, loadUsersPage } from "./loaders";
 import InaccessibleResource from "../pages/InaccessibleResource";
-import { attemptAccountCreation, attemptLogin, attemptPasswordChange, attemptProfileEdit } from "./actions";
+import { attemptAccountCreation, attemptLogin, attemptPasswordChange, attemptProfileEdit, submitForms } from "./actions";
 import ChangePassword from "../pages/ChangePassword";
 
 export const router = createBrowserRouter(
@@ -33,6 +33,7 @@ export const router = createBrowserRouter(
                 path="filing"
                 element={<Filing/>}
                 loader={loadFilingPage}
+                action= {submitForms}
             />
             <Route
                 path="account"

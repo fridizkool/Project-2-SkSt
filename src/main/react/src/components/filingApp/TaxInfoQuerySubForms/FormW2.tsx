@@ -1,9 +1,9 @@
-import { Card, CardBody, CardHeader, Checkbox, TextInput } from '@trussworks/react-uswds';
-import React from 'react';
+import { Button, Card, CardBody, CardHeader, Checkbox, Radio, TextInput } from '@trussworks/react-uswds';
+import React, { useEffect, useState } from 'react';
 import { Form, Link } from 'react-router-dom';
 
-const FormW2: React.FC = () => {
-    // Define state variables to store form data
+const FormW2: React.FC<{ id: number, getDataCallback: (id: any, formData: any) => void}> = ({id, getDataCallback }) => {
+        // Define state variables to store form data
     const [formData, setFormData] = React.useState({
         employerId: '',
         employerInformation: '',
@@ -24,6 +24,11 @@ const FormW2: React.FC = () => {
         sickPay: false,
         other: ''
     });
+    const [isChecked, setIsChecked] = useState(false);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setIsChecked(event.target.checked);
+    };
 
     // Handle form input change
     const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,252 +39,207 @@ const FormW2: React.FC = () => {
         }));
     };
 
+    useEffect(() => {
+        getDataCallback(id, formData);
+    });
 
-    // Handle form submission
-    async function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        // Handle form submission logic here
-
-        try {
-
-            let jsonObject = {
-                "employerId": 1789,
-                "employerInformation": "ABC Company",
-                "controlNumber": 987654321,
-                "income": 150000.0,
-                "withheldFederal": 7500.0,
-                "socialSecurity": 3500.0,
-                "withheldSS": 1000.0,
-                "medicare": 800.0,
-                "withheldMedicare": 200.0,
-                "socialSecurityTips": 300.0,
-                "allocatedTips": 100.0,
-                "dependentCare": 1000.0,
-                "nonqualifiedPlan": "Some non-qualified plan",
-                "deferrals": "Some deferrals",
-                "statutory": true,
-                "retirement": false,
-                "sickPay": true,
-                "other": "Some other information"
-              }
-              
-            const headers = {
-                'Content-Type': 'application/json',
-            };    
-            const response = await fetch('/submitW2', {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(jsonObject)
-            });
-    
-            if (response.status === 201) {
-                // Check authentication status after successful login
-            } else {
-                // Handle other status codes (e.g., login failed)
-            }
-        } catch (error) {
-            console.error('Error submitting form:', error);
-
-        }
-
+    const handleFormChange: React.ChangeEventHandler<HTMLFormElement> = (e) => {
+        // console.log(e)
+        getDataCallback(id, formData);
     };
 
     return (
         <>
-            <Form method="post" onSubmit={handleSubmit}>  
-                <Card>
-                    <CardHeader>
-                        <h1>IRS Form W2</h1>
-                    </CardHeader>
-                    <CardBody>
+            <Form method="post" onBlur={handleFormChange}>  
+                <CardHeader>
+                    <h1>IRS Form W2</h1>
+                </CardHeader>
+                <CardBody hidden>
+                <div>
+                        <label htmlFor="employerId">Employer ID:</label>
+                        <TextInput
+                            id="employerId"
+                            name="employerId"
+                            value={formData.employerId}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
                     <div>
-                            <label htmlFor="employerId">Employer ID:</label>
-                            <TextInput
-                                id="employerId"
-                                name="employerId"
-                                value={formData.employerId}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="employerInformation">Employer Information:</label>
-                            <TextInput
-                                id="employerInformation"
-                                name="employerInformation"
-                                value={formData.employerInformation}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="controlNumber">Control Number:</label>
-                            <TextInput
-                                id="controlNumber"
-                                name="controlNumber"
-                                value={formData.controlNumber}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="income">Income:</label>
-                            <TextInput
-                                id="income"
-                                name="income"
-                                value={formData.income}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="withheldFederal">Withheld Federal:</label>
-                            <TextInput
-                                id="withheldFederal"
-                                name="withheldFederal"
-                                value={formData.withheldFederal}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="socialSecurity">Social Security:</label>
-                            <TextInput
-                                id="socialSecurity"
-                                name="socialSecurity"
-                                value={formData.socialSecurity}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="withheldSS">Withheld Social Security:</label>
-                            <TextInput
-                                id="withheldSS"
-                                name="withheldSS"
-                                value={formData.withheldSS}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="medicare">Medicare:</label>
-                            <TextInput
-                                id="medicare"
-                                name="medicare"
-                                value={formData.medicare}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="withheldMedicare">Withheld Medicare:</label>
-                            <TextInput
-                                id="withheldMedicare"
-                                name="withheldMedicare"
-                                value={formData.withheldMedicare}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="socialSecurityTips">Social Security Tips:</label>
-                            <TextInput
-                                id="socialSecurityTips"
-                                name="socialSecurityTips"
-                                value={formData.socialSecurityTips}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="allocatedTips">Allocated Tips:</label>
-                            <TextInput
-                                id="allocatedTips"
-                                name="allocatedTips"
-                                value={formData.allocatedTips}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="dependentCare">Dependent Care:</label>
-                            <TextInput
-                                id="dependentCare"
-                                name="dependentCare"
-                                value={formData.dependentCare}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="nonqualifiedPlan">Nonqualified Plan:</label>
-                            <TextInput
-                                id="nonqualifiedPlan"
-                                name="nonqualifiedPlan"
-                                value={formData.nonqualifiedPlan}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="deferrals">Deferrals:</label>
-                            <TextInput
-                                id="deferrals"
-                                name="deferrals"
-                                value={formData.deferrals}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="statutory">Statutory:</label>
-                            <Checkbox
-                                id="statutory"
-                                name="statutory"
-                                checked={formData.statutory}
-                                label={"Statutory"} 
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="retirement">Retirement:</label>
-                            <Checkbox
-                                id="retirement"
-                                name="retirement"
-                                checked={formData.retirement}
-                                label={"Retirement"}                        
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="sickPay">Sick Pay:</label>
-                            <Checkbox
-                                id="sickPay"
-                                name="sickPay"
-                                checked={formData.sickPay}
-                                label={"Sick Pay"} 
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="other">Other:</label>
-                            <TextInput
-                                id="other"
-                                name="other"
-                                value={formData.other}
-                                type="text"
-                                onChange={handleChangeText}
-                            />
-                        </div>
+                        <label htmlFor="employerInformation">Employer Information:</label>
+                        <TextInput
+                            id="employerInformation"
+                            name="employerInformation"
+                            value={formData.employerInformation}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="controlNumber">Control Number:</label>
+                        <TextInput
+                            id="controlNumber"
+                            name="controlNumber"
+                            value={formData.controlNumber}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="income">Income:</label>
+                        <TextInput
+                            id="income"
+                            name="income"
+                            value={formData.income}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="withheldFederal">Withheld Federal:</label>
+                        <TextInput
+                            id="withheldFederal"
+                            name="withheldFederal"
+                            value={formData.withheldFederal}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="socialSecurity">Social Security:</label>
+                        <TextInput
+                            id="socialSecurity"
+                            name="socialSecurity"
+                            value={formData.socialSecurity}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="withheldSS">Withheld Social Security:</label>
+                        <TextInput
+                            id="withheldSS"
+                            name="withheldSS"
+                            value={formData.withheldSS}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="medicare">Medicare:</label>
+                        <TextInput
+                            id="medicare"
+                            name="medicare"
+                            value={formData.medicare}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="withheldMedicare">Withheld Medicare:</label>
+                        <TextInput
+                            id="withheldMedicare"
+                            name="withheldMedicare"
+                            value={formData.withheldMedicare}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="socialSecurityTips">Social Security Tips:</label>
+                        <TextInput
+                            id="socialSecurityTips"
+                            name="socialSecurityTips"
+                            value={formData.socialSecurityTips}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="allocatedTips">Allocated Tips:</label>
+                        <TextInput
+                            id="allocatedTips"
+                            name="allocatedTips"
+                            value={formData.allocatedTips}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="dependentCare">Dependent Care:</label>
+                        <TextInput
+                            id="dependentCare"
+                            name="dependentCare"
+                            value={formData.dependentCare}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="nonqualifiedPlan">Nonqualified Plan:</label>
+                        <TextInput
+                            id="nonqualifiedPlan"
+                            name="nonqualifiedPlan"
+                            value={formData.nonqualifiedPlan}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="deferrals">Deferrals:</label>
+                        <TextInput
+                            id="deferrals"
+                            name="deferrals"
+                            value={formData.deferrals}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="statutory">Statutory:</label>
+                        <Checkbox
+                            id="statutory"
+                            name="statutory"
+                            checked={formData.statutory}
+                            label={"Statutory"} 
+                            onChange={handleChange}
 
-                    </CardBody>
-                </Card>
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="retirement">Retirement:</label>
+                        <Checkbox
+                            id="retirement"
+                            name="retirement"
+                            checked={formData.retirement}
+                            label={"Retirement"}    
+                            onChange={handleChange}
                 
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-                <div>
-                    {/* Link to other sections of the form */}
-                    <Link to="/form1099/section2">Next Section</Link>
-                </div>
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="sickPay">Sick Pay:</label>
+                        <Checkbox
+                            id="sickPay"
+                            name="sickPay"
+                            checked={formData.sickPay}
+                            label={"Sick Pay"} 
+                            onChange={handleChange}
+
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="other">Other:</label>
+                        <TextInput
+                            id="other"
+                            name="other"
+                            value={formData.other}
+                            type="text"
+                            onChange={handleChangeText}
+                        />
+                    </div>
+
+                </CardBody>
             </Form>
         </>
 

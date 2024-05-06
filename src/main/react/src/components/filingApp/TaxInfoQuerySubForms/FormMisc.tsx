@@ -1,4 +1,4 @@
-export default function FormW2() {
+export default function FormMisc() {
     return <>
         <p> TODO Form W2</p>
     </>

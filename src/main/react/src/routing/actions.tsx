@@ -152,3 +152,16 @@ export async function attemptPasswordChange({ request }: { request: any, params:
     }
 
 }
+
+
+export async function submitForms({ request }: { request: any, params: any }) {
+    let formData = await request.formData();
+    console.log(formData)
+    try {
+        //Submit list of forms as 3 blocks
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        return redirect("/changepassword?error=error")
+    }
+
+}

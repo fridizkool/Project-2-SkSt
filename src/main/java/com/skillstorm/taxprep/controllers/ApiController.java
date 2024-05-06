@@ -1,5 +1,7 @@
 package com.skillstorm.taxprep.controllers;
 
+import java.util.List;
+
 import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -66,11 +68,19 @@ public class ApiController {
     {
         AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
         TaxInfoW2 newInfo = new TaxInfoW2(u, info);
-        // newInfo.setId(u.getId());
-        // System.out.println(newInfo);
-        // newInfo.setUser(u);
-
         dbS.submitW2(newInfo);
+        return ResponseEntity.ok("asdf");
+    }
+
+    
+    @PostMapping("/submitW2List")
+    public ResponseEntity<String> submitW2List(Authentication auth, @RequestBody List<TaxInfoW2> taxforms)
+    {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+        for (TaxInfoW2 info : taxforms){
+            TaxInfoW2 newInfo = new TaxInfoW2(u, info);
+            dbS.submitW2(newInfo);
+        }
         return ResponseEntity.ok("asdf");
     }
 

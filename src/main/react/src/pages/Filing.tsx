@@ -5,6 +5,7 @@ import LogoutButton from '../components/accountManagement/LogoutButton';
 import LoginStatus from '../components/accountManagement/LoginStatus';
 import TaxReturnStatus from '../components/filingApp/TaxReturnStatus';
 import TaxInfoQueryForm from '../components/filingApp/TaxInfoQueryForm';
+import TaxFilingForm from '../components/filingApp/TaxFilingForm';
 
 
 export default function Filing() {
@@ -13,7 +14,7 @@ export default function Filing() {
             <GridContainer>
                 <Grid row className='padding-1'>
                     <Grid col={6}>
-                        <TaxInfoQueryForm/>
+                        <TaxFilingForm/>
                     </Grid>
                     <Grid col={5} offset={1}>
                         <TaxReturnStatus/>

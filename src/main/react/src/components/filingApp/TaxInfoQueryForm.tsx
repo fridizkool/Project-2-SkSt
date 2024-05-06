@@ -150,9 +150,7 @@ export default function TaxInfoQueryForm() {
         <Form onSubmit={() => { }} onChange={updateForm} large>
             <Accordion items={formItems} multiselectable={true} />
         </Form>
-        <Form1099/>
-        <FormW2/>
-        <FormMisc/>
+
     </>
 }
 
