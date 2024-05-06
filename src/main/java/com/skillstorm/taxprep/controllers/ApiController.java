@@ -81,11 +81,10 @@ public class ApiController {
         AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
         for (TaxInfoW2 info : taxforms){
             TaxInfoW2 newInfo = new TaxInfoW2(u, info);
-            // dbS.submitW2(newInfo);
             newList.add(newInfo);
         }
-        dbS.saveListOfW2Forms(newList);
-        return ResponseEntity.ok("asdf");
+        dbS.saveListOfW2Forms(newList, u.getId());
+        return ResponseEntity.ok("Successful push");
     }
 
 }

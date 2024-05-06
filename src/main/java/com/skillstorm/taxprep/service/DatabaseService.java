@@ -113,9 +113,9 @@ public class DatabaseService {
     }
 
     @Transactional
-    public void saveListOfW2Forms(List<TaxInfoW2> newList) {
+    public void saveListOfW2Forms(List<TaxInfoW2> newList, Long userId) {
         //delete existing W2 records
-        
+            taxInfoW2Repo.deleteAllByUserId(userId);
         //insert list of items
         for (TaxInfoW2 i : newList){
             taxInfoW2Repo.save(i);
