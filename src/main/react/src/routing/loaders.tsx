@@ -38,6 +38,79 @@ export async function loadPasswordUpdatePage() {
 export async function loadFilingPage() {
     const authStatus = await queryAuthStatus();
     if(authStatus.authenticated){
+
+        if(import.meta.env.DEV){
+            return (
+                [
+                    {
+                      "id": 48,
+                      "userId": 8,
+                      "employerId": null,
+                      "employerInformation": "",
+                      "controlNumber": null,
+                      "income": 1,
+                      "withheldFederal": null,
+                      "socialSecurity": null,
+                      "withheldSS": null,
+                      "medicare": null,
+                      "withheldMedicare": null,
+                      "socialSecurityTips": null,
+                      "allocatedTips": null,
+                      "dependentCare": null,
+                      "nonqualifiedPlan": "",
+                      "deferrals": "",
+                      "statutory": false,
+                      "retirement": false,
+                      "sickPay": false,
+                      "other": ""
+                    },
+                    {
+                      "id": 49,
+                      "userId": 8,
+                      "employerId": null,
+                      "employerInformation": "",
+                      "controlNumber": null,
+                      "income": 2,
+                      "withheldFederal": null,
+                      "socialSecurity": null,
+                      "withheldSS": null,
+                      "medicare": null,
+                      "withheldMedicare": null,
+                      "socialSecurityTips": null,
+                      "allocatedTips": null,
+                      "dependentCare": null,
+                      "nonqualifiedPlan": "",
+                      "deferrals": "",
+                      "statutory": false,
+                      "retirement": false,
+                      "sickPay": false,
+                      "other": ""
+                    },
+                    {
+                      "id": 50,
+                      "userId": 8,
+                      "employerId": null,
+                      "employerInformation": "",
+                      "controlNumber": null,
+                      "income": 3,
+                      "withheldFederal": null,
+                      "socialSecurity": null,
+                      "withheldSS": null,
+                      "medicare": null,
+                      "withheldMedicare": null,
+                      "socialSecurityTips": null,
+                      "allocatedTips": null,
+                      "dependentCare": null,
+                      "nonqualifiedPlan": "",
+                      "deferrals": "",
+                      "statutory": false,
+                      "retirement": false,
+                      "sickPay": false,
+                      "other": ""
+                    }
+                  ]
+            )
+        }
         const response = await fetch('/getAllW2', {
             method: 'GET',
         });

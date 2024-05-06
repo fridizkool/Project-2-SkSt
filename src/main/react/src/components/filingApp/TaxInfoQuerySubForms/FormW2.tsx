@@ -2,7 +2,7 @@ import { Accordion, Card, CardBody, CardHeader, Checkbox, TextInput } from '@tru
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-router-dom';
 
-const FormW2: React.FC<{ id: number, getDataCallback: (id: any, formData: any) => void}> = ({id, getDataCallback }) => {
+const FormW2: React.FC<{ id: number, getDataCallback: (id: any, formData: any) => void, initInfo: any}> = ({id, getDataCallback }) => {
         // Define state variables to store form data
     const [formData, setFormData] = React.useState({
         employerId: '',
