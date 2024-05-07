@@ -119,3 +119,49 @@ export async function attemptProfileEdit({ request }: { request: any, params: an
     }
 
 }
+
+export async function attemptPasswordChange({ request }: { request: any, params: any }) {
+    let formData = await request.formData();
+    
+    try {
+        const jsonObject: any = {};
+        formData.forEach((value: any, key: any) => {
+            if(key == 'password'){
+                jsonObject[key] = value;
+            }
+        });
+        const headers = {
+            'Content-Type': 'application/json',
+        };    
+        const response = await fetch('/user/password', {
+            method: 'PUT',
+            headers: headers,
+            body: JSON.stringify(jsonObject)
+        });
+
+        if (response.status === 200) {
+            // Check authentication status after successful login
+            return redirect("/account")
+        } else {
+            // Handle other status codes (e.g., login failed)
+            return redirect("/changepassword?error=error")
+        }
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        return redirect("/changepassword?error=error")
+    }
+
+}
+
+
+export async function submitForms({ request }: { request: any, params: any }) {
+    let formData = await request.formData();
+    console.log(formData)
+    try {
+        //Submit list of forms as 3 blocks
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        return redirect("/changepassword?error=error")
+    }
+
+}

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -77,6 +78,16 @@ public class AuthController {
         return "user logged in";
     }
 
+    // Reset user's password
+    @PutMapping("/user/password")
+    public ResponseEntity<Void> resetUserPassword(Authentication authentication, @RequestBody AppUser user) {
+        try{
+            userService.resetUserPassword(authentication.getName(), user);
+        } catch (Exception e){
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
 
     
 }

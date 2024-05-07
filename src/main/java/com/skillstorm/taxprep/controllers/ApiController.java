@@ -1,17 +1,26 @@
 package com.skillstorm.taxprep.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.taxprep.models.AppUser;
 import com.skillstorm.taxprep.models.TaxInfo;
+import com.skillstorm.taxprep.models.TaxInfo1099;
+import com.skillstorm.taxprep.models.TaxInfoW2;
 import com.skillstorm.taxprep.service.CalculationService;
 import com.skillstorm.taxprep.service.DatabaseService;
+import com.skillstorm.taxprep.service.UserService;
 
 @RestController
 public class ApiController {
@@ -21,40 +30,120 @@ public class ApiController {
     @Autowired
     private CalculationService cS;
 
-
-    //TODO On entering page as existing user, populate page with existing data
-
-    //TODO Use spring security to get current user, and set that userinfo to taxInfo user_id field
-    @PostMapping("/taxinfo")
-    public ResponseEntity<String> processTaxInfo(@RequestBody TaxInfo taxInfo) {
-
-        dbS.submit(taxInfo);
-                
-        return new ResponseEntity<>("TAXES OWED", HttpStatus.OK);
-    }
+    @Autowired
+    UserService userService;
 
     @GetMapping("/calculateTaxesOwed")
-    public ResponseEntity<String> calculateTaxesOwed(@RequestParam Long userId) {
-        String x = cS.calculateTaxesOwed(userId);
+    public ResponseEntity<String> calculateTaxesOwed(Authentication auth) {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+        String x = cS.calculateTaxesOwed(u.getId());
         return new ResponseEntity<>(x, HttpStatus.OK);
     }
 
     @GetMapping("/income")
-    public ResponseEntity<Double> getIncome(@RequestParam Long userId)
+    public ResponseEntity<Double> getIncome(Authentication auth, @RequestParam Long userid)
     {
-        return ResponseEntity.ok(cS.getIncomeById(userId));
+        // AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+
+        return ResponseEntity.ok(cS.getIncomeById(userid));
     }
 
     @GetMapping("/deductions")
-    public ResponseEntity<Double> getDeductions(@RequestParam Long userId)
+    public ResponseEntity<Double> getDeductions(Authentication auth)
     {
-        return ResponseEntity.ok(cS.getDeductionsById(userId));
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+
+        return ResponseEntity.ok(cS.getDeductionsById(u.getId()));
     }
 
     @GetMapping("/withheld")
-    public ResponseEntity<Double> getWitheld(@RequestParam Long userId)
+    public ResponseEntity<Double> getWitheld(Authentication auth)
     {
-        return ResponseEntity.ok(cS.getWithheldById(userId));
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+
+        return ResponseEntity.ok(cS.getWithheldById(u.getId()));
     }
 
+
+    @PostMapping("/submitW2")
+    public ResponseEntity<String> submitW2(Authentication auth, @RequestBody TaxInfoW2 info)
+    {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+        TaxInfoW2 newInfo = new TaxInfoW2(u, info);
+        dbS.submitW2(newInfo);
+        return ResponseEntity.ok("asdf");
+    }
+
+    
+    @PostMapping("/submitW2List")
+    public ResponseEntity<String> submitW2List(Authentication auth, @RequestBody List<TaxInfoW2> taxforms)
+    {
+        List<TaxInfoW2> newList = new ArrayList();
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+        for (TaxInfoW2 info : taxforms){
+            TaxInfoW2 newInfo = new TaxInfoW2(u, info);
+            newList.add(newInfo);
+        }
+        dbS.saveListOfW2Forms(newList, u.getId());
+        return ResponseEntity.ok("Successful push");
+    }
+
+    @GetMapping("/getAllW2")
+    public ResponseEntity<List<TaxInfoW2>> getAllW2(Authentication auth) {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+
+        try {
+            List<TaxInfoW2> newList = dbS.selectAllW2ByUserId(u.getId());
+            return ResponseEntity.ok(newList);
+        } catch (Exception e){
+            return ResponseEntity.ok(null);
+        }
+    }
+    
+       
+    @PostMapping("/submit1099List")
+    public ResponseEntity<String> submit1099List(Authentication auth, @RequestBody List<TaxInfo1099> taxforms)
+    {
+        List<TaxInfo1099> newList = new ArrayList();
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+        for (TaxInfo1099 info : taxforms){
+            TaxInfo1099 newInfo = new TaxInfo1099(u, info);
+            newList.add(newInfo);
+        }
+        dbS.saveListOf1099Forms(newList, u.getId());
+        return ResponseEntity.ok("Successful push");
+    }
+
+    @GetMapping("/getAll1099")
+    public ResponseEntity<List<TaxInfo1099>> getAll1099(Authentication auth) {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+
+        try {
+            List<TaxInfo1099> newList = dbS.selectAll1099ByUserId(u.getId());
+            return ResponseEntity.ok(newList);
+        } catch (Exception e){
+            return ResponseEntity.ok(null);
+        }
+    }
+
+
+       
+    @PostMapping("/submitMisc")
+    public ResponseEntity<String> submitMisc(Authentication auth, @RequestBody TaxInfo taxInfo)
+    {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+        dbS.saveMisc(taxInfo, u.getId());
+        return ResponseEntity.ok("Successful push");
+    }
+
+    @GetMapping("/getMisc")
+    public ResponseEntity<TaxInfo> getMisc(Authentication auth) {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+
+        try {
+            return ResponseEntity.ok(dbS.selectMiscByUserId(u.getId()));
+        } catch (Exception e){
+            return ResponseEntity.ok(null);
+        }
+    }
 }

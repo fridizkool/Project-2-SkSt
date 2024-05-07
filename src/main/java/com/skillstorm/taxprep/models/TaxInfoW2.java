@@ -86,8 +86,8 @@ public class TaxInfoW2 {
 
     public TaxInfoW2(Long id, Long userId, AppUser user, Long employerId, String employerInformation, Long controlNumber,
             Double income, Double withheldFederal, Double socialSecurity, Double withheldSS, Double medicare,
-            Double withheldMedicare, Double socialSecurityTips, Double allocatedTips, Double dependantCare,
-            String nonqualifiedPlan, String defferals, Boolean statutory, Boolean retirement, Boolean sickPay,
+            Double withheldMedicare, Double socialSecurityTips, Double allocatedTips, Double dependentCare,
+            String nonqualifiedPlan, String deferrals, Boolean statutory, Boolean retirement, Boolean sickPay,
             String other) {
         this.id = id;
         this.userId = userId;
@@ -103,13 +103,36 @@ public class TaxInfoW2 {
         this.withheldMedicare = withheldMedicare;
         this.socialSecurityTips = socialSecurityTips;
         this.allocatedTips = allocatedTips;
-        this.dependentCare = dependantCare;
+        this.dependentCare = dependentCare;
         this.nonqualifiedPlan = nonqualifiedPlan;
-        this.deferrals = defferals;
+        this.deferrals = deferrals;
         this.statutory = statutory;
         this.retirement = retirement;
         this.sickPay = sickPay;
         this.other = other;
+    }
+
+    public TaxInfoW2(AppUser u, TaxInfoW2 oldInfo) {
+        this.user = u;
+        this.userId = u.getId();
+        this.employerId = oldInfo.employerId;
+        this.employerInformation = oldInfo.employerInformation;
+        this.controlNumber = oldInfo.controlNumber;
+        this.income = oldInfo.income;
+        this.withheldFederal = oldInfo.withheldFederal;
+        this.socialSecurity = oldInfo.socialSecurity;
+        this.withheldSS = oldInfo.withheldSS;
+        this.medicare = oldInfo.medicare;
+        this.withheldMedicare = oldInfo.withheldMedicare;
+        this.socialSecurityTips = oldInfo.socialSecurityTips;
+        this.allocatedTips = oldInfo.allocatedTips;
+        this.dependentCare = oldInfo.dependentCare;
+        this.nonqualifiedPlan = oldInfo.nonqualifiedPlan;
+        this.deferrals = oldInfo.deferrals;
+        this.statutory = oldInfo.statutory;
+        this.retirement = oldInfo.retirement;
+        this.sickPay = oldInfo.sickPay;
+        this.other = oldInfo.other;
     }
 
     public Long getId() {
