@@ -11,6 +11,7 @@ import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage
 import InaccessibleResource from "../pages/InaccessibleResource";
 import { attemptAccountCreation, attemptLogin, attemptPasswordChange, attemptProfileEdit, submitForms } from "./actions";
 import ChangePassword from "../pages/ChangePassword";
+import IntroPage from "../components/filingApp/SubPages/IntroPage";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -19,7 +20,6 @@ export const router = createBrowserRouter(
         element={<Root/>}
         errorElement={<ErrorPage />}
         loader={loadNavBar}
-
       >
         <Route errorElement={<ErrorPage/>}>
             <Route index element={<Home />} />
@@ -34,7 +34,12 @@ export const router = createBrowserRouter(
                 element={<Filing/>}
                 loader={loadFilingPage}
                 action= {submitForms}
-            />
+            >
+                <Route
+                    path="/filing/intro"
+                    element={<IntroPage/>}
+                />
+            </Route>
             <Route
                 path="account"
                 element={<Account/>}

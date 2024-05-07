@@ -185,8 +185,8 @@ export async function loadFilingPage() {
                 
             ]
             return (
-                [[], [], []]
-                // [dataW2, data1099, dataMisc]
+                // [[], [], []]
+                [dataW2, data1099, dataMisc]
             )
         }
         const formw2 = await fetch('/getAllW2', {
