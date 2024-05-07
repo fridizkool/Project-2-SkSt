@@ -18,6 +18,8 @@ In order to build and run the project, you can either independently build and ru
 
 Call the [start-react-quickreload-no-backend.bat](build-scripts\start-react-quickreload-no-backend.bat) file from the root directory. It should build the React app and deploy it to a localhost link. View the front end by accessing that link. Hot-refresh is enabled so any saved changes will be immediately available.
 
+run ```npx tailwindcss -i ./input.css -o ./output.css --watch``` to update tailwind css
+
 ### Back end
 Call the [runSpringOnly.bat](build-scripts\runSpringOnly.bat) script from the root directory. This will build the Spring project. Once the Spring project is fully loaded, you can access the endpoints with a tool like PostMan or `curl`. 
 
