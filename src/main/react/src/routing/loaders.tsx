@@ -239,17 +239,15 @@ export async function loadMiscPage() {
     if(authStatus.authenticated){
 
         if(import.meta.env.DEV){
-            const dataMisc = [
-                {
-                    "supplementalIncome": "$500",
-                    "additionalWitholdings": "$50",
-                    "filingStatus": "single",
-                    "dependents": "2",
-                    "studentStatus": true,
-                    "specialDeductions": "Charitable donations"
-                  }
-                  
-            ]
+            const dataMisc ={
+                "supplementalIncome": "500",
+                "additionalWitholdings": "50",
+                "filingStatus": "single",
+                "dependents": "2",
+                "studentStatus": true,
+                "specialDeductions": ""
+            }
+
             return (
                 dataMisc
             )

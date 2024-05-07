@@ -71,6 +71,7 @@ CREATE TABLE tax_info (
     filing_status VARCHAR(50) NOT NULL,
     dependents INTEGER,
     student_status BOOLEAN,
+    standard_deduction BOOLEAN,
     special_deductions NUMERIC(15, 2),
     FOREIGN KEY (user_id) REFERENCES users (id)
 );

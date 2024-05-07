@@ -36,7 +36,6 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
 
 
     const [isChecked, setIsChecked] = useState(false);
-    console.log(isChecked);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsChecked(event.target.checked);

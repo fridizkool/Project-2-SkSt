@@ -88,7 +88,7 @@ const ListOfW2: React.FC<{existingForms: any }> = ({existingForms }) => {
             {Object.keys(instances).map(key => (
                 <div key={key}>{instances[key]}</div>
             ))}
-        <button onClick={submitAllForms}>Submit W2</button>
+        <button onClick={submitAllForms}>Save all W2 forms</button>
     </div>
   );
 };

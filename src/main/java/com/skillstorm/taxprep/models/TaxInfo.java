@@ -37,6 +37,9 @@ public class TaxInfo {
     @Column(name = "student_status")
     private Boolean studentStatus;
 
+    @Column(name = "standard_deduction")
+    private Double isTakingStandardDeduction;
+
     @Column(name = "special_deductions")
     private Double specialDeductions;
 
@@ -123,5 +126,13 @@ public class TaxInfo {
 
     public void setAdditionalWithholdings(Double additionalWithholdings) {
         this.additionalWithholdings = additionalWithholdings;
+    }
+
+    public Double getIsTakingStandardDeduction() {
+        return isTakingStandardDeduction;
+    }
+
+    public void setIsTakingStandardDeduction(Double isTakingStandardDeduction) {
+        this.isTakingStandardDeduction = isTakingStandardDeduction;
     }
 }

@@ -1,12 +1,11 @@
 import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
 import { Button, Grid, GridContainer } from '@trussworks/react-uswds';
-import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 
 export default function Filing() {
-    const existingForms: any = useLoaderData() as any;
     const PAGES = ["intro", "w2", "1099", "misc", "review", "result"]
     const [index, setIndex] = useState(0);
     const nav = useNavigate();
@@ -15,7 +14,6 @@ export default function Filing() {
         nav(`/filing/${PAGES[index]}`)
     }, [index])
 
-    console.log(existingForms)
     return (
         <>
             <GridContainer>

@@ -41,7 +41,6 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
 
 
     const [isChecked, setIsChecked] = useState(false);
-    console.log(isChecked);
     
     const handleChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsChecked(event.target.checked);

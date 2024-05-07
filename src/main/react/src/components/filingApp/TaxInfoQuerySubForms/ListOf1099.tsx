@@ -89,7 +89,7 @@ const ListOf1099: React.FC<{existingForms: any }> = ({existingForms }) => {
             {Object.keys(instances).map(key => (
                 <div key={key}>{instances[key]}</div>
             ))}
-        <button onClick={submitAllForms}>Submit 1099</button>
+        <button onClick={submitAllForms}>Save all 1099 forms</button>
     </div>
   );
 };
