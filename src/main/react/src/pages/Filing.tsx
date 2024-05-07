@@ -1,9 +1,7 @@
 import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
 import { Button, Grid, GridContainer } from '@trussworks/react-uswds';
-import LogoutButton from '../components/accountManagement/LogoutButton';
-import LoginStatus from '../components/accountManagement/LoginStatus';
-import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom';
+import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 
