@@ -25,11 +25,11 @@ const LoginForm = () => {
                     <div className='grid justify-items-start'>
                         <Label htmlFor="username-in">Username</Label>
                         <TextInput id="username-in" type="text" name='username' required />
-                        <Label htmlFor="password">Password</Label>
-                        <TextInput id="password-in" type={showPassword ? 'text' : 'password'} name='password-in' required />
-                        <button title="Show password" type="button" className="usa-show-password justify-self-end" aria-controls="password-in" onClick={(): void => setShowPassword(showPassword => !showPassword)}>
+                        <Label htmlFor="password-in">Password</Label>
+                        <TextInput id="password-in" type={showPassword ? 'text' : 'password'} name='password' required />
+                        <Button title="Show password" type="button" className="usa-show-password justify-self-end" aria-controls="password-in" onClick={(): void => setShowPassword(showPassword => !showPassword)}>
                             {showPassword ? 'Hide password' : 'Show password'}
-                        </button>
+                        </Button>
                         <Button type='submit' className="">Sign in</Button>
                     </div>
                 </Fieldset>
