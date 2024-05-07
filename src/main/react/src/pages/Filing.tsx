@@ -23,8 +23,6 @@ export default function Filing() {
                     </Grid> */}
                 </Grid>
             </GridContainer>
-            <LogoutButton />
-            <LoginStatus />
         </>
     );
 }
