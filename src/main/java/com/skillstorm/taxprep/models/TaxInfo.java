@@ -25,6 +25,9 @@ public class TaxInfo {
     @Column(name = "supplemental_income")
     private Double supplementalIncome;
 
+    @Column(name = "additional_withholdings")
+    private Double additionalWithholdings;
+
     @Column(name = "filing_status", nullable = false)
     private String filingStatus;
 
@@ -112,5 +115,13 @@ public class TaxInfo {
         return "TaxInfo [userId=" + userId + ", user=" + user + ", supplementalIncome=" + supplementalIncome
                 + ", filingStatus=" + filingStatus + ", dependents=" + dependents + ", studentStatus=" + studentStatus
                 + ", specialDeductions=" + specialDeductions + "]";
+    }
+
+    public Double getAdditionalWithholdings() {
+        return additionalWithholdings;
+    }
+
+    public void setAdditionalWithholdings(Double additionalWithholdings) {
+        this.additionalWithholdings = additionalWithholdings;
     }
 }

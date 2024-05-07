@@ -67,6 +67,7 @@ CREATE TABLE tax_info_1099 (
 CREATE TABLE tax_info (
     user_id INTEGER PRIMARY KEY,
     supplemental_income NUMERIC(15, 2),
+    additional_withholdings NUMERIC(15, 2),
     filing_status VARCHAR(50) NOT NULL,
     dependents INTEGER,
     student_status BOOLEAN,

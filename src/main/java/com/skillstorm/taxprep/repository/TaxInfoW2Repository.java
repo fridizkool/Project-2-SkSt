@@ -1,6 +1,7 @@
 package com.skillstorm.taxprep.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -22,4 +23,14 @@ public interface TaxInfoW2Repository extends JpaRepository<TaxInfoW2, Long> {
 
     @Query("select sum(t.withheldFederal + t.withheldSS + t.withheldMedicare) from TaxInfoW2 t where t.userId = ?1")
     public Optional<Double> getAllWithheldByUserId(Long userId);
+
+    //For deleting all records associated with this user
+    @Modifying
+    @Query("delete from TaxInfoW2 t where t.userId = ?1")
+    public void deleteAllByUserId(Long userId);
+
+    @Query("select t from TaxInfoW2 t where t.userId = ?1")
+    public List<TaxInfoW2> selectAllByUserId(Long userId);
+    
+
 }

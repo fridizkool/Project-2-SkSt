@@ -9,8 +9,9 @@ import Root from "../pages/Root";
 import Users from "../pages/Users";
 import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadLogout, loadNavBar, loadPasswordUpdatePage, loadUsersPage } from "./loaders";
 import InaccessibleResource from "../pages/InaccessibleResource";
-import { attemptAccountCreation, attemptLogin, attemptPasswordChange, attemptProfileEdit } from "./actions";
+import { attemptAccountCreation, attemptLogin, attemptPasswordChange, attemptProfileEdit, submitForms } from "./actions";
 import ChangePassword from "../pages/ChangePassword";
+import IntroPage from "../components/filingApp/SubPages/IntroPage";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -19,7 +20,6 @@ export const router = createBrowserRouter(
         element={<Root/>}
         errorElement={<ErrorPage />}
         loader={loadNavBar}
-
       >
         <Route errorElement={<ErrorPage/>}>
             <Route index element={<Home />} />
@@ -33,7 +33,13 @@ export const router = createBrowserRouter(
                 path="filing"
                 element={<Filing/>}
                 loader={loadFilingPage}
-            />
+                action= {submitForms}
+            >
+                <Route
+                    path="/filing/intro"
+                    element={<IntroPage/>}
+                />
+            </Route>
             <Route
                 path="account"
                 element={<Account/>}

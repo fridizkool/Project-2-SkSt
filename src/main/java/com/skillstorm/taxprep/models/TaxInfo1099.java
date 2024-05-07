@@ -126,6 +126,33 @@ public class TaxInfo1099 {
         this.nonqualifiedDeferrals = nonqualifiedDeferrals;
     }
 
+    public TaxInfo1099(AppUser u, TaxInfo1099 oldInfo) {
+        this.user = u;
+        this.userId = u.getId();
+        this.payerInformation = oldInfo.payerInformation;
+        this.payerTin =  oldInfo.payerTin;
+        this.recipientTin =  oldInfo.recipientTin;
+        this.recipientName =  oldInfo.recipientName;
+        this.recipientAddress =  oldInfo.recipientAddress;
+        this.recipientLocation =  oldInfo.recipientLocation;
+        this.accountNumber =  oldInfo.accountNumber;
+        this.rents =  oldInfo.rents;
+        this.royalties =  oldInfo.royalties;
+        this.otherIncome =  oldInfo.otherIncome;
+        this.withheldFederal =  oldInfo.withheldFederal;
+        this.fishingBoat =  oldInfo.fishingBoat;
+        this.healthcare =  oldInfo.healthcare;
+        this.over5000 =  oldInfo.over5000;
+        this.substitute =  oldInfo.substitute;
+        this.cropInsurance =  oldInfo.cropInsurance;
+        this.attorney =  oldInfo.attorney;
+        this.fishPurchased =  oldInfo.fishPurchased;
+        this.deferrals =  oldInfo.deferrals;
+        this.fatca =  oldInfo.fatca;
+        this.goldenParachute =  oldInfo.goldenParachute;
+        this.nonqualifiedDeferrals =  oldInfo.nonqualifiedDeferrals;
+    }
+
     public Long getId() {
         return id;
     }
