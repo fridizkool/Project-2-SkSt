@@ -13,7 +13,6 @@ export default function TaxReturnStatus() {
         <ListOfW2 existingForms={existingForms[0]}/>
         <ListOf1099 existingForms={existingForms[1]}/>
         <SupplementalHolder existingForms={existingForms[2]}/>
-        <FormMisc/>
     </>
 }
 

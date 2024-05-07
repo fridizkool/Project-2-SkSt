@@ -28,6 +28,7 @@ const ListOfW2: React.FC<{existingForms: any }> = ({existingForms }) => {
     }));
   };
 
+  // Populate with existing data using passed forms
   useEffect(() => {
     const listOfForms = existingForms.map((existingForm: any, i: number) => (
       <C
@@ -41,11 +42,6 @@ const ListOfW2: React.FC<{existingForms: any }> = ({existingForms }) => {
     setIndex(existingForms.length);
     setInstances(listOfForms);
   }, []);
-  
-  useEffect(() => {
-
-  }, [instances]);
-  
 
     const handleSpawn = () => {
         setInstances(prevInstances => ({
@@ -70,23 +66,23 @@ const ListOfW2: React.FC<{existingForms: any }> = ({existingForms }) => {
     });
   };
 
-    async function submitAllForms(){
-        const listOfW2Formdata = [];
-        for(let i in itemsMap){
-            listOfW2Formdata.push(itemsMap[i]);
-        }
+  async function submitAllForms(){
+      const listOfW2Formdata = [];
+      for(let i in itemsMap){
+          listOfW2Formdata.push(itemsMap[i]);
+      }
 
-        const headers = {
-            'Content-Type': 'application/json',
-        };    
-        const response = await fetch('/submit1099List', {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify(listOfW2Formdata)
-        });
+      const headers = {
+          'Content-Type': 'application/json',
+      };    
+      const response = await fetch('/submit1099List', {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(listOfW2Formdata)
+      });
 
-        console.log(response);
-    };
+      console.log(response);
+  };
 
   return (
     <div>
