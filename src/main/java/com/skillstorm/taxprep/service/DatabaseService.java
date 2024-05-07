@@ -40,15 +40,6 @@ public class DatabaseService {
         taxInfoRepo.save(taxInfo);
     }
 
-    public TaxInfo getTaxInfoFor(Long user_id) {    //wont work that way
-        try{
-            return taxInfoRepo.getById(user_id);
-        } catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public AppUser getUserByName(String name) {
         try{
             return userRepo.findByName(name);
@@ -160,7 +151,9 @@ public class DatabaseService {
         }
     }
 
+    @Transactional
     public void saveMisc(TaxInfo taxInfo, Long id) {
+        taxInfoRepo.deleteAllByUserId(id);
         taxInfoRepo.save(taxInfo);
     }
 

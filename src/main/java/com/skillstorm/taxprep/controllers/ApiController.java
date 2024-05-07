@@ -153,4 +153,20 @@ public class ApiController {
             return ResponseEntity.ok(null);
         }
     }
+
+    @GetMapping("/getReview")
+    public ResponseEntity<TaxInfo> getReview(Authentication auth) {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+        try {
+            TaxInfo t = dbS.selectMiscByUserId(u.getId());
+
+            if(t == null){
+                return ResponseEntity.ok(new TaxInfo());
+            } else {
+                return ResponseEntity.ok(t);
+            }
+        } catch (Exception e){
+            return ResponseEntity.ok(null);
+        }
+    }
 }

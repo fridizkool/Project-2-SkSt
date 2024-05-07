@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +22,10 @@ public interface TaxInfoRepository extends JpaRepository<TaxInfo, Long> {
 
     // @Query("select t from TaxInfoW2 t where t.userId = ?1")
     // public Optional<TaxInfo> selectByUserId(Long userId);
-
+    
+    @Modifying
+    @Query("delete from TaxInfo t where t.userId = ?1")
+    public void deleteAllByUserId(Long userId);
     
     public TaxInfo getByUserId(Long userId);
 }

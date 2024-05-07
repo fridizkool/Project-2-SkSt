@@ -102,16 +102,30 @@ const FormMisc: React.FC<FormMiscProps> = ({getDataCallback, initInfo }) => {
                         <Radio 
                             checked={radioSelectedValue === 'single'}
                             id="single"
-                            label="Single OR Married Filing Separately"
+                            label="Single"
                             name="options"
                             onChange={() => handleChangeRadio('single')}
                         />
                         <Radio 
-                            checked={radioSelectedValue === 'married'}
-                            id="married"
+                            checked={radioSelectedValue === 'marriedJoint'}
+                            id="marriedJoint"
                             label="Married Filing Jointly"
                             name="options"
-                            onChange={() => handleChangeRadio('married')}
+                            onChange={() => handleChangeRadio('marriedJoint')}
+                        />
+                                                <Radio 
+                            checked={radioSelectedValue === 'marriedSeparate'}
+                            id="marriedSeparate"
+                            label="Married Filing Separately"
+                            name="options"
+                            onChange={() => handleChangeRadio('marriedSeparate')}
+                        />
+                                                <Radio 
+                            checked={radioSelectedValue === 'headOfHousehold'}
+                            id="headOfHousehold"
+                            label="Head of Household"
+                            name="options"
+                            onChange={() => handleChangeRadio('headOfHousehold')}
                         />
                     </div>
 
