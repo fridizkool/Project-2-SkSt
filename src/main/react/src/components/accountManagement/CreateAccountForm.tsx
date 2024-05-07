@@ -1,7 +1,8 @@
-import { Alert, Button, Checkbox, Fieldset, Label, TextInput } from "@trussworks/react-uswds";
+import { Alert, Button, Checkbox, Fieldset, Grid, GridContainer, Label, TextInput } from "@trussworks/react-uswds";
 import { Form, useLocation } from 'react-router-dom';
 
 import { useEffect, useState } from "react";
+import splash from "../../assets/tax-papers.jpeg";
 
 export default function CreateAccount() {
   const [error, setError] = useState<string | null>(null);
@@ -23,47 +24,61 @@ export default function CreateAccount() {
           {error}
         </Alert>
       )}
-      <div className="bg-white padding-y-3 padding-x-5 border border-base-lighter">
-        <h1 className="margin-bottom-0">Create account</h1>
-        <Form method="post">
-          <Fieldset legend="Get started with an account.">
-            <p>
-              <abbr title="required" className="usa-hint usa-hint--required">
-                *
-              </abbr>{' '}
-              indicates a required field.
-            </p>
-            <Label htmlFor="email">
-              Email address{' '}
-              <abbr title="required" className="usa-label--required">
-                *
-              </abbr>
-            </Label>
-            <TextInput id="email" name="username" type="email" autoCapitalize="off" autoCorrect="off" required={true} />
-            <Label htmlFor="password-create-account">
-              Create password{' '}
-              <abbr title="required" className="usa-label--required">
-                *
-              </abbr>
-            </Label>
-            <TextInput id="password-create-account" name="password" type={showPassword ? 'text' : 'password'} autoCapitalize="off" autoCorrect="off" required={true} />
-            <Label htmlFor="password-create-account-confirm">
-              Re-type password{' '}
-              <abbr title="required" className="usa-label--required">
-                *
-              </abbr>
-            </Label>
-            <TextInput id="password-create-account-confirm" name="password-confirm" type={showPassword ? 'text' : 'password'} autoCapitalize="off" autoCorrect="off" required={true} />
-            <button title="Show password" type="button" className="usa-show-password" aria-controls="password-create-account password-create-account-confirm" onClick={(): void => setShowPassword(showPassword => !showPassword)}>
-              {showPassword ? 'Hide password' : 'Show password'}
-            </button>
+      <GridContainer className=''>
+        <Grid row className=''>
+          <Grid col={12}>
+            <div className="bg-gradient-to-r from-slate-400 to-slate-200 padding-y-3 padding-x-5 border border-base-lighter">
+              <Grid row gap="md">
+                <Grid col={6}>
+                  <h1 className="margin-bottom-0">Create account</h1>
+                  <hr />
+                  <Form method="post">
+                    <Fieldset legend="Get started with an account.">
+                      <p>
+                        <abbr title="required" className="usa-hint usa-hint--required">
+                          *
+                        </abbr>{' '}
+                        indicates a required field.
+                      </p>
+                      <Label htmlFor="email">
+                        Email address{' '}
+                        <abbr title="required" className="usa-label--required">
+                          *
+                        </abbr>
+                      </Label>
+                      <TextInput id="email" name="username" type="email" autoCapitalize="off" autoCorrect="off" required={true} />
+                      <Label htmlFor="password-create-account">
+                        Create password{' '}
+                        <abbr title="required" className="usa-label--required">
+                          *
+                        </abbr>
+                      </Label>
+                      <TextInput id="password-create-account" name="password" type={showPassword ? 'text' : 'password'} autoCapitalize="off" autoCorrect="off" required={true} />
+                      <Label htmlFor="password-create-account-confirm">
+                        Re-type password{' '}
+                        <abbr title="required" className="usa-label--required">
+                          *
+                        </abbr>
+                      </Label>
+                      <TextInput id="password-create-account-confirm" name="password-confirm" type={showPassword ? 'text' : 'password'} autoCapitalize="off" autoCorrect="off" required={true} />
+                      <button title="Show password" type="button" className="usa-show-password" aria-controls="password-create-account password-create-account-confirm" onClick={(): void => setShowPassword(showPassword => !showPassword)}>
+                        {showPassword ? 'Hide password' : 'Show password'}
+                      </button>
 
-            <Checkbox id="terms-and-conditions" name="terms-and-conditions" className="margin-y-3" required={true} label={"TODO_TERMS&CONDITIONS"} />
+                      <Checkbox id="terms-and-conditions" name="terms-and-conditions" className="margin-y-3" required={true} label={"TODO_TERMS&CONDITIONS"} />
 
-            <Button type="submit">Create account</Button>
-          </Fieldset>
-        </Form>
-      </div>
+                      <Button type="submit">Create account</Button>
+                    </Fieldset>
+                  </Form>
+                </Grid>
+                <Grid col={6}>
+                  <img src={splash} alt="splash" className="object-contain h-full w-full rounded shadow-lg" />
+                </Grid>
+              </Grid>
+            </div>
+          </Grid>
+        </Grid>
+      </GridContainer >
     </>
   )
 }
