@@ -1,15 +1,17 @@
+import { useLoaderData } from "react-router-dom";
+
 export default function ReviewPage() {
+    const totals: any = useLoaderData() as any;
+
     return <>
         <p>ReviewPage</p>
-        <p> Total Income from W2's</p>
-        <p> Total Income from 1099's</p>
-        <p> Total Income from Supplementary</p>
+        <p> Total Income {`${totals.totalIncome}`} </p>
 
-        <p> Total Withholdings from W2's</p>
-        <p> Total Withholdings from 1099's</p>
-        <p> Total Withholdings from Supplementary's</p>
 
-        <p> Total Deductions </p>
+        <p> Total Withholdings {`${totals.totalWithholdings}`}</p>
+
+
+        <p> Total Deductions {`${totals.totalDeductions}`}</p>
         
         <p> Click next to calculate return</p>
 

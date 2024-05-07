@@ -271,6 +271,67 @@ export async function loadMiscPage() {
 }
 
 
+export async function loadReview() {
+    const authStatus = await queryAuthStatus();
+    if(authStatus.authenticated){
+
+        if(import.meta.env.DEV){
+            const data = 
+                {
+                    "totalIncome": 10000,
+                    "totalWithholdings": 1000,
+                    "totalDeductions": 13500
+                }
+            return (
+                data
+            )
+        }
+
+        const form = await fetch('/getReview', {
+            method: 'GET',
+        });
+
+        
+        try {
+            const formJSON = await form.json();    
+            return formJSON;
+        } catch (e) {
+            return redirect("/error");
+        }
+    } else {
+        return redirect("/login");
+    }
+}
+
+export async function loadFinalCalculation() {
+    const authStatus = await queryAuthStatus();
+    if(authStatus.authenticated){
+
+        if(import.meta.env.DEV){
+            const data = [
+                "1000"
+            ]
+            return (
+                data
+            )
+        }
+
+        const form = await fetch('/calculateTaxesOwed', {
+            method: 'GET',
+        });
+
+        
+        try {
+            const formJSON = await form.json();    
+            return formJSON;
+        } catch (e) {
+            return redirect("/error");
+        }
+    } else {
+        return redirect("/login");
+    }
+}
+
 export async function loadAccountPage() {
     const authStatus = await queryAuthStatus();
     

@@ -7,7 +7,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Root from "../pages/Root";
 import Users from "../pages/Users";
-import { load1099Page, loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadLogout, loadMiscPage, loadNavBar, loadPasswordUpdatePage, loadUsersPage, loadW2Page } from "./loaders";
+import { load1099Page, loadAccountCreationPage, loadAccountPage, loadFilingPage, loadFinalCalculation, loadLoginPage, loadLogout, loadMiscPage, loadNavBar, loadPasswordUpdatePage, loadReview, loadUsersPage, loadW2Page } from "./loaders";
 import InaccessibleResource from "../pages/InaccessibleResource";
 import { attemptAccountCreation, attemptLogin, attemptPasswordChange, attemptProfileEdit, submitForms } from "./actions";
 import ChangePassword from "../pages/ChangePassword";
@@ -62,10 +62,13 @@ export const router = createBrowserRouter(
                 <Route
                     path="/filing/review"
                     element={<ReviewPage/>}
+                    loader={loadReview}
+
                 />
                 <Route
                     path="/filing/result"
                     element={<TotalReturnsPage/>}
+                    loader={loadFinalCalculation}
                 />
             </Route>
             <Route
