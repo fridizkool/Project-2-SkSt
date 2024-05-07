@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import FormW2 from './FormW2';
 import { Card } from '@trussworks/react-uswds';
 import Form1099 from './Form1099';
 

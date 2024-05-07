@@ -5,6 +5,7 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
     // Define the default initial state
     const defaultFormData = {
         supplementalIncome: '',
+        additionalWitholdings: '',
         filingStatus: '',
         dependents: '',
         studentStatus: false,
@@ -29,9 +30,6 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
       setIsChecked(event.target.checked);
     };
 
-    const handleChangeSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsChecked(event.target.checked);
-      };
 
     // Handle form input change
     const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +62,16 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         onChange={handleChangeText}
                     />
                 </div>
-
+                <div>
+                    <label htmlFor="additionalWitholdings">Supplemental Income:</label>
+                    <TextInput
+                        id="additionalWitholdings"
+                        name="additionalWitholdings"
+                        value={formData.additionalWitholdings}
+                        type="number"
+                        onChange={handleChangeText}
+                    />
+                </div>
                 <div>
                     <label htmlFor="filingStatus">Filing Status:</label>
                     <select
