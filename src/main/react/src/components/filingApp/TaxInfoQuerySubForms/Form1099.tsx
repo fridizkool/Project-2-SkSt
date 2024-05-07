@@ -40,8 +40,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
     const [formData, setFormData] = React.useState(mergedFormData);
 
 
-    const [isChecked, setIsChecked] = useState(false);
-    console.log(isChecked);
+    const [_, setIsChecked] = useState(false);
     
     const handleChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsChecked(event.target.checked);

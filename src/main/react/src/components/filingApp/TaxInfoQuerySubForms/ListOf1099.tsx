@@ -15,7 +15,7 @@ const C: React.FC<{ index: number; getDataCallback: (id: number, formData: FormD
   );
 };
 
-const ListOfW2: React.FC<{existingForms: any }> = ({existingForms }) => {
+const ListOf1099: React.FC<{existingForms: any }> = ({existingForms }) => {
   const [itemsMap, setItemsMap] = useState<{ [id: number]: FormData }>({});
   const [instances, setInstances] = useState<{ [key: string]: JSX.Element }>({});
   const [index, setIndex] = useState<number>(0);
@@ -89,9 +89,9 @@ const ListOfW2: React.FC<{existingForms: any }> = ({existingForms }) => {
             {Object.keys(instances).map(key => (
                 <div key={key}>{instances[key]}</div>
             ))}
-        <button onClick={submitAllForms}>Submit 1099</button>
+        <button onClick={submitAllForms}>Save all 1099 forms</button>
     </div>
   );
 };
 
-export default ListOfW2;
+export default ListOf1099;

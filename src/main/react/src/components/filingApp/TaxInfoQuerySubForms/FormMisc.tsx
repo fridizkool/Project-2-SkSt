@@ -1,14 +1,15 @@
-import { Accordion, Card, CardBody, CardHeader, Checkbox, TextInput } from '@trussworks/react-uswds';
+import { Card, CardBody, CardHeader, Checkbox, Radio, TextInput } from '@trussworks/react-uswds';
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-router-dom';
-const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
+const FormMisc: React.FC<FormMiscProps> = ({getDataCallback, initInfo }) => {
     // Define the default initial state
     const defaultFormData = {
         supplementalIncome: '',
-        additionalWitholdings: '',
+        additionalWithholdings: '',
         filingStatus: '',
         dependents: '',
         studentStatus: false,
+        takingStandardDeduction: true,
         specialDeductions: ''
     };
     
@@ -23,14 +24,6 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
     const [formData, setFormData] = React.useState(mergedFormData);
 
 
-    const [isChecked, setIsChecked] = useState(false);
-    console.log(isChecked);
-
-    const handleChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsChecked(event.target.checked);
-    };
-
-
     // Handle form input change
     const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -41,17 +34,47 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
     };
 
     useEffect(() => {
-        getDataCallback(id, formData);
-    });
+        getDataCallback(formData);
+    }, []);
 
     const handleFormChange: React.ChangeEventHandler<HTMLFormElement> = (_) => {
-        getDataCallback(id, formData);
+        getDataCallback(formData);
     };
 
-    const formItems: any = [{
-        title: "Misc Information",
-        content:
+    const [radioSelectedValue, setSelectedValue] = useState<string>('single');
+    const [isTakingStandardDeduction, setIsTakingStandardDeduction] = useState<boolean>(formData.takingStandardDeduction);
+
+    const handleChangeRadio = (value: string) => {
+      setSelectedValue(value);
+    };
+
+    useEffect(() => {
+        setFormData(prevState => ({
+            ...prevState,
+            ["filingStatus"]: radioSelectedValue
+        }));
+        getDataCallback(formData);
+    }, [radioSelectedValue])
+
+    useEffect(() => {
+        setFormData(prevState => ({
+            ...prevState,
+            ["takingStandardDeduction"]: isTakingStandardDeduction,
+            ["specialDeductions"]: "0"
+        }));
+        getDataCallback(formData);
+
+    }, [isTakingStandardDeduction])
+
+
+    return (
+        <>
+            <Form method="post" onBlur={handleFormChange}>  
             <Card>
+                <CardHeader>
+                    <h1>IRS Form W2</h1>
+                </CardHeader>
+                <CardBody>
                 <div>
                     <label htmlFor="supplementalIncome">Supplemental Income:</label>
                     <TextInput
@@ -63,27 +86,49 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="additionalWitholdings">Supplemental Income:</label>
+                    <label htmlFor="additionalWithholdings">Additional Withholdings:</label>
                     <TextInput
-                        id="additionalWitholdings"
-                        name="additionalWitholdings"
-                        value={formData.additionalWitholdings}
+                        id="additionalWithholdings"
+                        name="additionalWithholdings"
+                        value={formData.additionalWithholdings}
                         type="number"
                         onChange={handleChangeText}
                     />
                 </div>
                 <div>
                     <label htmlFor="filingStatus">Filing Status:</label>
-                    <select
-                        id="filingStatus"
-                        name="filingStatus"
-                        value={formData.filingStatus}
-                        onChange={()=>{}}
-                    >
-                        <option value="single">Single</option>
-                        <option value="married">Married</option>
-                        <option value="headOfHousehold">Head of Household</option>
-                    </select>
+
+                    <div>
+                        <Radio 
+                            checked={radioSelectedValue === 'single'}
+                            id="single"
+                            label="Single"
+                            name="options"
+                            onChange={() => handleChangeRadio('single')}
+                        />
+                        <Radio 
+                            checked={radioSelectedValue === 'marriedJoint'}
+                            id="marriedJoint"
+                            label="Married Filing Jointly"
+                            name="options"
+                            onChange={() => handleChangeRadio('marriedJoint')}
+                        />
+                                                <Radio 
+                            checked={radioSelectedValue === 'marriedSeparate'}
+                            id="marriedSeparate"
+                            label="Married Filing Separately"
+                            name="options"
+                            onChange={() => handleChangeRadio('marriedSeparate')}
+                        />
+                                                <Radio 
+                            checked={radioSelectedValue === 'headOfHousehold'}
+                            id="headOfHousehold"
+                            label="Head of Household"
+                            name="options"
+                            onChange={() => handleChangeRadio('headOfHousehold')}
+                        />
+                    </div>
+
                 </div>
 
                 <div>
@@ -98,18 +143,21 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                 </div>
 
                 <div>
-                    <label htmlFor="studentStatus">Student Status:</label>
+                    <label htmlFor="standardDeduction">Student Status:</label>
                     <Checkbox
-                        id="studentStatus"
-                        name="studentStatus"
-                        checked={formData.studentStatus}
-                        onChange={handleChangeCheckbox} 
-                        label={"studentStatus"}    />
+                        id="standardDeduction"
+                        name="standardDeduction"
+                        checked={isTakingStandardDeduction}
+                        onChange={() => {
+                            setIsTakingStandardDeduction(prev => !prev)
+                        }} 
+                        label={"standardDeduction"}    />
                 </div>
 
                 <div>
-                    <label htmlFor="specialDeductions">Special Deductions:</label>
-                    <TextInput
+                    <label htmlFor="specialDeductions">Additional Deductions:</label>
+                    <TextInput 
+                        disabled={isTakingStandardDeduction}
                         id="specialDeductions"
                         name="specialDeductions"
                         value={formData.specialDeductions}
@@ -117,25 +165,8 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         onChange={handleChangeText}
                     />
                 </div>
-            </Card>,
-        expanded: false,
-        id: "general-info",
-        headingLevel: "h3",
-    }
-                
-    ]
-
-    return (
-        <>
-            <Form method="post" onBlur={handleFormChange}>  
-                <CardHeader>
-                    <h1>IRS Form W2</h1>
-                </CardHeader>
-                <CardBody>
-
-                    <Accordion items={formItems}/>
-                    
                 </CardBody>
+            </Card>
             </Form>
         </>
 

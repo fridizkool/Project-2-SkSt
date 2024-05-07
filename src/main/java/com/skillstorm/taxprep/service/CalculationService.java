@@ -47,32 +47,42 @@ public class CalculationService {
 
     @Transactional
     public String calculateTaxesOwed(Long userId) {
-        TaxInfo userTaxInfo = dbS.getTaxInfoFor(userId);
-        String status = userTaxInfo.getFilingStatus();
-
-        if (taxBrackets == null) {  //lazy load
-            Resource bracketResource = context.getResource("classpath:static/tax_brackets.json");
-            TypeToken<Map<String, TaxStatus>> mapType = new TypeToken<Map<String, TaxStatus>>() {
-            };
-            Gson taxJson = new Gson();
-            try {
-                taxBrackets = taxJson.fromJson(bracketResource.getContentAsString(Charset.defaultCharset()), mapType);
-            } catch (JsonSyntaxException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+        try {
+            TaxInfo userTaxInfo = dbS.selectMiscByUserId(userId);
+            String status = userTaxInfo.getFilingStatus();
+    
+            if (taxBrackets == null) {  //lazy load
+                Resource bracketResource = context.getResource("classpath:static/tax_brackets.json");
+                TypeToken<Map<String, TaxStatus>> mapType = new TypeToken<Map<String, TaxStatus>>() {
+                };
+                Gson taxJson = new Gson();
+                try {
+                    taxBrackets = taxJson.fromJson(bracketResource.getContentAsString(Charset.defaultCharset()), mapType);
+                } catch (JsonSyntaxException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
+            double sum = 0.0;
+            sum += getIncomeById(userId);
+            sum -= getDeductionsById(userId);
+            TaxStatus t = taxBrackets.get(status);
+            TaxBracket[] x = t.getBrackets();
+            Double tax = doProgressiveTax(sum, x);
+            tax -= getWithheldById(userId);
+    
+    
+            return "" + tax;
+        } catch (Exception e){
+            return "0";
         }
-        double sum = 0.0;
-        sum += getIncomeById(userId);
-        sum -= getDeductionsById(userId);
-        Double tax = doProgressiveTax(sum, taxBrackets.get(status).getBrackets());
-        tax -= getWithheldById(userId);
-
-
-        return "" + tax;
+       
     }
 
     private Double doProgressiveTax(Double taxable, TaxBracket[] brackets)

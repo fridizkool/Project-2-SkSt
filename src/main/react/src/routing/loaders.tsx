@@ -38,6 +38,15 @@ export async function loadPasswordUpdatePage() {
 export async function loadFilingPage() {
     const authStatus = await queryAuthStatus();
     if(authStatus.authenticated){
+        return null;
+    } else {
+        return redirect("/login");
+    }
+}
+
+export async function loadW2Page() {
+    const authStatus = await queryAuthStatus();
+    if(authStatus.authenticated){
 
         if(import.meta.env.DEV){
             const dataW2 = [
@@ -108,106 +117,19 @@ export async function loadFilingPage() {
                   "other": ""
                 }
               ]
-            const data1099 = [
-                {
-                    "id": 123,
-                    "userId": 8,
-                    "employerId": "ABC123",
-                    "employerInformation": "Example Company",
-                    "controlNumber": "XYZ789",
-                    "income": 50000,
-                    "withheldFederal": 6000,
-                    "socialSecurity": 4000,
-                    "withheldSS": 500,
-                    "medicare": 1000,
-                    "withheldMedicare": 150,
-                    "socialSecurityTips": 200,
-                    "allocatedTips": 100,
-                    "dependentCare": 2000,
-                    "nonqualifiedPlan": "Some nonqualified plan info",
-                    "deferrals": "Some deferrals info",
-                    "statutory": true,
-                    "retirement": false,
-                    "sickPay": true,
-                    "other": "Some other details"
-                },
-                {
-                    "id": 123,
-                    "userId": 8,
-                    "employerId": "ABC123",
-                    "employerInformation": "Example Company",
-                    "controlNumber": "XYZ789",
-                    "income": 50000,
-                    "withheldFederal": 6000,
-                    "socialSecurity": 4000,
-                    "withheldSS": 500,
-                    "medicare": 1000,
-                    "withheldMedicare": 150,
-                    "socialSecurityTips": 200,
-                    "allocatedTips": 100,
-                    "dependentCare": 2000,
-                    "nonqualifiedPlan": "Some nonqualified plan info",
-                    "deferrals": "Some deferrals info",
-                    "statutory": true,
-                    "retirement": false,
-                    "sickPay": true,
-                    "other": "Some other details"
-                },
-                {
-                    "id": 123,
-                    "userId": 8,
-                    "employerId": "ABC123",
-                    "employerInformation": "Example Company",
-                    "controlNumber": "XYZ789",
-                    "income": 50000,
-                    "withheldFederal": 6000,
-                    "socialSecurity": 4000,
-                    "withheldSS": 500,
-                    "medicare": 1000,
-                    "withheldMedicare": 150,
-                    "socialSecurityTips": 200,
-                    "allocatedTips": 100,
-                    "dependentCare": 2000,
-                    "nonqualifiedPlan": "Some nonqualified plan info",
-                    "deferrals": "Some deferrals info",
-                    "statutory": true,
-                    "retirement": false,
-                    "sickPay": true,
-                    "other": "Some other details"
-                }                                
-                
-            ]
-            const dataMisc = [
-                {
-                    "id": 123,
-                    "userId": 8
-                }                                
-                
-            ]
+         
             return (
-                // [[], [], []]
-                [dataW2, data1099, dataMisc]
+                dataW2
             )
         }
         const formw2 = await fetch('/getAllW2', {
             method: 'GET',
         });
 
-        const form1099 = await fetch('/getAll1099', {
-            method: 'GET',
-        });
-
-        const formmisc = await fetch('/getMisc', {
-            method: 'GET',
-        });
         
         try {
-            const formw2JSON = await formw2.json();
-            const form1099JSON = await form1099.json();
-            const formmiscJSON = await formmisc.json();
-
-            
-            return [formw2JSON, form1099JSON, formmiscJSON];
+            const formw2JSON = await formw2.json();    
+            return formw2JSON;
         } catch (e) {
             return redirect("/error");
         }
@@ -216,6 +138,198 @@ export async function loadFilingPage() {
     }
 }
 
+
+export async function load1099Page() {
+    const authStatus = await queryAuthStatus();
+    if(authStatus.authenticated){
+
+        if(import.meta.env.DEV){
+            const data1099 = [
+                {
+                    "id": 123,
+                    "userId": 8,
+                    "payerInformation": "todo",
+                    "employerId": "ABC123",
+                    "employerInformation": "Example Company",
+                    "controlNumber": "XYZ789",
+                    "income": 50000,
+                    "withheldFederal": 6000,
+                    "socialSecurity": 4000,
+                    "withheldSS": 500,
+                    "medicare": 1000,
+                    "withheldMedicare": 150,
+                    "socialSecurityTips": 200,
+                    "allocatedTips": 100,
+                    "dependentCare": 2000,
+                    "nonqualifiedPlan": "Some nonqualified plan info",
+                    "deferrals": "Some deferrals info",
+                    "statutory": true,
+                    "retirement": false,
+                    "sickPay": true,
+                    "other": "Some other details"
+                },
+                {
+                    "id": 123,
+                    "userId": 8,
+                    "employerId": "ABC123",
+                    "employerInformation": "Example Company",
+                    "controlNumber": "XYZ789",
+                    "income": 50000,
+                    "withheldFederal": 6000,
+                    "socialSecurity": 4000,
+                    "withheldSS": 500,
+                    "medicare": 1000,
+                    "withheldMedicare": 150,
+                    "socialSecurityTips": 200,
+                    "allocatedTips": 100,
+                    "dependentCare": 2000,
+                    "nonqualifiedPlan": "Some nonqualified plan info",
+                    "deferrals": "Some deferrals info",
+                    "statutory": true,
+                    "retirement": false,
+                    "sickPay": true,
+                    "other": "Some other details"
+                },
+                {
+                    "id": 123,
+                    "userId": 8,
+                    "employerId": "ABC123",
+                    "employerInformation": "Example Company",
+                    "controlNumber": "XYZ789",
+                    "income": 50000,
+                    "withheldFederal": 6000,
+                    "socialSecurity": 4000,
+                    "withheldSS": 500,
+                    "medicare": 1000,
+                    "withheldMedicare": 150,
+                    "socialSecurityTips": 200,
+                    "allocatedTips": 100,
+                    "dependentCare": 2000,
+                    "nonqualifiedPlan": "Some nonqualified plan info",
+                    "deferrals": "Some deferrals info",
+                    "statutory": true,
+                    "retirement": false,
+                    "sickPay": true,
+                    "other": "Some other details"
+                }                                
+                
+            ]
+            return (
+                data1099
+            )
+        }
+        const form1099 = await fetch('/getAll1099', {
+            method: 'GET',
+        });
+
+        
+        try {
+            const form1099JSON = await form1099.json();    
+            return form1099JSON;
+        } catch (e) {
+            return redirect("/error");
+        }
+    } else {
+        return redirect("/login");
+    }
+}
+
+export async function loadMiscPage() {
+    const authStatus = await queryAuthStatus();
+    if(authStatus.authenticated){
+
+        if(import.meta.env.DEV){
+            const dataMisc ={
+                "supplementalIncome": "500",
+                "additionalWitholdings": "50",
+                "filingStatus": "single",
+                "dependents": "2",
+                "studentStatus": true,
+                "specialDeductions": ""
+            }
+
+            return (
+                dataMisc
+            )
+        }
+        
+        const formMisc = await fetch('/getMisc', {
+            method: 'GET',
+        });
+
+        
+        try {
+            const formJSON = await formMisc.json();    
+            return formJSON;
+        } catch (e) {
+            return redirect("/error");
+        }
+    } else {
+        return redirect("/login");
+    }
+}
+
+
+export async function loadReview() {
+    const authStatus = await queryAuthStatus();
+    if(authStatus.authenticated){
+
+        if(import.meta.env.DEV){
+            const data = 
+                {
+                    "totalIncome": 10000,
+                    "totalWithholdings": 1000,
+                    "totalDeductions": 13500
+                }
+            return (
+                data
+            )
+        }
+
+        const form = await fetch('/getReview', {
+            method: 'GET',
+        });
+
+        
+        try {
+            const formJSON = await form.json();    
+            return formJSON;
+        } catch (e) {
+            return redirect("/error");
+        }
+    } else {
+        return redirect("/login");
+    }
+}
+
+export async function loadFinalCalculation() {
+    const authStatus = await queryAuthStatus();
+    if(authStatus.authenticated){
+
+        if(import.meta.env.DEV){
+            const data = [
+                "1000"
+            ]
+            return (
+                data
+            )
+        }
+
+        const form = await fetch('/calculateTaxesOwed', {
+            method: 'GET',
+        });
+
+        
+        try {
+            const formJSON = await form.json();    
+            return formJSON;
+        } catch (e) {
+            return redirect("/error");
+        }
+    } else {
+        return redirect("/login");
+    }
+}
 
 export async function loadAccountPage() {
     const authStatus = await queryAuthStatus();

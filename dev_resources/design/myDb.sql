@@ -65,12 +65,14 @@ CREATE TABLE tax_info_1099 (
 );
 
 CREATE TABLE tax_info (
-    user_id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER,
     supplemental_income NUMERIC(15, 2),
     additional_withholdings NUMERIC(15, 2),
     filing_status VARCHAR(50) NOT NULL,
     dependents INTEGER,
     student_status BOOLEAN,
+    standard_deduction BOOLEAN,
     special_deductions NUMERIC(15, 2),
     FOREIGN KEY (user_id) REFERENCES users (id)
 );

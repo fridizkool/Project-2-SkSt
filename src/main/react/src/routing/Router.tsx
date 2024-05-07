@@ -7,11 +7,16 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Root from "../pages/Root";
 import Users from "../pages/Users";
-import { loadAccountCreationPage, loadAccountPage, loadFilingPage, loadLoginPage, loadLogout, loadNavBar, loadPasswordUpdatePage, loadUsersPage } from "./loaders";
+import { load1099Page, loadAccountCreationPage, loadAccountPage, loadFilingPage, loadFinalCalculation, loadLoginPage, loadLogout, loadMiscPage, loadNavBar, loadPasswordUpdatePage, loadReview, loadUsersPage, loadW2Page } from "./loaders";
 import InaccessibleResource from "../pages/InaccessibleResource";
 import { attemptAccountCreation, attemptLogin, attemptPasswordChange, attemptProfileEdit, submitForms } from "./actions";
 import ChangePassword from "../pages/ChangePassword";
 import IntroPage from "../components/filingApp/SubPages/IntroPage";
+import FormW2Page from "../components/filingApp/SubPages/FormW2Page";
+import ReviewPage from "../components/filingApp/SubPages/ReviewPage";
+import TotalReturnsPage from "../components/filingApp/SubPages/TotalReturnPage";
+import FormMiscInfoPage from "../components/filingApp/SubPages/FormMiscInfoPage";
+import Form1099Page from "../components/filingApp/SubPages/Form1099Page";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -38,6 +43,32 @@ export const router = createBrowserRouter(
                 <Route
                     path="/filing/intro"
                     element={<IntroPage/>}
+                />
+                <Route
+                    path="/filing/w2"
+                    element={<FormW2Page/>}
+                    loader={loadW2Page}
+                />
+                <Route
+                    path="/filing/1099"
+                    element={<Form1099Page/>}
+                    loader={load1099Page}
+                />
+                <Route
+                    path="/filing/misc"
+                    element={<FormMiscInfoPage/>}
+                    loader={loadMiscPage}
+                />
+                <Route
+                    path="/filing/review"
+                    element={<ReviewPage/>}
+                    loader={loadReview}
+
+                />
+                <Route
+                    path="/filing/result"
+                    element={<TotalReturnsPage/>}
+                    loader={loadFinalCalculation}
                 />
             </Route>
             <Route

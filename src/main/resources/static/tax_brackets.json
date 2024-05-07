@@ -80,7 +80,7 @@
         ]
     },
     "marriedSeperate" : {
-        "status": "marriedSeperate",
+        "status": "marriedSeparate",
         "brackets": [
             {
                 "rate": ".1",
