@@ -1,8 +1,6 @@
 import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
 import { Grid, GridContainer } from '@trussworks/react-uswds';
-import LogoutButton from '../components/accountManagement/LogoutButton';
-import LoginStatus from '../components/accountManagement/LoginStatus';
 import TaxReturnStatus from '../components/filingApp/TaxReturnStatus';
 import TaxInfoQueryForm from '../components/filingApp/TaxInfoQueryForm';
 
@@ -20,8 +18,6 @@ export default function Filing() {
                     </Grid>
                 </Grid>
             </GridContainer>
-            <LogoutButton />
-            <LoginStatus />
         </>
     );
 }
