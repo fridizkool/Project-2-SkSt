@@ -37,12 +37,14 @@ const UpdateProfileForm: React.FC<UserProfileFormProps> = ({ userProfile }: any)
                     {error}
                 </Alert>
             )}
+            <h1>{formData.username}'s Profile</h1>
+            <hr />
             <Form method="put">
                 <Fieldset>
                     <Label htmlFor="username">Email </Label>
-                    <TextInput type="text" id="username" name="username" value={formData.username} disabled />
+                    <TextInput type="email" id="username" name="username" value={formData.username} disabled />
                     <Label htmlFor="firstName">First Name</Label>
-                    <TextInput type="email" id="firstName" name="firstName" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} disabled={!editState} />
+                    <TextInput type="text" id="firstName" name="firstName" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} disabled={!editState} />
                     <Label htmlFor="lastName">Last Name</Label>
                     <TextInput type="text" id="lastName" name="lastName" value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} disabled={!editState} />
                     <Label htmlFor="initial">Middle Initial</Label>
@@ -52,12 +54,14 @@ const UpdateProfileForm: React.FC<UserProfileFormProps> = ({ userProfile }: any)
                     <TextInput type="text" id="suffix" name="suffix" value={formData.suffix} onChange={(e) => setFormData({ ...formData, suffix: e.target.value })} disabled={!editState} />
                     <Label htmlFor="address">Address</Label>
                     <TextInput type="text" id="address" name="address" value={formData.address} onChange={(e) => setFormData({ ...formData, address: e.target.value })} disabled={!editState} />
+                    <Label htmlFor="telephoneNumber">Telephone number</Label>
+                    <TextInput type="text" id="telephoneNumber" name="telephoneNumber" value={formData.telephoneNumber} onChange={(e) => setFormData({ ...formData, address: e.target.value })} disabled={!editState} />
                     <Label htmlFor="social">SSN</Label>
-                    <TextInput type={showSocial ? 'text' : 'password'} id="social" name="social" value={formData.ssn} onChange={(e) => setFormData({ ...formData, ssn: e.target.value })} disabled={!editState}></TextInput>
-                    <Button title="Show SSN" type="button" className="usa-show-password" aria-controls="social" onClick={(): void => setShowSocial(showSocial => !showSocial)}>
+                    <TextInput type={showSocial ? 'text' : 'password'} id="ssn" name="ssn" value={formData.ssn} onChange={(e) => setFormData({ ...formData, ssn: e.target.value })} disabled={!editState}></TextInput>
+                    <Button title="Show SSN" type="button" className="usa-show-password justify-self-end" aria-controls="ssn" onClick={(): void => setShowSocial(showSocial => !showSocial)}>
                         {showSocial ? 'Hide SSN' : 'Show SSN'}<br />
                     </Button>
-                    <Button type="button" onClick={() => { isEdit(editState => !editState); if (editState) { setShowSocial(false) } }} className="bg-accent-cool-dark">Edit</Button>
+                    <Button type="button" onClick={() => { isEdit(editState => !editState); if (editState) { setShowSocial(false) } }}>Edit</Button>
                     <Button type="submit" disabled={!editState}>Submit</Button><br />
                     <Link variant="nav" href={'/changepassword'}>Change Password</Link>
                 </Fieldset>
