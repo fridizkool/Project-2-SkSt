@@ -1,6 +1,9 @@
 import { CardGroup, Card, CardHeader, CardBody } from "@trussworks/react-uswds"
+import { useLoaderData } from "react-router-dom";
 
 export default function TaxReturnStatus() {
+    const totalReturns: any = useLoaderData() as any;
+
     return <>
         <CardGroup>
             <Card gridLayout={{ col: 12 }}>
@@ -9,7 +12,16 @@ export default function TaxReturnStatus() {
                 </CardHeader>
                 <CardBody>
                     <div>
-                        "asdf"
+                        Total Federal Return
+                        {`${totalReturns}`}
+                    </div>
+
+                    <div>
+                        Total income for tax year 2024:
+                    </div>
+
+                    <div>
+                        Total deductions taken: 
                     </div>
                 </CardBody>
             </Card>
