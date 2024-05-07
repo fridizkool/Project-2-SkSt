@@ -40,16 +40,11 @@ const ListOfW2: React.FC<{existingForms: any }> = ({existingForms }) => {
     setIndex(existingForms.length);
     setInstances(listOfForms);
   }, []);
-  
-  useEffect(() => {
-
-  }, [instances]);
-  
 
     const handleSpawn = () => {
         setInstances(prevInstances => ({
             ...prevInstances,
-            [index]: <C key={index} index={index} getDataCallback={updateSubmission} info={null} onDelete={() => handleDelete(index)} />
+            [index]: <C key={index} index={index} getDataCallback={updateSubmission} info={{}} onDelete={() => handleDelete(index)} />
         }));
         setIndex(prevIndex => prevIndex + 1);
         console.log(instances)

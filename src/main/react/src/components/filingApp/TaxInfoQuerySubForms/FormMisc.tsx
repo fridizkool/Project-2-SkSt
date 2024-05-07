@@ -78,6 +78,7 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         id="filingStatus"
                         name="filingStatus"
                         value={formData.filingStatus}
+                        onChange={()=>{}}
                     >
                         <option value="single">Single</option>
                         <option value="married">Married</option>
