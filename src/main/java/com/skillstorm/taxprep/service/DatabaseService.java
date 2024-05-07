@@ -153,7 +153,8 @@ public class DatabaseService {
 
     public TaxInfo selectMiscByUserId(Long id) throws Exception {
         try {
-            return taxInfoRepo.getById(id);
+            TaxInfo t = (TaxInfo) taxInfoRepo.getByUserId(id);
+            return t;
         } catch (Exception e) {
             throw new Exception("Cannot get supplemental tax info");
         }

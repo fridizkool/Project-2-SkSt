@@ -44,3 +44,9 @@ interface Form1099Props {
   getDataCallback: (id: number, formData: any) => void; // Adjust the type of formData as needed
   initInfo: { [key: string]: any }; // JSON object with key-value structured information
 }
+
+interface FormMiscProps {
+  id: number;
+  getDataCallback: (ormData: any) => void; // Adjust the type of formData as needed
+  initInfo: { [key: string]: any }; // JSON object with key-value structured information
+}

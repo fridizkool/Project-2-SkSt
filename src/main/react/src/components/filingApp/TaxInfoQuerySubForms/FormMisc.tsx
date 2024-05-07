@@ -1,11 +1,11 @@
-import { Accordion, Card, CardBody, CardHeader, Checkbox, Radio, Select, TextInput } from '@trussworks/react-uswds';
+import { Card, CardBody, CardHeader, Checkbox, Radio, TextInput } from '@trussworks/react-uswds';
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-router-dom';
-const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
+const FormMisc: React.FC<FormMiscProps> = ({getDataCallback, initInfo }) => {
     // Define the default initial state
     const defaultFormData = {
         supplementalIncome: '',
-        additionalWitholdings: '',
+        additionalWithholdings: '',
         filingStatus: '',
         dependents: '',
         studentStatus: false,
@@ -24,13 +24,6 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
     const [formData, setFormData] = React.useState(mergedFormData);
 
 
-    const [isChecked, setIsChecked] = useState(false);
-
-    const handleChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsChecked(event.target.checked);
-    };
-
-
     // Handle form input change
     const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -41,15 +34,15 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
     };
 
     useEffect(() => {
-        getDataCallback(id, formData);
+        getDataCallback(formData);
     }, []);
 
     const handleFormChange: React.ChangeEventHandler<HTMLFormElement> = (_) => {
-        getDataCallback(id, formData);
+        getDataCallback(formData);
     };
 
     const [radioSelectedValue, setSelectedValue] = useState<string>('single');
-    const [isTakingStandardDeduction, setIsTakingStandardDeduction] = useState<boolean>(true);
+    const [isTakingStandardDeduction, setIsTakingStandardDeduction] = useState<boolean>(formData.takingStandardDeduction);
 
     const handleChangeRadio = (value: string) => {
       setSelectedValue(value);
@@ -60,7 +53,7 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
             ...prevState,
             ["filingStatus"]: radioSelectedValue
         }));
-        getDataCallback(id, formData);
+        getDataCallback(formData);
     }, [radioSelectedValue])
 
     useEffect(() => {
@@ -69,7 +62,7 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
             ["takingStandardDeduction"]: isTakingStandardDeduction,
             ["specialDeductions"]: "0"
         }));
-        getDataCallback(id, formData);
+        getDataCallback(formData);
 
     }, [isTakingStandardDeduction])
 
@@ -93,11 +86,11 @@ const FormMisc: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="additionalWitholdings">Additional Withholdings:</label>
+                    <label htmlFor="additionalWithholdings">Additional Withholdings:</label>
                     <TextInput
-                        id="additionalWitholdings"
-                        name="additionalWitholdings"
-                        value={formData.additionalWitholdings}
+                        id="additionalWithholdings"
+                        name="additionalWithholdings"
+                        value={formData.additionalWithholdings}
                         type="number"
                         onChange={handleChangeText}
                     />

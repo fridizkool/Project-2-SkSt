@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -13,12 +15,16 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tax_info")
 public class TaxInfo {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "user_id")
     private Long userId;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(insertable = false, updatable = false, name = "user_id", referencedColumnName = "id")
     @JsonBackReference
     private AppUser user;
 
@@ -38,7 +44,7 @@ public class TaxInfo {
     private Boolean studentStatus;
 
     @Column(name = "standard_deduction")
-    private Double isTakingStandardDeduction;
+    private Boolean isTakingStandardDeduction;
 
     @Column(name = "special_deductions")
     private Double specialDeductions;
@@ -47,14 +53,27 @@ public class TaxInfo {
     }
 
     public TaxInfo(Long userId, AppUser user, Double supplementalIncome, String filingStatus, Integer dependents,
-            Boolean studentStatus, Double specialDeductions) {
+            Boolean isTakingStandardDeduction, Boolean studentStatus, Double specialDeductions) {
         this.userId = userId;
         this.user = user;
         this.supplementalIncome = supplementalIncome;
         this.filingStatus = filingStatus;
         this.dependents = dependents;
         this.studentStatus = studentStatus;
+        this.isTakingStandardDeduction = isTakingStandardDeduction;
         this.specialDeductions = specialDeductions;
+    }
+
+    public TaxInfo(AppUser u, TaxInfo taxInfo) {
+        //TODO Auto-generated constructor stub
+        this.userId = u.getId();
+        this.user = u;
+        this.supplementalIncome = taxInfo.supplementalIncome;
+        this.filingStatus = taxInfo.filingStatus;
+        this.dependents = taxInfo.dependents;
+        this.studentStatus = taxInfo.studentStatus;
+        this.isTakingStandardDeduction = taxInfo.isTakingStandardDeduction;
+        this.specialDeductions = taxInfo.specialDeductions;
     }
 
     public Long getUserId() {
@@ -128,11 +147,11 @@ public class TaxInfo {
         this.additionalWithholdings = additionalWithholdings;
     }
 
-    public Double getIsTakingStandardDeduction() {
+    public Boolean getIsTakingStandardDeduction() {
         return isTakingStandardDeduction;
     }
 
-    public void setIsTakingStandardDeduction(Double isTakingStandardDeduction) {
+    public void setIsTakingStandardDeduction(Boolean isTakingStandardDeduction) {
         this.isTakingStandardDeduction = isTakingStandardDeduction;
     }
 }

@@ -132,16 +132,23 @@ public class ApiController {
     public ResponseEntity<String> submitMisc(Authentication auth, @RequestBody TaxInfo taxInfo)
     {
         AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
-        dbS.saveMisc(taxInfo, u.getId());
+        TaxInfo t = new TaxInfo(u, taxInfo);
+
+        dbS.saveMisc(t, u.getId());
         return ResponseEntity.ok("Successful push");
     }
 
     @GetMapping("/getMisc")
     public ResponseEntity<TaxInfo> getMisc(Authentication auth) {
         AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
-
         try {
-            return ResponseEntity.ok(dbS.selectMiscByUserId(u.getId()));
+            TaxInfo t = dbS.selectMiscByUserId(u.getId());
+
+            if(t == null){
+                return ResponseEntity.ok(new TaxInfo());
+            } else {
+                return ResponseEntity.ok(t);
+            }
         } catch (Exception e){
             return ResponseEntity.ok(null);
         }

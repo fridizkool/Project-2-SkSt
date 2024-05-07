@@ -14,15 +14,15 @@ const SupplementalHolder: React.FC<{existingForms: any }> = ({existingForms }) =
     await fetch('/submitMisc', {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify(subFormData)
+        body: JSON.stringify(subFormData["formData"])
     });
   };
 
 
-  const updateSubmission = (index: number, formData: FormData) => {
+  const updateSubmission = (formData: FormData) => {
     setSubFormdata((prevState: any) => ({
       ...prevState,
-      [index]: formData
+      formData
     }));
   };
   return (

@@ -35,7 +35,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
     const [formData, setFormData] = React.useState(mergedFormData);
 
 
-    const [isChecked, setIsChecked] = useState(false);
+    const [_, setIsChecked] = useState(false);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsChecked(event.target.checked);

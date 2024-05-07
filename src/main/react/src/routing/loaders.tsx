@@ -252,7 +252,8 @@ export async function loadMiscPage() {
                 dataMisc
             )
         }
-        const formMisc = await fetch('/getAllW2', {
+        
+        const formMisc = await fetch('/getMisc', {
             method: 'GET',
         });
 
