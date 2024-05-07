@@ -2,8 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { queryAuthStatus } from '../../service/authService';
+import { useTranslation } from 'react-i18next';
 
 const LoginStatus: React.FC = () => {
+    const {t} = useTranslation();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
@@ -17,7 +19,7 @@ const LoginStatus: React.FC = () => {
 
     return (
         <div>
-            <p>User is {isLoggedIn ? 'logged in' : 'logged out'}</p>
+            <p>{isLoggedIn ? t("loggedIn") : t("loggedOut")}</p>
         </div>
     );
 };

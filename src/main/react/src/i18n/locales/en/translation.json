@@ -1,9 +1,30 @@
 {
-    "title": "Welcome {{name}}, to react using react-i18next fully type-safe",
-    "description": {
-      "part1": "This is a simple example.",
-      "part2": "😉"
-    },
-    "userMessagesUnread_one": "You have {{count}} unread message.",
-    "userMessagesUnread_other": "You have {{count}} unread messages."
-  }
+  "title": "Clairvoyant Tax Prep",
+  "profile": {
+    "profile": "Profile",
+    "email": "Email",
+    "password": "Password",
+    "address": "Address",
+    "ssn": "Social security number",
+    "telephone": "Telephone number",
+    "name": {
+      "first": "First name",
+      "last": "Last name",
+      "middle": "Initial",
+      "suffix": "Suffix"
+    }
+  },
+  "income": "income",
+  "login": "Login",
+  "logout": "Logout",
+  "signUp": "Sign up",
+  "create": "Create your account now",
+  "needAccount": "Don't have an account?",
+  "user_one": "User",
+  "user_other": "Users",
+  "loggedIn" : "$t(user_one) is logged in",
+  "loggedOut" : "$t(user_one) is logged out",
+  "home": "Home",
+  "calculator": "Calculator",
+  "account": "My account"
+}

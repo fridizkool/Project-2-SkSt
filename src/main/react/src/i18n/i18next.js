@@ -16,11 +16,11 @@ i18n
         translation: translationFR,
       },
     },
-    lng: 'en', // default language
     fallbackLng: 'en', // fallback language
     interpolation: {
       escapeValue: false, // react already safes from xss
     },
+    debug: true
   });
 
 export default i18n;
