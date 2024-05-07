@@ -14,7 +14,7 @@ export default function Users() {
                     <GridContainer className='usa-section'>
                         <Grid className='flex-justify-center' row>
                             <Grid col={12}>
-                                <div className="bg-base-lightest padding-y-3 padding-x-5 border border-base-lighter">
+                                <div className="bg-gradient-to-r from-slate-400 to-slate-200 padding-y-3 padding-x-5 border border-base-lighter">
                                     <Form onSubmit={() => { }} large>
                                         <Fieldset>
                                             <Label htmlFor={"username" + user.id}>Username</Label>
@@ -48,22 +48,22 @@ export default function Users() {
     //TODO Use a GET request to query admin-accessible Users list from server
     const userData = [
         {
-          id: "1",
-          username: "user"
+            id: "1",
+            username: "user"
         },
         {
-          id: "2",
-          username: "test"
+            id: "2",
+            username: "test"
         }
-      ];
-      
+    ];
+
 
     return (
         <>
             <GridContainer className='usa-section'>
                 <Grid className='flex-justify-center' row>
                     <Grid col={12}>
-                        <div className="bg-base-lightest padding-y-3 padding-x-5 border border-base-lighter">
+                        <div className="bg-gradient-to-r from-slate-400 to-slate-200 padding-y-3 padding-x-5 border border-base-lighter">
                             <Table striped fullWidth className="bg-primary-lighter">
                                 <thead>
                                     <tr>
