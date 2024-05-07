@@ -25,5 +25,13 @@
   "loggedOut" : "L'$t(user_one) est déconnecté",
   "home": "Page d'accueil",
   "calculator": "Calculatrice",
-  "account": "Mon compte"
+  "account": "Mon compte",
+  "Sign in": "Se connecter",
+  "Show SSN": "Afficher le NSS",
+  "Hide SSN": "Masquer le NSS",
+  "Show password" : "Montrer le mot de passe",
+  "Hide password": "Masquer le mot de passe",
+  "Change Password": "Changer le mot de passe",
+  "Edit": "Modifier",
+  "Submit": "Soumettre"
 }

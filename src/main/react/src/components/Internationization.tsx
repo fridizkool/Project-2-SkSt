@@ -12,7 +12,7 @@ export function I18nButton() {
     const langs = [
         {
             attr: 'fr',
-            label: 'Francais',
+            label: 'Français',
             label_local: 'French',
             on_click: () => i18n.changeLanguage('fr')
         },
@@ -26,6 +26,7 @@ export function I18nButton() {
         <>
             <LanguageSelector
                 className="usa-button--unstyled"
+                label="Languages"
                 langs={langs}
             />
         </>
