@@ -1,9 +1,29 @@
 {
-    "title": "Welcome {{name}}, to react using react-i18next fully type-safe",
-    "description": {
-      "part1": "This is a simple example.",
-      "part2": "😉"
-    },
-    "userMessagesUnread_one": "You have {{count}} unread message.",
-    "userMessagesUnread_other": "You have {{count}} unread messages."
-  }
+  "title": "Préparation d'impôts Clairvoyante",
+  "profile": {
+    "profile": "Profil",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "address": "Adresse",
+    "ssn": "Numéro de sécurité sociale",
+    "telephone": "numéro de téléphone",
+    "name": {
+      "first": "Prénom",
+      "last": "Nom de famille",
+      "middle": "Initiale du milieu",
+      "suffix": "Suffixe"
+    }
+  },
+  "income": "revenu",
+  "login": "Login",
+  "logout": "Se déconnecter",
+  "create": "Créez votre compte maintenant",
+  "needAccount": "Vous n'avez pas de compte ?",
+  "user_one": "Utilisateur",
+  "user_other": "Utilisateurs",
+  "loggedIn" : "L'$t(user_one) est connecté",
+  "loggedOut" : "L'$t(user_one) est déconnecté",
+  "home": "Page d'accueil",
+  "calculator": "Calculatrice",
+  "account": "Mon compte"
+}

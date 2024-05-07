@@ -23,7 +23,7 @@ const LoginForm = () => {
             <Form method="post">
                 <Fieldset legend="">
                     <div className='grid justify-items-start'>
-                        <Label htmlFor="username-in">Username</Label>
+                        <Label htmlFor="username-in">Email</Label>
                         <TextInput id="username-in" type="text" name='username' required />
                         <Label htmlFor="password-in">Password</Label>
                         <TextInput id="password-in" type={showPassword ? 'text' : 'password'} name='password' required />

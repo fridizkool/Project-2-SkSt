@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { queryAuthStatus } from '../../service/authService';
+import { t } from '../Internationization';
 
 const LoginStatus: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,7 +18,7 @@ const LoginStatus: React.FC = () => {
 
     return (
         <div>
-            <p>User is {isLoggedIn ? 'logged in' : 'logged out'}</p>
+            <p>{isLoggedIn ? t("loggedIn") : t("loggedOut")}</p>
         </div>
     );
 };
