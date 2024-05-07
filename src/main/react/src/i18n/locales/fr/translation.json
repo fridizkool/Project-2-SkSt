@@ -33,5 +33,9 @@
   "Hide password": "Masquer le mot de passe",
   "Change Password": "Changer le mot de passe",
   "Edit": "Modifier",
-  "Submit": "Soumettre"
+  "Submit": "Soumettre",
+  "Sign up" : "S'inscrire",
+  "Create account": "Créer un compte",
+  "Re-type password": "Retaper le $t(profile.password)",
+  "indicates a required field": "indique un champ obligatoire"
 }

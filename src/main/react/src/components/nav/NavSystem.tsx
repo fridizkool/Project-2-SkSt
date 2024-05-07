@@ -27,7 +27,7 @@ export const NavSystem: React.FC<NavSystemProps> = ({ navOptions, enabled }) => 
       <Link variant="nav" href={'/'}>{t("home")}</Link>,
       <Link variant="nav" href={'/filing'}>{t("calculator")}</Link>,
       <Link variant="nav" href={'/login'}>{t("login")}</Link>,
-      <Link variant="nav" href={'/create'}>{t("signUp")}</Link>,
+      <Link variant="nav" href={'/create'}>{t("Sign up")}</Link>,
     ]
   }
 

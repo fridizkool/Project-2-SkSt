@@ -2,8 +2,8 @@
   "title": "Clairvoyant Tax Prep",
   "profile": {
     "profile": "Profile",
-    "email": "email",
-    "password": "password",
+    "email": "Email",
+    "password": "Password",
     "address": "Address",
     "ssn": "Social security number",
     "telephone": "Telephone number",
