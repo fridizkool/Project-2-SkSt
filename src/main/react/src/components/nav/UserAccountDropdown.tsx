@@ -1,8 +1,9 @@
 import { Link, Menu, NavDropDownButton } from "@trussworks/react-uswds";
 import { useState } from "react";
-import { t } from "../Internationization";
+import { useTranslation } from "react-i18next";
 
 const UserAccountDropdown: React.FC = () => {
+  const {t} = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const testMenuItems = [

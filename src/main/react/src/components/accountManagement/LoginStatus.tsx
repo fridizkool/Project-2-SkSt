@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { queryAuthStatus } from '../../service/authService';
-import { t } from '../Internationization';
+import { useTranslation } from 'react-i18next';
 
 const LoginStatus: React.FC = () => {
+    const {t} = useTranslation();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {

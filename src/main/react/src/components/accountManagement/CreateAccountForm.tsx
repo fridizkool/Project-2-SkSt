@@ -3,9 +3,10 @@ import { Form, useLocation } from 'react-router-dom';
 
 import { useEffect, useState } from "react";
 import splash from "../../assets/tax-papers.jpeg";
-import { t } from "../Internationization";
+import { useTranslation } from "react-i18next";
 
 export default function CreateAccount() {
+  const {t} = useTranslation();
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
 

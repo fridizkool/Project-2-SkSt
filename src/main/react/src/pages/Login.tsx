@@ -4,8 +4,10 @@ import { Grid, GridContainer, Link } from '@trussworks/react-uswds';
 import LoginForm from '../components/accountManagement/LoginForm';
 import splash from '../assets/taxes-splash.jpg';
 import i18n from '../i18n/i18next';
+import { useTranslation } from 'react-i18next';
 
 export default function Login() {
+    const {t} = useTranslation();
     return (
         <>
             <GridContainer className='usa-section'>
@@ -24,8 +26,8 @@ export default function Login() {
                             </Grid>
                         </div>
                         <p className="text-center">
-                            {i18n.t("needAccount") + " "}
-                            <Link href="/create">{i18n.t("create")}</Link>.
+                            {t("needAccount") + " "}
+                            <Link href="/create">{t("create")}</Link>.
                         </p>
                     </Grid>
                 </Grid>

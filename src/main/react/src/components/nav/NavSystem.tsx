@@ -2,10 +2,11 @@ import { Header, NavMenuButton, PrimaryNav, Link } from "@trussworks/react-uswds
 import React, { useState } from "react";
 import { JSX } from "react/jsx-runtime";
 import UserAccountDropdown from "./UserAccountDropdown";
-import {t} from "../Internationization"
+import { useTranslation } from "react-i18next";
 
 
 export const NavSystem: React.FC<NavSystemProps> = ({ navOptions, enabled }) => {
+  const {t} = useTranslation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   let primaryNavItems: JSX.Element[] | React.ReactNode[] = [];

@@ -1,10 +1,11 @@
 import { Fieldset, Label, TextInput, Button, Link, Alert } from '@trussworks/react-uswds';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Form, useLocation } from 'react-router-dom';
-import { t } from '../Internationization';
 
 
 const UpdateProfileForm: React.FC<UserProfileFormProps> = ({ userProfile }: any) => {
+    const {t} = useTranslation();
     const [editState, isEdit] = useState(false);
     const [showSocial, setShowSocial] = useState(false);
 
@@ -42,7 +43,7 @@ const UpdateProfileForm: React.FC<UserProfileFormProps> = ({ userProfile }: any)
             <hr />
             <Form method="put">
                 <Fieldset>
-                    <Label htmlFor="username">{t("profile-email")}</Label>
+                    <Label htmlFor="username">{t("profile.email")}</Label>
                     <TextInput type="email" id="username" name="username" value={formData.username} disabled />
                     <Label htmlFor="firstName">{t("profile.name.first")}</Label>
                     <TextInput type="text" id="firstName" name="firstName" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} disabled={!editState} />

@@ -1,9 +1,10 @@
 import { Fieldset, Label, TextInput, Button, Alert } from '@trussworks/react-uswds';
-import { useEffect, useState } from 'react';
 import { Form, useLocation } from 'react-router-dom';
-import { t } from '../Internationization';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const LoginForm = () => {
+    const {t} = useTranslation();
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -29,7 +30,7 @@ const LoginForm = () => {
                         <Label htmlFor="password-in">{t("profile.password")}</Label>
                         <TextInput id="password-in" type={showPassword ? 'text' : 'password'} name='password' required />
                         <Button title="Show password" type="button" className="usa-show-password justify-self-end" aria-controls="password-in" onClick={(): void => setShowPassword(showPassword => !showPassword)}>
-                            {showPassword ? 'Hide password' : 'Show password'}
+                            {showPassword ? t('Hide password') : t('Show password')}
                         </Button>
                         <Button type='submit' className="">{t("Sign in")}</Button>
                     </div>
