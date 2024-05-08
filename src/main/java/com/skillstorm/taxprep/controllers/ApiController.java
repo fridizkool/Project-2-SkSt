@@ -53,7 +53,7 @@ public class ApiController {
     {
         AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
 
-        return ResponseEntity.ok(cS.getDeductionsById(u.getId()));
+        return ResponseEntity.ok(cS.getDeductionsById(u.getId(), null));
     }
 
     @GetMapping("/withheld")

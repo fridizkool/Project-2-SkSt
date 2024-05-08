@@ -70,10 +70,10 @@ public class CalculationService {
                 }
             }
             double sum = 0.0;
-            sum += getIncomeById(userId);
-            sum -= getDeductionsById(userId);
             TaxStatus t = taxBrackets.get(status);
             TaxBracket[] x = t.getBrackets();
+            sum += getIncomeById(userId);
+            sum -= getDeductionsById(userId, t);
             Double tax = doProgressiveTax(sum, x);
             tax -= getWithheldById(userId);
     
@@ -113,8 +113,10 @@ public class CalculationService {
         return sum;
     }
 
-    public Double getDeductionsById(Long userId) {
+    public Double getDeductionsById(Long userId, TaxStatus status) {
         Double sum = 0.0;
+        if(taxInfoRepository.findStandardDeductionByUserId(userId))
+            return status.getDeduction();
         Optional<Double> specialDeductions = taxInfoRepository.findSpecialDeductionsByUserId(userId);
         if (specialDeductions.isPresent())
             sum += specialDeductions.get();

@@ -1,6 +1,7 @@
 {
     "single" : {
         "status": "single",
+        "deduction": "14600",
         "brackets": [
             {
                 "rate": ".1",
@@ -41,6 +42,7 @@
     },
     "marriedJoint" : {
         "status": "marriedJoint",
+        "deduction": "29200",
         "brackets": [
             {
                 "rate": ".1",
@@ -81,6 +83,7 @@
     },
     "marriedSeperate" : {
         "status": "marriedSeparate",
+        "deduction": "14600",
         "brackets": [
             {
                 "rate": ".1",
@@ -121,6 +124,7 @@
     },
     "headOfHousehold" : {
         "status": "headOfHousehold",
+        "deduction": "21900",
         "brackets": [
             {
                 "rate": ".1",

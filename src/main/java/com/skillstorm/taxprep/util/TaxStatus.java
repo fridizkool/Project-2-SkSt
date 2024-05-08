@@ -3,12 +3,14 @@ package com.skillstorm.taxprep.util;
 public class TaxStatus
 {
     String status;
+    Double deduction;
     TaxBracket brackets[]; 
 
-    public TaxStatus(String status, TaxBracket[] brackets)
+    public TaxStatus(String status, Double deduction, TaxBracket[] brackets)
     {
         this.status = status;
         this.brackets = brackets;
+        this.deduction = deduction;
     }
 
     public String getStatus() {
@@ -25,6 +27,14 @@ public class TaxStatus
 
     public void setBrackets(TaxBracket[] brackets) {
         this.brackets = brackets;
+    }
+
+    public Double getDeduction() {
+        return deduction;
+    }
+
+    public void setDeduction(Double deduction) {
+        this.deduction = deduction;
     }
     
 }

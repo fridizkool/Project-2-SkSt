@@ -1,6 +1,5 @@
 package com.skillstorm.taxprep.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.skillstorm.taxprep.models.TaxInfo;
-import com.skillstorm.taxprep.models.TaxInfoW2;
 
 @Repository
 public interface TaxInfoRepository extends JpaRepository<TaxInfo, Long> {
@@ -28,4 +26,7 @@ public interface TaxInfoRepository extends JpaRepository<TaxInfo, Long> {
     public void deleteAllByUserId(Long userId);
     
     public TaxInfo getByUserId(Long userId);
+
+    @Query("select t.isTakingStandardDeduction from TaxInfo t where t.userId = ?1")
+    public boolean findStandardDeductionByUserId(Long userId);
 }
