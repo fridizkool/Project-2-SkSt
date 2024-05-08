@@ -38,6 +38,7 @@
   "Re-type password": "Retaper le $t(profile.password)",
   "indicates a required field": "indique un champ obligatoire",
   "W2": {
+    "form": "Formulaire IRS W2",
     "Employer ID": "Numéro d'employeur",
     "Employer information": "Renseignements sur l'employeur",
     "Control number": "Numéro de contrôle",
@@ -58,6 +59,7 @@
     "Other": "Autre"
   },
   "1099": {
+    "form": "Formulaire IRS 1099",
     "Payer information": "Informations sur le payeur",
     "Payer's TIN": "NIF du payeur",
     "Recipient's name": "Nom du destinataire",
@@ -82,6 +84,7 @@
     "Nonqualified deferred compensation": "Paiements excédentaires du parachute doré"
   },
   "TaxInfo": {
+    "Personal information": "Informations personnelles",
     "Supplemental income": "Revenu supplémentaire",
     "Additional withholdings": "Retenues supplémentaires",
     "Filing status": "Statut de dépôt",

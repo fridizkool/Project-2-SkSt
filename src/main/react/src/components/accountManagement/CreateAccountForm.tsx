@@ -29,7 +29,7 @@ export default function CreateAccount() {
       <GridContainer className=''>
         <Grid row className=''>
           <Grid col={12}>
-            <div className="bg-gradient-to-r from-slate-400 to-slate-200 padding-y-3 padding-x-5 border border-base-lighter">
+            <div className="bg-white padding-y-3 padding-x-5 border border-base-lighter">
               <Grid row gap="md">
                 <Grid col={6}>
                   <h1 className="margin-bottom-0">{t("Create account")}</h1>

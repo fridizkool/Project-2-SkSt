@@ -27,12 +27,12 @@ export default function Filing() {
 
     return (
         <>
-            <GridContainer className=' bg-neutral-300 min-h-screen'>
+            <GridContainer className=' bg-lightest min-h-screen'>
                 <Grid row className='padding-1'>
                     <Grid col={12}>
                         <div className='inline-flex items-center'>
                             <Button type="submit" onClick={() => { index > 0 ? setIndex(prev => prev - 1) : null }}>Back</Button>
-                            <StepIndicator centered headingLevel='h4' ofText={t("of")} stepText={t('Step')} className=' bg-gradient-to-r from-neutral-300 to-neutral-300'>{/**hacky way to change the background */}
+                            <StepIndicator centered headingLevel='h4' ofText={t("of")} stepText={t('Step')} className=' bg-base-lightest'>
                                 <StepIndicatorStep label={t("Introduction")} status={isCurrent(index, 0)} />
                                 <StepIndicatorStep label={t("W2 forms")} status={isCurrent(index, 1)} />
                                 <StepIndicatorStep label={t("1099 forms")} status={isCurrent(index, 2)} />

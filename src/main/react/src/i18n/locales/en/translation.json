@@ -28,6 +28,7 @@
   "calculator": "Calculator",
   "account": "My account",
   "W2": {
+    "form": "IRS form W2",
     "Employer ID": "Employer ID",
     "Employer information": "Employer information",
     "Control number": "Control number",
@@ -48,6 +49,7 @@
     "Other": "Other"
   },
   "1099": {
+    "form": "IRS form 1099",
     "Payer information": "Payer information",
     "Payer's TIN": "Payer's TIN",
     "Recipient's name": "Recipient's name",

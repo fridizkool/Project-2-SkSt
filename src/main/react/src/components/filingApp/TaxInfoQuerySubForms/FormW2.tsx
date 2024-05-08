@@ -1,7 +1,9 @@
 import { Accordion, Card, CardBody, CardHeader, Checkbox, TextInput } from '@trussworks/react-uswds';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Form } from 'react-router-dom';
 const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
+    const { t } = useTranslation();
     // Define the default initial state
     const defaultFormData = {
         employerId: '',
@@ -26,7 +28,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
 
     const sanitizedInitInfo = Object.fromEntries(
         Object.entries(initInfo).map(([key, value]) => [key, value === null ? '' : value])
-      );
+    );
 
     // Merge initInfo with the default initial state
     const mergedFormData = { ...defaultFormData, ...sanitizedInitInfo };
@@ -38,7 +40,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
     const [_, setIsChecked] = useState(false);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsChecked(event.target.checked);
+        setIsChecked(event.target.checked);
     };
 
     // Handle form input change
@@ -63,7 +65,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
         content:
             <Card>
                 <div>
-                    <label htmlFor="employerId">Employer ID:</label>
+                    <label htmlFor="employerId">{t("W2.Employer ID")}:</label>
                     <TextInput
                         id="employerId"
                         name="employerId"
@@ -73,7 +75,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="employerInformation">Employer Information:</label>
+                    <label htmlFor="employerInformation">{t("W2.Employer information")}</label>
                     <TextInput
                         id="employerInformation"
                         name="employerInformation"
@@ -83,7 +85,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="controlNumber">Control Number:</label>
+                    <label htmlFor="controlNumber">{t("W2.Control number")}:</label>
                     <TextInput
                         id="controlNumber"
                         name="controlNumber"
@@ -93,7 +95,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="allocatedTips">Allocated Tips:</label>
+                    <label htmlFor="allocatedTips">{t("W2.Allocated tips")}:</label>
                     <TextInput
                         id="allocatedTips"
                         name="allocatedTips"
@@ -103,7 +105,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="nonqualifiedPlan">Nonqualified Plan:</label>
+                    <label htmlFor="nonqualifiedPlan">{t("W2.Nonqualified plans")}:</label>
                     <TextInput
                         id="nonqualifiedPlan"
                         name="nonqualifiedPlan"
@@ -113,7 +115,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="deferrals">Deferrals:</label>
+                    <label htmlFor="deferrals">{t("W2.Deferrals")}:</label>
                     <TextInput
                         id="deferrals"
                         name="deferrals"
@@ -123,40 +125,37 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="statutory">Statutory:</label>
                     <Checkbox
                         id="statutory"
                         name="statutory"
                         checked={formData.statutory}
-                        label={"Statutory"} 
+                        label={t("W2.Statutory employment")}
                         onChange={() => handleChange}
 
                     />
                 </div>
                 <div>
-                    <label htmlFor="retirement">Retirement:</label>
                     <Checkbox
                         id="retirement"
                         name="retirement"
                         checked={formData.retirement}
-                        label={"Retirement"}    
-                        onChange={() => handleChange}
-            
-                    />
-                </div>
-                <div>
-                    <label htmlFor="sickPay">Sick Pay:</label>
-                    <Checkbox
-                        id="sickPay"
-                        name="sickPay"
-                        checked={formData.sickPay}
-                        label={"Sick Pay"} 
+                        label={t("W2.Retirement plan")}
                         onChange={() => handleChange}
 
                     />
                 </div>
                 <div>
-                    <label htmlFor="other">Other:</label>
+                    <Checkbox
+                        id="sickPay"
+                        name="sickPay"
+                        checked={formData.sickPay}
+                        label={t("W2.Third-party sick pay")}
+                        onChange={() => handleChange}
+
+                    />
+                </div>
+                <div>
+                    <label htmlFor="other">{t("W2.Other")}:</label>
                     <TextInput
                         id="other"
                         name="other"
@@ -170,19 +169,19 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
         id: "general-info",
         headingLevel: "h3",
     }
-                
+
     ]
 
     return (
         <>
-            <Form method="post" onBlur={handleFormChange}>  
+            <Form method="post" onBlur={handleFormChange}>
                 <CardHeader>
-                    <h1>IRS Form W2</h1>
+                    <h1>{t("W2.form")}</h1>
                 </CardHeader>
                 <CardBody>
-                
+
                     <div>
-                        <label htmlFor="income">Income:</label>
+                        <label htmlFor="income">{t("W2.Income")}:</label>
                         <TextInput
                             id="income"
                             name="income"
@@ -192,7 +191,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="withheldFederal">Withheld Federal:</label>
+                        <label htmlFor="withheldFederal">{t("W2.Federal taxes withheld")}:</label>
                         <TextInput
                             id="withheldFederal"
                             name="withheldFederal"
@@ -251,7 +250,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                             onChange={handleChangeText}
                         />
                     </div>
-                    
+
                     <div>
                         <label htmlFor="dependentCare">Dependent Care:</label>
                         <TextInput
@@ -262,8 +261,8 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                             onChange={handleChangeText}
                         />
                     </div>
-                    <Accordion items={formItems}/>
-                    
+                    <Accordion items={formItems} />
+
                 </CardBody>
             </Form>
         </>
