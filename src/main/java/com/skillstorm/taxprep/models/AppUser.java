@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -56,15 +57,15 @@ public class AppUser implements UserDetails {
     @Column(name = "social_security")
     private String ssn;
 
-    @OneToOne(targetEntity = TaxInfo.class, mappedBy = "user")
+    @OneToOne(targetEntity = TaxInfo.class, mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private TaxInfo taxInfo;
     
-    @OneToMany(targetEntity = TaxInfoW2.class, mappedBy = "user")
+    @OneToMany(targetEntity = TaxInfoW2.class, mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<TaxInfoW2> taxInfoW2;
 
-    @OneToMany(targetEntity = TaxInfo1099.class, mappedBy = "user")
+    @OneToMany(targetEntity = TaxInfo1099.class, mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<TaxInfo1099> taxInfo1099;
 
@@ -85,6 +86,28 @@ public class AppUser implements UserDetails {
         this.address = address;
         this.telephoneNumber = telephoneNumber;
         this.ssn = ssn;
+    }
+
+    
+    public AppUser(AppUser u) {
+        this.id = u.id;
+        this.username = u.username;
+        this.password = u.password;
+        this.role = u.role;
+        this.firstName = u.firstName;
+        this.lastName = u.lastName;
+        this.initial = u.initial;
+        this.suffix = u.suffix;
+        this.address = u.address;
+        this.telephoneNumber = u.telephoneNumber;
+        this.ssn = u.ssn;
+    }
+
+    public AppUser returnRedactedUser(AppUser u){
+        AppUser tempUser = new AppUser(u);
+        tempUser.setPassword("");
+        tempUser.setSsn("");
+        return tempUser;
     }
 
     @Override

@@ -385,7 +385,64 @@ export async function loadUsersPage() {
     
     if(authStatus.authenticated && authStatus.userRole === "ADMIN"){
 
-        //TODO GET user information from server and return it
+        // DEBUG In dev mode with no server, return this:
+        if (import.meta.env.DEV){
+            return (
+                [{
+                    "id": 1,
+                    "username": "test@test.test",
+                    "password": "",
+                    "role": "ROLE_USER",
+                    "firstName": "",
+                    "lastName": "",
+                    "initial": "",
+                    "suffix": "",
+                    "address": "d",
+                    "telephoneNumber": null,
+                    "ssn": "",
+                    "enabled": true,
+                    "authorities": [
+                        {
+                            "authority": "ROLE_USER"
+                        }
+                    ],
+                    "credentialsNonExpired": true,
+                    "accountNonExpired": true,
+                    "accountNonLocked": true
+                }, {
+                    "id": 2,
+                    "username": "test@test.test",
+                    "password": "",
+                    "role": "ROLE_USER",
+                    "firstName": "",
+                    "lastName": "",
+                    "initial": "",
+                    "suffix": "",
+                    "address": "d",
+                    "telephoneNumber": null,
+                    "ssn": "",
+                    "enabled": true,
+                    "authorities": [
+                        {
+                            "authority": "ROLE_USER"
+                        }
+                    ],
+                    "credentialsNonExpired": true,
+                    "accountNonExpired": true,
+                    "accountNonLocked": true
+                }]
+            )
+        }
+
+        const response = await fetch('/adminUsers', {
+            method: 'GET',
+        });
+        try {
+            const responseJSON = await response.json();
+            return responseJSON;
+        } catch (e) {
+            return redirect("/error");
+        }
 
         return null;
     } else {
