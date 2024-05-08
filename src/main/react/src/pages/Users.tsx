@@ -70,7 +70,6 @@ export default function Users() {
                                     ))}
                                 </tbody>
                             </Table>
-                            <Button type="button">Create user</Button>
                         </div>
                     </Grid>
                 </Grid>
