@@ -102,4 +102,9 @@ public class UserService implements UserDetailsService {
         return u.getRole();
     }
 
+    public void deleteUser(String username) {
+        AppUser user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username + " not found."));
+        userRepository.delete(user);
+    }
+
 }

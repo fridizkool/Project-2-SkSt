@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -186,4 +188,14 @@ public class ApiController {
         return ResponseEntity.ok(null);
     }
 
+    @DeleteMapping("/deleteUser/{username}")
+    public ResponseEntity<String> deleteUsersByAdmin(Authentication auth, @PathVariable String username)
+    {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+        if (u.getRole().equals("ROLE_ADMIN")){
+            userService.deleteUser(username);
+            return ResponseEntity.ok("Deleted user");
+        }
+        return ResponseEntity.ok("Did not delete user");
+    }
 }

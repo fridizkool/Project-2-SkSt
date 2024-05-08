@@ -165,3 +165,15 @@ export async function submitForms({ request }: { request: any, params: any }) {
     }
 
 }
+
+export async function submitUserDeletion({ request }: { request: any, params: any }) {
+    let formData = await request.formData();
+    console.log("\n\n\n\n asdf \n\n\n\n")
+    try {
+        //Submit list of forms as 3 blocks
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        return redirect("/changepassword?error=error")
+    }
+
+}

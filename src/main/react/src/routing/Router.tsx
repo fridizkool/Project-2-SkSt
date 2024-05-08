@@ -9,7 +9,7 @@ import Root from "../pages/Root";
 import Users from "../pages/Users";
 import { load1099Page, loadAccountCreationPage, loadAccountPage, loadFilingPage, loadFinalCalculation, loadLoginPage, loadLogout, loadMiscPage, loadNavBar, loadPasswordUpdatePage, loadReview, loadUsersPage, loadW2Page } from "./loaders";
 import InaccessibleResource from "../pages/InaccessibleResource";
-import { attemptAccountCreation, attemptLogin, attemptPasswordChange, attemptProfileEdit, submitForms } from "./actions";
+import { attemptAccountCreation, attemptLogin, attemptPasswordChange, attemptProfileEdit, submitForms, submitUserDeletion } from "./actions";
 import ChangePassword from "../pages/ChangePassword";
 import IntroPage from "../components/filingApp/SubPages/IntroPage";
 import FormW2Page from "../components/filingApp/SubPages/FormW2Page";
@@ -81,6 +81,7 @@ export const router = createBrowserRouter(
                 path="users"
                 element={<Users/>}
                 loader={loadUsersPage}
+                action={submitUserDeletion}
             />
             <Route
                 path="changepassword"
