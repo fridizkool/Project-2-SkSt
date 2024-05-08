@@ -166,9 +166,7 @@ export async function submitForms({ request }: { request: any, params: any }) {
 
 }
 
-export async function submitUserDeletion({ request }: { request: any, params: any }) {
-    let formData = await request.formData();
-    console.log("\n\n\n\n asdf \n\n\n\n")
+export async function submitUserDeletion({}: { request: any, params: any }) {
     try {
         //Submit list of forms as 3 blocks
     } catch (error) {

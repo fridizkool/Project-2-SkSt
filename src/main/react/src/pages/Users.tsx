@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import { Button, Grid, GridContainer, Table } from "@trussworks/react-uswds";
-import { useLoaderData, useSubmit } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Alert, Button, Grid, GridContainer, Table } from "@trussworks/react-uswds";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 
 export default function Users() {
     const totalReturns: any = useLoaderData() as any;
-    const submit = useSubmit();
     const [disabledButtons, setDisabledButtons] = useState<string[]>([]); // State to manage disabled buttons
+    const nav = useNavigate();
 
     const deleteCallback = (username: string) => {
         // Disable the button while processing the delete request
         setDisabledButtons([...disabledButtons, username]);
         console.log("Deleting user:", username);
         // Perform delete operation, here you can call your delete API
-
         fetch(`deleteUser/${username}`, {
             method: 'DELETE',
             headers: {
@@ -20,12 +19,27 @@ export default function Users() {
             }
         })
         .then(() => {
-            setDisabledButtons(disabledButtons.filter(name => name !== username));
+            nav("/users?msg=done");
         })
     };
 
+    const [msg, setMsg] = useState<string | null>(null);
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const errorMessage = queryParams.get('msg');
+
+    useEffect(() => {
+        setMsg(errorMessage);
+    })
+
     return (
         <>
+            {msg && (
+                <Alert type="info" heading="Error status" headingLevel="h4">
+                    {msg}
+                </Alert>
+            )}
             <GridContainer className='usa-section'>
                 <Grid className='flex-justify-center' row>
                     <Grid col={12}>

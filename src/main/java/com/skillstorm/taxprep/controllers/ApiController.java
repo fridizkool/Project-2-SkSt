@@ -181,8 +181,11 @@ public class ApiController {
             List<AppUser> l = userService.getAllUsers();
             List<AppUser> sendList = new ArrayList<>();
             for (AppUser user : l){
+                if (user.getUsername().equals(auth.getName())) continue;
                 sendList.add(user.returnRedactedUser(user));
             }
+            return ResponseEntity.ok(sendList);
+
         }
 
         return ResponseEntity.ok(null);

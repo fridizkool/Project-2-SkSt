@@ -434,7 +434,7 @@ export async function loadUsersPage() {
             )
         }
 
-        const response = await fetch('/adminusers', {
+        const response = await fetch('/adminUsers', {
             method: 'GET',
         });
         try {

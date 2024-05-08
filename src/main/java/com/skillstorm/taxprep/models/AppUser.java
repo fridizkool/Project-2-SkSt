@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -56,15 +57,15 @@ public class AppUser implements UserDetails {
     @Column(name = "social_security")
     private String ssn;
 
-    @OneToOne(targetEntity = TaxInfo.class, mappedBy = "user")
+    @OneToOne(targetEntity = TaxInfo.class, mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private TaxInfo taxInfo;
     
-    @OneToMany(targetEntity = TaxInfoW2.class, mappedBy = "user")
+    @OneToMany(targetEntity = TaxInfoW2.class, mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<TaxInfoW2> taxInfoW2;
 
-    @OneToMany(targetEntity = TaxInfo1099.class, mappedBy = "user")
+    @OneToMany(targetEntity = TaxInfo1099.class, mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<TaxInfo1099> taxInfo1099;
 
