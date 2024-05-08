@@ -10,12 +10,12 @@ function Root() {
       <div className="sticky top-0 left-0 z-50 bg-gradient-to-br from-slate-400 to-neutral-200 shadow-xl">
         <div className="left-0 px-4">
           <TitleBanner />
-        {/* </div>
-        <div className="bg-neutral-100"> */}
           <NavSystem navOptions={navOptions} enabled={true} />
         </div>
       </div>
-      <Outlet />
+      <div className="bg-gradient-to-r from-slate-400 to-slate-200 min-h-screen">
+        <Outlet />
+      </div>
     </>
   );
 }
