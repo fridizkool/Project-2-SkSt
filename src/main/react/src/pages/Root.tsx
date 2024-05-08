@@ -13,7 +13,7 @@ function Root() {
           <NavSystem navOptions={navOptions} enabled={true} />
         </div>
       </div>
-      <div className="bg-gradient-to-r from-slate-400 to-slate-200 min-h-screen">
+      <div className="box-decoration-slice bg-gradient-to-tr from-slate-400 to-slate-200 min-h-screen">
         <Outlet />
       </div>
     </>
