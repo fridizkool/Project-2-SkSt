@@ -129,7 +129,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         name="statutory"
                         checked={formData.statutory}
                         label={"Statutory"} 
-                        onChange={handleChange}
+                        onChange={() => handleChange}
 
                     />
                 </div>
@@ -140,7 +140,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         name="retirement"
                         checked={formData.retirement}
                         label={"Retirement"}    
-                        onChange={handleChange}
+                        onChange={() => handleChange}
             
                     />
                 </div>
@@ -151,7 +151,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         name="sickPay"
                         checked={formData.sickPay}
                         label={"Sick Pay"} 
-                        onChange={handleChange}
+                        onChange={() => handleChange}
 
                     />
                 </div>

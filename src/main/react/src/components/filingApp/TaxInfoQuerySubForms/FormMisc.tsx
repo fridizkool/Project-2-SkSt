@@ -11,8 +11,8 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
         filingStatus: '',
         dependents: '',
         studentStatus: false,
-        takingStandardDeduction: true,
-        specialDeductions: ''
+        isTakingStandardDeduction: true,
+        specialDeductions: '',
     };
 
     const sanitizedInitInfo = Object.fromEntries(
@@ -43,13 +43,9 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
         getDataCallback(formData);
     };
 
-    const [radioSelectedValue, setSelectedValue] = useState<string>('single');
-    const [isTakingStandardDeduction, setIsTakingStandardDeduction] = useState<boolean>(formData.takingStandardDeduction);
+    const [radioSelectedValue, setSelectedValue] = useState<string>(formData.filingStatus);
+    const [isTakingStandardDeduction, setIsTakingStandardDeduction] = useState<boolean>(formData.isTakingStandardDeduction);
     const [studentStatus, setStudentStatus] = useState<boolean>(formData.studentStatus);
-
-    const handleChangeRadio = (value: string) => {
-        setSelectedValue(value);
-    };
 
     useEffect(() => {
         setFormData(prevState => ({
@@ -62,9 +58,15 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
     useEffect(() => {
         setFormData(prevState => ({
             ...prevState,
-            ["takingStandardDeduction"]: isTakingStandardDeduction,
-            ["specialDeductions"]: "0"
+            ["isTakingStandardDeduction"]: isTakingStandardDeduction
         }));
+        if(isTakingStandardDeduction)
+            {
+                setFormData(prevState => ({
+                    ...prevState,
+                    ["specialDeductions"]: "0"
+                }));
+            }
         getDataCallback(formData);
 
     }, [isTakingStandardDeduction])
@@ -116,28 +118,32 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
                                     id="single"
                                     label={t("TaxInfo.Single")}
                                     name="options"
-                                    onChange={() => handleChangeRadio('single')}
+                                    onChange={() => setSelectedValue("single")}
+                                    value="single"
                                 />
                                 <Radio
                                     checked={radioSelectedValue === 'marriedJoint'}
                                     id="marriedJoint"
                                     label={t("TaxInfo.Married filing jointly")}
                                     name="options"
-                                    onChange={() => handleChangeRadio('marriedJoint')}
+                                    onChange={() => setSelectedValue("marriedJoint")}
+                                    value="marriedJoint"
                                 />
                                 <Radio
                                     checked={radioSelectedValue === 'marriedSeparate'}
                                     id="marriedSeparate"
                                     label={t("TaxInfo.Married filing separately")}
                                     name="options"
-                                    onChange={() => handleChangeRadio('marriedSeparate')}
+                                    onChange={() => setSelectedValue("marriedSeparate")}
+                                    value="marriedSeperate"
                                 />
                                 <Radio
                                     checked={radioSelectedValue === 'headOfHousehold'}
                                     id="headOfHousehold"
                                     label={t("Head of household")}
                                     name="options"
-                                    onChange={() => handleChangeRadio('headOfHousehold')}
+                                    onChange={() => setSelectedValue("headOfHousehold")}
+                                    value="headOfHousehold"
                                 />
                             </div>
 

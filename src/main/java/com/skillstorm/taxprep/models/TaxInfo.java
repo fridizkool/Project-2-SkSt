@@ -52,11 +52,14 @@ public class TaxInfo {
     public TaxInfo() {
     }
 
-    public TaxInfo(Long userId, AppUser user, Double supplementalIncome, String filingStatus, Integer dependents,
-            Boolean isTakingStandardDeduction, Boolean studentStatus, Double specialDeductions) {
+    public TaxInfo(Long id, Long userId, AppUser user, Double supplementalIncome, Double additionalWithholdings,
+            String filingStatus, Integer dependents, Boolean studentStatus, Boolean isTakingStandardDeduction,
+            Double specialDeductions) {
+        this.id = id;
         this.userId = userId;
         this.user = user;
         this.supplementalIncome = supplementalIncome;
+        this.additionalWithholdings = additionalWithholdings;
         this.filingStatus = filingStatus;
         this.dependents = dependents;
         this.studentStatus = studentStatus;
@@ -64,16 +67,27 @@ public class TaxInfo {
         this.specialDeductions = specialDeductions;
     }
 
+
+
     public TaxInfo(AppUser u, TaxInfo taxInfo) {
         //TODO Auto-generated constructor stub
         this.userId = u.getId();
         this.user = u;
         this.supplementalIncome = taxInfo.supplementalIncome;
+        this.additionalWithholdings = taxInfo.additionalWithholdings;
         this.filingStatus = taxInfo.filingStatus;
         this.dependents = taxInfo.dependents;
         this.studentStatus = taxInfo.studentStatus;
         this.isTakingStandardDeduction = taxInfo.isTakingStandardDeduction;
         this.specialDeductions = taxInfo.specialDeductions;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getUserId() {
@@ -100,6 +114,14 @@ public class TaxInfo {
         this.supplementalIncome = supplementalIncome;
     }
 
+    public Double getAdditionalWithholdings() {
+        return additionalWithholdings;
+    }
+
+    public void setAdditionalWithholdings(Double additionalWithholdings) {
+        this.additionalWithholdings = additionalWithholdings;
+    }
+
     public String getFilingStatus() {
         return filingStatus;
     }
@@ -124,6 +146,14 @@ public class TaxInfo {
         this.studentStatus = studentStatus;
     }
 
+    public Boolean getIsTakingStandardDeduction() {
+        return isTakingStandardDeduction;
+    }
+
+    public void setIsTakingStandardDeduction(Boolean isTakingStandardDeduction) {
+        this.isTakingStandardDeduction = isTakingStandardDeduction;
+    }
+
     public Double getSpecialDeductions() {
         return specialDeductions;
     }
@@ -134,24 +164,12 @@ public class TaxInfo {
 
     @Override
     public String toString() {
-        return "TaxInfo [userId=" + userId + ", user=" + user + ", supplementalIncome=" + supplementalIncome
-                + ", filingStatus=" + filingStatus + ", dependents=" + dependents + ", studentStatus=" + studentStatus
-                + ", specialDeductions=" + specialDeductions + "]";
+        return "TaxInfo [id=" + id + ", userId=" + userId + ", supplementalIncome="
+                + supplementalIncome + ", additionalWithholdings=" + additionalWithholdings + ", filingStatus="
+                + filingStatus + ", dependents=" + dependents + ", studentStatus=" + studentStatus
+                + ", isTakingStandardDeduction=" + isTakingStandardDeduction + ", specialDeductions="
+                + specialDeductions + "]";
     }
 
-    public Double getAdditionalWithholdings() {
-        return additionalWithholdings;
-    }
-
-    public void setAdditionalWithholdings(Double additionalWithholdings) {
-        this.additionalWithholdings = additionalWithholdings;
-    }
-
-    public Boolean getIsTakingStandardDeduction() {
-        return isTakingStandardDeduction;
-    }
-
-    public void setIsTakingStandardDeduction(Boolean isTakingStandardDeduction) {
-        this.isTakingStandardDeduction = isTakingStandardDeduction;
-    }
+    
 }
