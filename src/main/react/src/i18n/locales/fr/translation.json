@@ -42,6 +42,9 @@
   "Next": "Suivant",
   "New password": "Nouveau mot de passe",
   "Introduction": "Introduction",
+  "Review": "Revoir",
+  "Calculations": "Calculs",
+  "Personal information": "Informations personnelles",
   "W2": {
     "form": "Formulaire IRS W2",
     "Employer ID": "Numéro d'employeur",
@@ -89,7 +92,6 @@
     "Nonqualified deferred compensation": "Paiements excédentaires du parachute doré"
   },
   "TaxInfo": {
-    "Personal information": "Informations personnelles",
     "Supplemental income": "Revenu supplémentaire",
     "Additional withholdings": "Retenues supplémentaires",
     "Filing status": "Statut de dépôt",

@@ -34,13 +34,13 @@ export default function Filing() {
                             <Button type="submit" onClick={() => { index > 0 ? setIndex(prev => prev - 1) : null }}>Back</Button>
                             <StepIndicator centered headingLevel='h4' ofText={t("of")} stepText={t('Step')} className=' bg-base-lightest'>
                                 <StepIndicatorStep label={t("Introduction")} status={isCurrent(index, 0)} />
-                                <StepIndicatorStep label={t("W2 forms")} status={isCurrent(index, 1)} />
-                                <StepIndicatorStep label={t("1099 forms")} status={isCurrent(index, 2)} />
+                                <StepIndicatorStep label={t("W2.form")} status={isCurrent(index, 1)} />
+                                <StepIndicatorStep label={t("1099.form")} status={isCurrent(index, 2)} />
                                 <StepIndicatorStep label={t("Personal information")} status={isCurrent(index, 3)} />
                                 <StepIndicatorStep label={t("Review")} status={isCurrent(index, 4)} />
-                                <StepIndicatorStep label={t("Tax calculations")} status={isCurrent(index, 5)} />
+                                <StepIndicatorStep label={t("Calculations")} status={isCurrent(index, 5)} />
                             </StepIndicator>
-                            <Button type="submit" onClick={() => { index < 5 ? setIndex(prev => prev + 1) : null }}>Next</Button>
+                            <Button type="submit" onClick={() => { index < 5 ? setIndex(prev => prev + 1) : null }}>{t("Next")}</Button>
                         </div>
                         <Outlet />
                     </Grid>

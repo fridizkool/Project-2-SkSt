@@ -22,8 +22,8 @@
   "needAccount": "Don't have an account?",
   "user_one": "User",
   "user_other": "Users",
-  "loggedIn" : "$t(user_one) is logged in",
-  "loggedOut" : "$t(user_one) is logged out",
+  "loggedIn": "$t(user_one) is logged in",
+  "loggedOut": "$t(user_one) is logged out",
   "home": "Home",
   "calculator": "Calculator",
   "account": "My account",
@@ -74,8 +74,7 @@
     "Excess golden parachute payments": "Excess golden parachute payments",
     "Nonqualified deferred compensation": "Nonqualified deferred compensation"
   },
-  "TaxInfo":
-  {
+  "TaxInfo": {
     "Supplemental income": "Supplemental income",
     "Additional withholdings": "Additional withholdings",
     "Filing status": "Filing status",
