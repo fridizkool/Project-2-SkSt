@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardGroup } from '@trussworks/react-uswds';
+import { Button, Card, CardGroup } from '@trussworks/react-uswds';
 import Form1099 from './Form1099';
 
 interface FormData {
@@ -10,7 +10,7 @@ const C: React.FC<{ index: number; getDataCallback: (id: number, formData: FormD
   return (
     <Card gridLayout={{col:12}}>
       <Form1099 id={index} getDataCallback={getDataCallback} initInfo={info} />
-      <button onClick={onDelete}>Delete this form</button>
+      <Button onClick={onDelete} type={'button'} className='bg-error object-cover w-full'>Delete this form</Button>
     </Card>
   );
 };
@@ -40,6 +40,10 @@ const ListOf1099: React.FC<{ existingForms: any }> = ({ existingForms }) => {
     ));
     setIndex(existingForms.length);
     setInstances(listOfForms);
+
+    return () => {
+      submitAllForms();
+    }
   }, []);
 
   const handleSpawn = () => {
@@ -85,13 +89,13 @@ const ListOf1099: React.FC<{ existingForms: any }> = ({ existingForms }) => {
 
   return (
     <div>
-      <button onClick={handleSpawn}>Add new 1099</button>
+      <Button onClick={submitAllForms} type={'button'}>Save all 1099 forms</Button>
       <CardGroup>
         {Object.keys(instances).map(key => (
           <React.Fragment key={key}>{instances[key]}</React.Fragment>
         ))}
       </CardGroup>
-      <button onClick={submitAllForms}>Save all 1099 forms</button>
+      <Button onClick={handleSpawn} type={'button'}>Add new 1099</Button>
     </div>
   );
 };

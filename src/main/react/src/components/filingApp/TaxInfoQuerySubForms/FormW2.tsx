@@ -150,7 +150,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         name="sickPay"
                         checked={formData.sickPay}
                         label={t("W2.Third-party sick pay")}
-                        onChange={() => handleChange}
+                        onChange={handleChange}
 
                     />
                 </div>
@@ -201,7 +201,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="socialSecurity">Social Security wages:</label>
+                        <label htmlFor="socialSecurity">{t("W2.Social Security wages")}:</label>
                         <TextInput
                             id="socialSecurity"
                             name="socialSecurity"
@@ -211,7 +211,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="withheldSS">Withheld Social Security:</label>
+                        <label htmlFor="withheldSS">{t("W2.Social Security taxes withheld")}:</label>
                         <TextInput
                             id="withheldSS"
                             name="withheldSS"
@@ -221,7 +221,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="medicare">Medicare wages:</label>
+                        <label htmlFor="medicare">{t("W2.Medicare Wages")}:</label>
                         <TextInput
                             id="medicare"
                             name="medicare"
@@ -231,7 +231,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="withheldMedicare">Withheld Medicare:</label>
+                        <label htmlFor="withheldMedicare">{t("W2.Medicare taxes withheld")}:</label>
                         <TextInput
                             id="withheldMedicare"
                             name="withheldMedicare"
@@ -241,7 +241,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="socialSecurityTips">Social Security Tips:</label>
+                        <label htmlFor="socialSecurityTips">{t("W2.Social Security tips")}:</label>
                         <TextInput
                             id="socialSecurityTips"
                             name="socialSecurityTips"
@@ -252,7 +252,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                     </div>
 
                     <div>
-                        <label htmlFor="dependentCare">Dependent Care:</label>
+                        <label htmlFor="dependentCare">{t("W2.Dependent care")}:</label>
                         <TextInput
                             id="dependentCare"
                             name="dependentCare"

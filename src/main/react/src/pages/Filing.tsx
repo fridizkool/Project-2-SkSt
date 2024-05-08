@@ -27,10 +27,10 @@ export default function Filing() {
 
     return (
         <>
-            <GridContainer className=' bg-lightest min-h-screen'>
+            <GridContainer className='bg-lightest min-h-screen'>
                 <Grid row className='padding-1'>
                     <Grid col={12}>
-                        <div className='inline-flex items-center'>
+                        <div className='bg-base-lightest inline-flex items-center'>
                             <Button type="submit" onClick={() => { index > 0 ? setIndex(prev => prev - 1) : null }}>{t("Back")}</Button>
                             <StepIndicator centered headingLevel='h4' ofText={t("of")} stepText={t('Step')} className=' bg-base-lightest'>
                                 <StepIndicatorStep label={t("Introduction")} status={isCurrent(index, 0)} />

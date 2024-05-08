@@ -566,8 +566,28 @@ video {
   top: 0px;
 }
 
+.top-10 {
+  top: 2.5rem;
+}
+
+.top-auto {
+  top: auto;
+}
+
+.top-80 {
+  top: 20rem;
+}
+
+.top-40 {
+  top: 10rem;
+}
+
 .z-50 {
   z-index: 50;
+}
+
+.z-40 {
+  z-index: 40;
 }
 
 .flex {
@@ -598,12 +618,20 @@ video {
   align-items: center;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .justify-between {
   justify-content: space-between;
 }
 
 .justify-items-start {
   justify-items: start;
+}
+
+.justify-items-center {
+  justify-items: center;
 }
 
 .justify-self-end {
@@ -687,6 +715,11 @@ video {
 .object-contain {
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .object-fill {

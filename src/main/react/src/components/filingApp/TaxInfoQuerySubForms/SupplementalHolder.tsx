@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FormMisc from './FormMisc';
-import { CardGroup } from '@trussworks/react-uswds';
+import { Button, CardGroup } from '@trussworks/react-uswds';
 
 
 const SupplementalHolder: React.FC<{ existingForms: any }> = ({ existingForms }) => {
@@ -28,10 +28,10 @@ const SupplementalHolder: React.FC<{ existingForms: any }> = ({ existingForms })
   };
   return (
     <>
+      <Button onClick={submitAllForms} type={'button'}>Save supplemental information</Button>
       <CardGroup>
         <FormMisc initInfo={existingForms} id={0} getDataCallback={updateSubmission} />
       </CardGroup>
-      <button onClick={submitAllForms}>Save supplemental information</button>
     </>
   );
 };

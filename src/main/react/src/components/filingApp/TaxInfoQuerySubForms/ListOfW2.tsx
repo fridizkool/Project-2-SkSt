@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FormW2 from './FormW2';
-import { Card, CardGroup } from '@trussworks/react-uswds';
+import { Button, Card, CardGroup } from '@trussworks/react-uswds';
 
 interface FormData {
   [key: string]: any;
@@ -10,7 +10,7 @@ const C: React.FC<{ index: number; getDataCallback: (id: number, formData: FormD
   return (
     <Card gridLayout={{ col: 12 }}>
       <FormW2 id={index} getDataCallback={getDataCallback} initInfo={info} />
-      <button onClick={onDelete}>Delete this form</button>
+      <Button onClick={onDelete} type={'button'} className='bg-error object-cover w-full'>Delete this form</Button>
     </Card>
   );
 };
@@ -84,13 +84,13 @@ const ListOfW2: React.FC<{ existingForms: any }> = ({ existingForms }) => {
 
   return (
     <div>
-      <button onClick={handleSpawn}>Add new W2</button>
+    <Button onClick={submitAllForms} type={'button'}>Save all 1099 forms</Button>
       <CardGroup>
         {Object.keys(instances).map(key => (
           <React.Fragment key={key}>{instances[key]}</React.Fragment>
         ))}
-        <button onClick={submitAllForms}>Save all W2 forms</button>
       </CardGroup>
+      <Button onClick={handleSpawn} type='button'>Add new W2</Button>
     </div>
   );
 };
