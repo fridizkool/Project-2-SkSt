@@ -1,7 +1,9 @@
 import { Card, CardBody, CardHeader, Checkbox, Radio, TextInput } from '@trussworks/react-uswds';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Form } from 'react-router-dom';
 const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
+    const { t } = useTranslation();
     // Define the default initial state
     const defaultFormData = {
         supplementalIncome: '',
@@ -43,6 +45,7 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
 
     const [radioSelectedValue, setSelectedValue] = useState<string>('single');
     const [isTakingStandardDeduction, setIsTakingStandardDeduction] = useState<boolean>(formData.takingStandardDeduction);
+    const [studentStatus, setStudentStatus] = useState<boolean>(formData.studentStatus);
 
     const handleChangeRadio = (value: string) => {
         setSelectedValue(value);
@@ -66,6 +69,15 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
 
     }, [isTakingStandardDeduction])
 
+    useEffect(() => {
+        setFormData(prevState => ({
+            ...prevState,
+            ["studentStatus"]: studentStatus,
+        }));
+        getDataCallback(formData);
+
+    }, [studentStatus])
+
 
     return (
         <>
@@ -76,7 +88,7 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
                 <CardBody>
                     <Form method="post" onBlur={handleFormChange}>
                         <div>
-                            <label htmlFor="supplementalIncome">Supplemental Income:</label>
+                            <label htmlFor="supplementalIncome">{t("TaxInfo.Supplemental income")}:</label>
                             <TextInput
                                 id="supplementalIncome"
                                 name="supplementalIncome"
@@ -86,7 +98,7 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
                             />
                         </div>
                         <div>
-                            <label htmlFor="additionalWithholdings">Additional Withholdings:</label>
+                            <label htmlFor="additionalWithholdings">{t("TaxInfo.Additional withholdings")}:</label>
                             <TextInput
                                 id="additionalWithholdings"
                                 name="additionalWithholdings"
@@ -96,34 +108,34 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
                             />
                         </div>
                         <div>
-                            <label htmlFor="filingStatus">Filing Status:</label>
+                            <label htmlFor="filingStatus">{t("TaxInfo.Filing status")}:</label>
 
                             <div>
                                 <Radio
                                     checked={radioSelectedValue === 'single'}
                                     id="single"
-                                    label="Single"
+                                    label={t("TaxInfo.Single")}
                                     name="options"
                                     onChange={() => handleChangeRadio('single')}
                                 />
                                 <Radio
                                     checked={radioSelectedValue === 'marriedJoint'}
                                     id="marriedJoint"
-                                    label="Married Filing Jointly"
+                                    label={t("TaxInfo.Married filing jointly")}
                                     name="options"
                                     onChange={() => handleChangeRadio('marriedJoint')}
                                 />
                                 <Radio
                                     checked={radioSelectedValue === 'marriedSeparate'}
                                     id="marriedSeparate"
-                                    label="Married Filing Separately"
+                                    label={t("TaxInfo.Married filing separately")}
                                     name="options"
                                     onChange={() => handleChangeRadio('marriedSeparate')}
                                 />
                                 <Radio
                                     checked={radioSelectedValue === 'headOfHousehold'}
                                     id="headOfHousehold"
-                                    label="Head of Household"
+                                    label={t("Head of household")}
                                     name="options"
                                     onChange={() => handleChangeRadio('headOfHousehold')}
                                 />
@@ -132,7 +144,7 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
                         </div>
 
                         <div>
-                            <label htmlFor="dependents">Dependents:</label>
+                            <label htmlFor="dependents">{t("TaxInfo.Dependents")}:</label>
                             <TextInput
                                 id="dependents"
                                 name="dependents"
@@ -143,7 +155,7 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
                         </div>
 
                         <div>
-                            <label htmlFor="standardDeduction">Student Status:</label>
+                            {/* <label htmlFor="standardDeduction">{t("TaxInfo.Student status")}:</label> */}
                             <Checkbox
                                 id="standardDeduction"
                                 name="standardDeduction"
@@ -151,11 +163,21 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
                                 onChange={() => {
                                     setIsTakingStandardDeduction(prev => !prev)
                                 }}
-                                label={"standardDeduction"} />
+                                label={t("TaxInfo.Standard deduction")} />
+                        </div>
+                        <div>
+                            <Checkbox
+                                id="studentStatus"
+                                name="studentStatus"
+                                checked={studentStatus}
+                                onChange={() => {
+                                    setStudentStatus(prev => !prev)
+                                }}
+                                label={t("TaxInfo.Student status")} />
                         </div>
 
                         <div>
-                            <label htmlFor="specialDeductions">Additional Deductions:</label>
+                            <label htmlFor="specialDeductions">{t("TaxInfo.Special deductions")}:</label>
                             <TextInput
                                 disabled={isTakingStandardDeduction}
                                 id="specialDeductions"

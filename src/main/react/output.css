@@ -623,6 +623,11 @@ video {
   background-color: rgb(214 211 209 / var(--tw-bg-opacity));
 }
 
+.bg-neutral-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 212 212 / var(--tw-bg-opacity));
+}
+
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -641,12 +646,32 @@ video {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-stone-300 {
+  --tw-gradient-from: #d6d3d1 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(214 211 209 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-neutral-300 {
+  --tw-gradient-from: #d4d4d4 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(212 212 212 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 .to-neutral-200 {
   --tw-gradient-to: #e5e5e5 var(--tw-gradient-to-position);
 }
 
 .to-slate-200 {
   --tw-gradient-to: #e2e8f0 var(--tw-gradient-to-position);
+}
+
+.to-stone-300 {
+  --tw-gradient-to: #d6d3d1 var(--tw-gradient-to-position);
+}
+
+.to-neutral-300 {
+  --tw-gradient-to: #d4d4d4 var(--tw-gradient-to-position);
 }
 
 .box-decoration-slice {
