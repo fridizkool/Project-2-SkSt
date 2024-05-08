@@ -169,4 +169,21 @@ public class ApiController {
             return ResponseEntity.ok(null);
         }
     }
+
+    @GetMapping("/adminUsers")
+    public ResponseEntity<List<AppUser>> getUsersForAdmin(Authentication auth)
+    {
+        AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
+
+        if (u.getRole().equals("ROLE_ADMIN")){
+            List<AppUser> l = userService.getAllUsers();
+            List<AppUser> sendList = new ArrayList<>();
+            for (AppUser user : l){
+                sendList.add(user.returnRedactedUser(user));
+            }
+        }
+
+        return ResponseEntity.ok(null);
+    }
+
 }

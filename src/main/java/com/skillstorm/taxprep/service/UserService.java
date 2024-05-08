@@ -1,5 +1,6 @@
 package com.skillstorm.taxprep.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,10 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username + " not found."));
         return user;
+    }
+
+    public List<AppUser> getAllUsers(){
+        return userRepository.findAll();
     }
 
     public void registerUser(AppUser user) {
@@ -89,6 +94,12 @@ public class UserService implements UserDetailsService {
         } else {
             throw new RuntimeException("User with that username does not exist.");
         }
+    }
+
+    public String getRole(Long user_id) {
+        Optional<AppUser> foundUser = userRepository.findById(user_id);
+        AppUser u = foundUser.get();
+        return u.getRole();
     }
 
 }

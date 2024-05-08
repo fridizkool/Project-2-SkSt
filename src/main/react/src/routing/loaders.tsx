@@ -385,7 +385,15 @@ export async function loadUsersPage() {
     
     if(authStatus.authenticated && authStatus.userRole === "ADMIN"){
 
-        //TODO GET user information from server and return it
+        const response = await fetch('/adminusers', {
+            method: 'GET',
+        });
+        try {
+            const responseJSON = await response.json();
+            return responseJSON;
+        } catch (e) {
+            return redirect("/error");
+        }
 
         return null;
     } else {

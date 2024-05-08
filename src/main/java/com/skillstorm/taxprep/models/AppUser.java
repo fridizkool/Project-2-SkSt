@@ -87,6 +87,28 @@ public class AppUser implements UserDetails {
         this.ssn = ssn;
     }
 
+    
+    public AppUser(AppUser u) {
+        this.id = u.id;
+        this.username = u.username;
+        this.password = u.password;
+        this.role = u.role;
+        this.firstName = u.firstName;
+        this.lastName = u.lastName;
+        this.initial = u.initial;
+        this.suffix = u.suffix;
+        this.address = u.address;
+        this.telephoneNumber = u.telephoneNumber;
+        this.ssn = u.ssn;
+    }
+
+    public AppUser returnRedactedUser(AppUser u){
+        AppUser tempUser = new AppUser(u);
+        tempUser.setPassword("");
+        tempUser.setSsn("");
+        return tempUser;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();

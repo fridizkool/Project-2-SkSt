@@ -32,11 +32,16 @@ public class AuthController {
     public AuthStatus returnAuthStatus(Authentication authentication) {
         AuthStatus authStatus = new AuthStatus();
         try{
+            AppUser u = (AppUser) userService.loadUserByUsername(authentication.getName());
             boolean isAuthenticated = authentication.isAuthenticated();
-            String userRole = authentication.getAuthorities().stream()
-                .findFirst()
-                .map(Object::toString)
-                .orElse("NONE");
+            String tempRole = u.getRole();
+
+            String userRole = "NONE";
+            if(tempRole.equals("ROLE_USER")){
+                userRole = "USER";
+            } else if(tempRole.equals("ROLE_ADMIN")){
+                userRole = "ADMIN";
+            }
 
             authStatus.setAuthenticated(isAuthenticated);;
             authStatus.setUserRole(userRole);
@@ -63,8 +68,11 @@ public class AuthController {
     // Register a new Admin user
     @PostMapping("/auth/register/admin")
     public ResponseEntity<Void> registerAdmin(@RequestBody AppUser user) {
-        // userService.registerAdmin(user);
-        System.out.println("Attempted admin creation- did nothing");
+        try{
+            userService.registerAdmin(user);
+        } catch (Exception e){
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
