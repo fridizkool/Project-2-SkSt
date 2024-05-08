@@ -3,7 +3,6 @@ import PasswordChangeForm from "../components/accountManagement/PasswordChangeFo
 export default function ChangePassword() {
     return (
         <>
-            <p>Change password</p>
             <PasswordChangeForm/>
         </>
     )

@@ -37,6 +37,11 @@
   "Create account": "Créer un compte",
   "Re-type password": "Retaper le $t(profile.password)",
   "indicates a required field": "indique un champ obligatoire",
+  "incorrect": "E-mail et / ou mot de passe incorrect",
+  "Back": "Dos",
+  "Next": "Suivant",
+  "New password": "Nouveau mot de passe",
+  "Introduction": "Introduction",
   "W2": {
     "form": "Formulaire IRS W2",
     "Employer ID": "Numéro d'employeur",

@@ -27,6 +27,7 @@
   "home": "Home",
   "calculator": "Calculator",
   "account": "My account",
+  "incorrect": "Incorrect email and/or password",
   "W2": {
     "form": "IRS form W2",
     "Employer ID": "Employer ID",

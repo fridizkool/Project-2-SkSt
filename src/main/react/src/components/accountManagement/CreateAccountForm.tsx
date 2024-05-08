@@ -6,7 +6,7 @@ import splash from "../../assets/tax-papers.jpeg";
 import { useTranslation } from "react-i18next";
 
 export default function CreateAccount() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -26,8 +26,8 @@ export default function CreateAccount() {
           {error}
         </Alert>
       )}
-      <GridContainer className=''>
-        <Grid row className=''>
+      <GridContainer className='use-section'>
+        <Grid row className='flex-justify-center'>
           <Grid col={12}>
             <div className="bg-white padding-y-3 padding-x-5 border border-base-lighter">
               <Grid row gap="md">
@@ -64,7 +64,7 @@ export default function CreateAccount() {
                       </Label>
                       <TextInput id="password-create-account-confirm" name="password-confirm" type={showPassword ? 'text' : 'password'} autoCapitalize="off" autoCorrect="off" required={true} />
                       <button title="Show password" type="button" className="usa-show-password" aria-controls="password-create-account password-create-account-confirm" onClick={(): void => setShowPassword(showPassword => !showPassword)}>
-                        {showPassword ? 'Hide password' : 'Show password'}
+                        {showPassword ? t('Hide password') : t('Show password')}
                       </button>
 
                       <Checkbox id="terms-and-conditions" name="terms-and-conditions" className="margin-y-3" required={true} label={t("TODO_TERMS&CONDITIONS")} />
