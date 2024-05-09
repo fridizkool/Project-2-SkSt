@@ -61,6 +61,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
         getDataCallback(id, formData);
     };
 
+ 
     const formItems: any = [{
         title: "Misc Information",
         content:
@@ -172,6 +173,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
     }
 
     ]
+
 
     return (
         <>

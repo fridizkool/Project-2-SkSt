@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import FormW2 from './FormW2';
 import { Button, Card, CardGroup } from '@trussworks/react-uswds';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { returnFromSentForm } from '../../../util/redux/counterSlice';
 
 interface FormData {
   [key: string]: any;
@@ -50,7 +52,6 @@ const ListOfW2: React.FC<{ existingForms: any }> = ({ existingForms }) => {
       [index]: <C key={index} index={index} getDataCallback={updateSubmission} info={{}} onDelete={() => handleDelete(index)} />
     }));
     setIndex(prevIndex => prevIndex + 1);
-    console.log(instances)
   };
 
   const handleDelete = (deletedIndex: number) => {
@@ -67,6 +68,10 @@ const ListOfW2: React.FC<{ existingForms: any }> = ({ existingForms }) => {
     });
   };
 
+
+  const formStatus = useSelector((state:any) => state.formStatus.sendStatus)
+  const dispatch = useDispatch()
+
   async function submitAllForms() {
     const listOfW2Formdata = [];
     for (let i in itemsMap) {
@@ -82,8 +87,18 @@ const ListOfW2: React.FC<{ existingForms: any }> = ({ existingForms }) => {
       body: JSON.stringify(listOfW2Formdata)
     });
 
-    console.log(response);
+    dispatch(returnFromSentForm(response.status)); 
+    
   };
+
+
+  
+  useEffect(() => {
+    if(formStatus == 1){
+      submitAllForms();
+    }
+  }, [formStatus]); // Only run the effect if yourReduxState changes
+  
 
   return (
     <div>
