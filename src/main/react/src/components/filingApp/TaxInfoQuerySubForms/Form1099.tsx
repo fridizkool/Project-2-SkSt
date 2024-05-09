@@ -148,6 +148,21 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                         onChange={handleChangeText}
                     />
                 </div>
+                
+                <div>
+                    <label htmlFor="goldenParachute">{t("1099.Excess golden parachute payments")}:</label>
+                    <InputGroup>
+                        <InputPrefix>$</InputPrefix>
+                        <TextInput
+                            id="goldenParachute"
+                            name="goldenParachute"
+                            value={formData.goldenParachute}
+                            type="number"
+                            onChange={handleChangeText}
+                        />
+                    </InputGroup>
+                </div>
+
                 <div>
                     <Checkbox
                         id={"fatca" + id}
@@ -166,20 +181,6 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                         onChange={handleCheck}
                         label={t("1099.5000")}
                     />
-                </div>
-
-                <div>
-                    <label htmlFor="goldenParachute">{t("1099.Excess golden parachute payments")}:</label>
-                    <InputGroup>
-                        <InputPrefix>$</InputPrefix>
-                        <TextInput
-                            id="goldenParachute"
-                            name="goldenParachute"
-                            value={formData.goldenParachute}
-                            type="number"
-                            onChange={handleChangeText}
-                        />
-                    </InputGroup>
                 </div>
             </Card>,
         expanded: false,

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Alert, Button, Grid, GridContainer, Table } from "@trussworks/react-uswds";
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Users() {
     const totalReturns: any = useLoaderData() as any;
     const [disabledButtons, setDisabledButtons] = useState<string[]>([]); // State to manage disabled buttons
     const nav = useNavigate();
+    const { t } = useTranslation();
 
     const deleteCallback = (username: string) => {
         // Disable the button while processing the delete request
@@ -44,11 +46,13 @@ export default function Users() {
                 <Grid className='flex-justify-center' row>
                     <Grid col={12}>
                         <div className="bg-white padding-y-3 padding-x-5 border border-base-lighter shadow-md">
+                            <h1>{t("user_other")}</h1>
+                            <hr/>
                             <Table striped fullWidth className="bg-primary-lighter">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Username</th>
+                                        <th>{t("profile.email")}</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -63,7 +67,7 @@ export default function Users() {
                                                     disabled={disabledButtons.includes(user.username)} // Disable the button if username is in the disabledButtons array
                                                     onClick={() => deleteCallback(user.username)} // Call deleteCallback function onClick
                                                 >
-                                                    {disabledButtons.includes(user.username) ? 'Deleting...' : 'Delete'}
+                                                    {disabledButtons.includes(user.username) ? t('Deleting...') : t('Delete')}
                                                 </Button>
                                             </td>
                                         </tr>

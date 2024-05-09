@@ -67,7 +67,7 @@ export default function CreateAccount() {
                         {showPassword ? t('Hide password') : t('Show password')}
                       </button>
 
-                      <Checkbox id="terms-and-conditions" name="terms-and-conditions" className="margin-y-3" required={true} label={t("TODO_TERMS&CONDITIONS")} />
+                      <Checkbox id="terms-and-conditions" name="terms-and-conditions" className="margin-y-3" required={true} label={t("Terms and conditions")} />
 
                       <Button type="submit">{t("Create account")}</Button>
                     </Fieldset>
