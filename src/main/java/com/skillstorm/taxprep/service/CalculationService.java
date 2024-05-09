@@ -18,6 +18,7 @@ import com.skillstorm.taxprep.util.TaxStatus;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Optional;
 
@@ -70,15 +71,15 @@ public class CalculationService {
                     e.printStackTrace();
                 }
             }
-            double sum = 0.0;
+            Double sum = 0.0;
             TaxStatus t = taxBrackets.get(status);
             TaxBracket[] x = t.getBrackets();
             sum += getIncomeById(userId);
             sum -= getDeductionsById(userId, t);
             Double tax = doProgressiveTax(sum, x);
             tax -= getWithheldById(userId);
-
-            return "" + tax;
+            DecimalFormat f = new DecimalFormat("##.00");
+            return f.format(tax);
         } catch (Exception e) {
             e.printStackTrace();
             return "0";
@@ -128,11 +129,11 @@ public class CalculationService {
         Double sum = 0.0;
         TaxStatus status = taxBrackets.get(taxInfoRepository.getByUserId(userId).getFilingStatus());
         Optional<Boolean> standard = taxInfoRepository.findStandardDeductionByUserId(userId);
+        Optional<Double> specialDeductions = taxInfoRepository.findSpecialDeductionsByUserId(userId);
         System.out.println(standard);
         if (standard.isPresent() && standard.get())
-            return status.getDeduction();
-        Optional<Double> specialDeductions = taxInfoRepository.findSpecialDeductionsByUserId(userId);
-        if (specialDeductions.isPresent())
+            sum += status.getDeduction();
+        else if (specialDeductions.isPresent())
             sum += specialDeductions.get();
 
         return sum;

@@ -75,17 +75,51 @@ public class DatabaseService {
         }
     }
 
+    public TaxInfoW2 fixW2(TaxInfoW2 info)    //clamp to atleast 0 and sanitation
+    {
+        info.setDependentCare(Math.max(0.0, (info.getDependentCare() == null ? 0.0 : info.getDependentCare())));
+        info.setIncome(Math.max(0.0, (info.getIncome() == null ? 0.0 : info.getIncome())));
+        info.setAllocatedTips(Math.max(0.0, (info.getAllocatedTips() == null ? 0.0 : info.getAllocatedTips())));
+        info.setMedicare(Math.max(0.0, (info.getMedicare() == null ? 0.0 : info.getMedicare())));
+        info.setSocialSecurity(Math.max(0.0, (info.getSocialSecurity() == null ? 0.0 : info.getSocialSecurity())));
+        info.setSocialSecurityTips(Math.max(0.0, (info.getSocialSecurityTips() == null ? 0.0 : info.getSocialSecurityTips())));
+        info.setWithheldFederal(Math.max(0.0, (info.getWithheldFederal() == null ? 0.0 : info.getWithheldFederal())));
+        info.setWithheldMedicare(Math.max(0.0, (info.getWithheldMedicare() == null ? 0.0 : info.getWithheldMedicare())));
+        info.setWithheldSS(Math.max(0.0, (info.getWithheldSS() == null ? 0.0 : info.getWithheldSS())));
+        return info;
+    }
+
     public TaxInfo1099 submit1099(TaxInfo1099 info)
     {
         // AppUser user = userRepo.getById(info.getUserId());
         // info.setUser(user);
+        info = fix1099(info);
         return taxInfo1099Repo.save(info);
     }
 
     public TaxInfo1099 update1099(TaxInfo1099 info, Long id)
     {
         info.setId(id);
+        info = fix1099(info);
         return taxInfo1099Repo.save(info);
+    }
+
+    public TaxInfo1099 fix1099(TaxInfo1099 info)    //clamp to atleast 0 and sanitation
+    {
+        info.setAttorney(Math.max(0.0, (info.getAttorney() == null ? 0.0 : info.getAttorney())));
+        info.setCropInsurance(Math.max(0.0, (info.getCropInsurance() == null ? 0.0 : info.getCropInsurance())));
+        info.setDeferrals(Math.max(0.0, (info.getDeferrals() == null ? 0.0 : info.getDeferrals())));
+        info.setFishPurchased(Math.max(0.0, (info.getFishPurchased() == null ? 0.0 : info.getFishPurchased())));
+        info.setFishingBoat(Math.max(0.0, (info.getFishingBoat() == null ? 0.0 : info.getFishingBoat())));
+        info.setGoldenParachute(Math.max(0.0, (info.getGoldenParachute() == null ? 0.0 : info.getGoldenParachute())));
+        info.setHealthcare(Math.max(0.0, (info.getHealthcare() == null ? 0.0 : info.getHealthcare())));
+        info.setNonqualifiedDeferrals(Math.max(0.0, (info.getNonqualifiedDeferrals() == null ? 0.0 : info.getNonqualifiedDeferrals())));
+        info.setOtherIncome(Math.max(0.0, (info.getOtherIncome() == null ? 0.0 : info.getOtherIncome())));
+        info.setRents(Math.max(0.0, (info.getRents() == null ? 0.0 : info.getRents())));
+        info.setRoyalties(Math.max(0.0, (info.getRoyalties() == null ? 0.0 : info.getRoyalties())));
+        info.setSubstitute(Math.max(0.0, (info.getSubstitute() == null ? 0.0 : info.getSubstitute())));
+        info.setWithheldFederal(Math.max(0.0, (info.getWithheldFederal() == null ? 0.0 : info.getWithheldFederal())));
+        return info;
     }
 
     public List<TaxInfo1099> getAllTaxInfo1099s()
@@ -109,6 +143,7 @@ public class DatabaseService {
             taxInfoW2Repo.deleteAllByUserId(userId);
         //insert list of items
         for (TaxInfoW2 i : newList){
+            i = fixW2(i);
             taxInfoW2Repo.save(i);
         }
     }
@@ -128,6 +163,7 @@ public class DatabaseService {
         taxInfo1099Repo.deleteAllByUserId(userId);
         //insert list of items
         for (TaxInfo1099 i : newList){
+            i = fix1099(i);
             taxInfo1099Repo.save(i);
         }
     }
