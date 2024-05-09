@@ -11,13 +11,13 @@ export function I18nButton() {
     const langs = [
         {
             attr: 'fr',
-            label: 'Français',
+            label: 'Passer au Français',
             label_local: 'French',
             on_click: () => i18n.changeLanguage('fr')
         },
         {
             attr: 'en',
-            label: 'English',
+            label: 'Switch to English',
             on_click: () => i18n.changeLanguage('en')
         }
     ];

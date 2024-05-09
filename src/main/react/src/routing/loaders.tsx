@@ -26,6 +26,11 @@ export async function loadLoginPage() {
     }
 }
 
+export async function loadHome() {
+    const authStatus = await queryAuthStatus();
+    return authStatus.authenticated;
+}
+
 export async function loadPasswordUpdatePage() {
     const authStatus = await queryAuthStatus();
     if (authStatus.authenticated) {

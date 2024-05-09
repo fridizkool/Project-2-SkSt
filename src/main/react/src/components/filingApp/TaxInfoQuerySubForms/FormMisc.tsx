@@ -84,7 +84,7 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
         <>
             <Card gridLayout={{ col: 12 }}>
                 <CardHeader>
-                    <h1>IRS Form W2</h1>
+                    <h1>Additional information</h1>
                 </CardHeader>
                 <CardBody>
                     <Form method="post" onBlur={handleFormChange}>

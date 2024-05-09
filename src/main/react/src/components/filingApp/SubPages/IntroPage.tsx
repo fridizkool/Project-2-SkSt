@@ -8,10 +8,8 @@ export default function IntroPage() {
             <SummaryBoxHeading headingLevel="h1">{t("Filing information")}</SummaryBoxHeading>
             <SummaryBoxContent>
                 <ul>
-                    <li>{t("Submit many W2 forms")}</li>
-                    <li>{t("Submit many 1099 forms")}</li>
-                    <li>{t("Fill out some more information")}</li>
-                    <li><i>{t("See how much you are expected to owe or be returned!")}</i></li>
+                    <li>{t("Provide the necessary information from your W2's, 1099's, and any supplementary information if you have it. We'll do the rest!")}</li>
+
                 </ul>
             </SummaryBoxContent>
         </SummaryBox>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import FormMisc from './FormMisc';
-import { Button, CardGroup } from '@trussworks/react-uswds';
-import { useTranslation } from 'react-i18next';
+import { CardGroup } from '@trussworks/react-uswds';
+// import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import { returnFromSentForm } from '../../../util/redux/counterSlice';
 
 
 const SupplementalHolder: React.FC<{ existingForms: any }> = ({ existingForms }) => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [subFormData, setSubFormdata] = useState<any>();
 
 
@@ -47,7 +47,7 @@ const SupplementalHolder: React.FC<{ existingForms: any }> = ({ existingForms })
   };
   return (
     <>
-      <Button onClick={submitAllForms} type={'button'}>{t("Save supplemental information")}</Button>
+      {/* <Button onClick={submitAllForms} type={'button'}>{t("Save supplemental information")}</Button> */}
       <CardGroup>
         <FormMisc initInfo={existingForms} id={0} getDataCallback={updateSubmission} />
       </CardGroup>

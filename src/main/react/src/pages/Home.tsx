@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import splash from "../assets/calculating.jpeg";
 import { useTranslation } from "react-i18next";
 
 export default function Home() {
     const { t } = useTranslation();
+    const loggedIn: any = useLoaderData() as any;
+
+    
     return (
         <>
             <div className="top-0 left-0 z-0">
@@ -15,12 +18,27 @@ export default function Home() {
                         <h1 className="usa-hero__heading">
                             {t("Start your taxes off right!")}
                         </h1>
-                        <p>
-                            <h2>
-                                {t("Welcome to Clairvoyant Tax Prep! Please sign up and use our services to calculate your taxes!")}
-                            </h2>
-                        </p>
-                        <div className="pt-1"><Link to={"/create"} className="usa-button">{t("Sign up")}</Link></div>
+                        { !loggedIn && 
+                        <>
+                            <p>
+                                <h2>
+                                    {t("Welcome to Clairvoyant Tax Prep! Please sign up and use our services to calculate your taxes!")}
+                                </h2>
+                            </p>
+                            <div className="pt-1"><Link to={"/create"} className="usa-button">{t("Sign up")}</Link></div>
+                        </>
+                        }
+
+                        { loggedIn && 
+                        <>
+                            <p>
+                                <h2>
+                                    {t("Welcome to Clairvoyant Tax Prep!")}
+                                </h2>
+                            </p>
+                            <div className="pt-1"><Link to={"/filing"} className="usa-button">{t("Calcuate taxes now!")}</Link></div>
+                        </>
+                        }
                     </div>
                 </div>
             </div >
