@@ -15,7 +15,7 @@ public interface TaxInfo1099Repository extends JpaRepository<TaxInfo1099, Long> 
 
     List<TaxInfo1099> getByUserId(Long userId);
 
-    @Query("select sum(t.otherIncome + t.rents + t.royalties + t.healthcare + t.cropInsurance + t.attorney + t.deferrals + t.nonqualifiedDeferrals + t.fishingBoat + t.fishPurchased) from TaxInfo1099 t where t.userId = ?1")
+    @Query("select sum(t.otherIncome + t.rents + t.royalties + t.healthcare + t.cropInsurance + t.attorney + t.deferrals + t.nonqualifiedDeferrals + t.fishingBoat + t.fishPurchased + t.substitute) from TaxInfo1099 t where t.userId = ?1")
     public Optional<Double> getAllIncomeByUserId(Long userId);
 
     @Query("select sum(t.withheldFederal) from TaxInfo1099 t where t.userId = ?1")
