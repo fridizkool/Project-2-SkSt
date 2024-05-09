@@ -9,15 +9,19 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { router } from './routing/Router.tsx'
+import { Provider } from 'react-redux'
+import store from './util/redux/store.js'
 
 
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-    <I18nextProvider i18n={i18n}>
-        <App/>
-    </I18nextProvider>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+      <I18nextProvider i18n={i18n}>
+          <App/>
+      </I18nextProvider>
+    </Provider>
   </React.StrictMode>,
 )

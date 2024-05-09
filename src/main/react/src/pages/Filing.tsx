@@ -4,6 +4,8 @@ import { Button, Grid, GridContainer, StepIndicator, StepIndicatorStep } from '@
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { sendForm, setToWaiting } from '../util/redux/counterSlice';
 
 
 export default function Filing() {
@@ -11,6 +13,7 @@ export default function Filing() {
     const PAGES = ["intro", "w2", "1099", "misc", "review", "result"]
     const [index, setIndex] = useState(0);
     const nav = useNavigate();
+    const [goingForward, setGoingForward] = useState(true);
 
     useEffect(() => {
         if (index >= 0 && index <= 5)
@@ -25,13 +28,47 @@ export default function Filing() {
         return "complete";
     }
 
+    const formStatus = useSelector((state:any) => state.formStatus.sendStatus)
+    const dispatch = useDispatch()
+    
+    useEffect( () => {
+        if(formStatus == 2){
+            dispatch(setToWaiting())
+            if(goingForward){
+                index < 5 ? setIndex(prev => prev + 1) : null
+            } else {
+                index > 0 ? setIndex(prev => prev - 1) : null
+            }
+        }
+    }, [formStatus])
+
+    const handleButtonClickForward = () => {
+        setGoingForward(true)
+        if(index >= 1 && index <= 3){
+            dispatch(sendForm())
+        } else {
+            index < 5 ? setIndex(prev => prev + 1) : null
+        }
+    };
+
+    const handleButtonClickBackward = () => {
+        setGoingForward(false)
+        if(index >= 1 && index <= 3){
+            dispatch(sendForm())
+        } else {
+            index > 0 ? setIndex(prev => prev - 1) : null
+        }
+    };
+
+
     return (
         <>
             <GridContainer className='bg-lightest min-h-screen'>
                 <Grid row className='padding-1'>
                     <Grid col={12}>
                         <div className='inline-flex items-center'>
-                            <Button type="submit" onClick={() => { index > 0 ? setIndex(prev => prev - 1) : null }}>{t("Back")}</Button>
+                            
+                            <Button type="submit" onClick={handleButtonClickBackward}>{t("Back")}</Button>
                             <StepIndicator centered headingLevel='h4' ofText={t("of")} stepText={t('Step')} className='bg-base-lightest'>
                                 <StepIndicatorStep label={t("Introduction")} status={isCurrent(index, 0)} />
                                 <StepIndicatorStep label={t("W2.form")} status={isCurrent(index, 1)} />
@@ -40,9 +77,11 @@ export default function Filing() {
                                 <StepIndicatorStep label={t("Review")} status={isCurrent(index, 4)} />
                                 <StepIndicatorStep label={t("Calculations")} status={isCurrent(index, 5)} />
                             </StepIndicator>
-                            <Button type="submit" onClick={() => { index < 5 ? setIndex(prev => prev + 1) : null }}>{t("Next")}</Button>
+                            <Button type="submit" onClick={handleButtonClickForward}>{t("Next")}</Button>
                         </div>
-                        <Outlet />
+                        {/* <SendFormSignalContext.Provider value={sendFormSignal}> */}
+                            <Outlet />
+                        {/* </SendFormSignalContext.Provider> */}
                     </Grid>
                 </Grid>
             </GridContainer>
