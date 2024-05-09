@@ -80,6 +80,7 @@ public class CalculationService {
 
             return "" + tax;
         } catch (Exception e) {
+            e.printStackTrace();
             return "0";
         }
 
@@ -123,6 +124,18 @@ public class CalculationService {
         return sum;
     }
 
+    public Double getDeductionsById(Long userId) {
+        Double sum = 0.0;
+        TaxStatus status = taxBrackets.get(taxInfoRepository.getByUserId(userId).getFilingStatus());
+        if (taxInfoRepository.findStandardDeductionByUserId(userId))
+            return status.getDeduction();
+        Optional<Double> specialDeductions = taxInfoRepository.findSpecialDeductionsByUserId(userId);
+        if (specialDeductions.isPresent())
+            sum += specialDeductions.get();
+
+        return sum;
+    }
+
     public Double getWithheldById(Long userId) {
         Double sum = 0.0;
         Optional<Double> withheldW2 = taxInfoW2Repository.getAllWithheldByUserId(userId);
@@ -133,7 +146,7 @@ public class CalculationService {
             sum += withheld1099.get();
         Optional<Double> additional = taxInfoRepository.findAdditionalWithholdingsByUserId(userId);
         if (additional.isPresent())
-            sum += withheld1099.get();
+            sum += additional.get();
         return sum;
     }
 }
