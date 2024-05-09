@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Checkbox, Radio, TextInput } from '@trussworks/react-uswds';
+import { Card, CardBody, CardHeader, Checkbox, InputGroup, InputPrefix, Radio, TextInput } from '@trussworks/react-uswds';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Form } from 'react-router-dom';
@@ -60,13 +60,12 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
             ...prevState,
             ["isTakingStandardDeduction"]: isTakingStandardDeduction
         }));
-        if(isTakingStandardDeduction)
-            {
-                setFormData(prevState => ({
-                    ...prevState,
-                    ["specialDeductions"]: "0"
-                }));
-            }
+        if (isTakingStandardDeduction) {
+            setFormData(prevState => ({
+                ...prevState,
+                ["specialDeductions"]: "0"
+            }));
+        }
         getDataCallback(formData);
 
     }, [isTakingStandardDeduction])
@@ -91,23 +90,29 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
                     <Form method="post" onBlur={handleFormChange}>
                         <div>
                             <label htmlFor="supplementalIncome">{t("TaxInfo.Supplemental income")}:</label>
-                            <TextInput
-                                id="supplementalIncome"
-                                name="supplementalIncome"
-                                value={formData.supplementalIncome}
-                                type="number"
-                                onChange={handleChangeText}
-                            />
+                            <InputGroup>
+                                <InputPrefix>$</InputPrefix>
+                                <TextInput
+                                    id="supplementalIncome"
+                                    name="supplementalIncome"
+                                    value={formData.supplementalIncome}
+                                    type="number"
+                                    onChange={handleChangeText}
+                                />
+                            </InputGroup>
                         </div>
                         <div>
                             <label htmlFor="additionalWithholdings">{t("TaxInfo.Additional withholdings")}:</label>
-                            <TextInput
-                                id="additionalWithholdings"
-                                name="additionalWithholdings"
-                                value={formData.additionalWithholdings}
-                                type="number"
-                                onChange={handleChangeText}
-                            />
+                            <InputGroup>
+                                <InputPrefix>$</InputPrefix>
+                                <TextInput
+                                    id="additionalWithholdings"
+                                    name="additionalWithholdings"
+                                    value={formData.additionalWithholdings}
+                                    type="number"
+                                    onChange={handleChangeText}
+                                />
+                            </InputGroup>
                         </div>
                         <div>
                             <label htmlFor="filingStatus">{t("TaxInfo.Filing status")}:</label>
@@ -184,14 +189,17 @@ const FormMisc: React.FC<FormMiscProps> = ({ getDataCallback, initInfo }) => {
 
                         <div>
                             <label htmlFor="specialDeductions">{t("TaxInfo.Special deductions")}:</label>
-                            <TextInput
-                                disabled={isTakingStandardDeduction}
-                                id="specialDeductions"
-                                name="specialDeductions"
-                                value={formData.specialDeductions}
-                                type="number"
-                                onChange={handleChangeText}
-                            />
+                            <InputGroup>
+                                <InputPrefix>$</InputPrefix>
+                                <TextInput
+                                    disabled={isTakingStandardDeduction}
+                                    id="specialDeductions"
+                                    name="specialDeductions"
+                                    value={formData.specialDeductions}
+                                    type="number"
+                                    onChange={handleChangeText}
+                                />
+                            </InputGroup>
                         </div>
                     </Form>
                 </CardBody>

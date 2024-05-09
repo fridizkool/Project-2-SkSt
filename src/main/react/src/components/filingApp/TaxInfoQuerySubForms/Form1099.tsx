@@ -1,4 +1,4 @@
-import { CardBody, CardHeader, Checkbox, TextInput } from '@trussworks/react-uswds';
+import { CardBody, CardHeader, Checkbox, InputGroup, InputPrefix, TextInput } from '@trussworks/react-uswds';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Form } from 'react-router-dom';
@@ -155,68 +155,86 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
 
                     <div>
                         <label htmlFor="rents">{t("1099.Rents")}:</label>
-                        <TextInput
-                            id="rents"
-                            name="rents"
-                            value={formData.rents}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="rents"
+                                name="rents"
+                                value={formData.rents}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
                         <label htmlFor="royalties">{t("1099.Royalties")}:</label>
-                        <TextInput
-                            id="royalties"
-                            name="royalties"
-                            value={formData.royalties}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="royalties"
+                                name="royalties"
+                                value={formData.royalties}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
                         <label htmlFor="otherIncome">{t("1099.Other income")}:</label>
-                        <TextInput
-                            id="otherIncome"
-                            name="otherIncome"
-                            value={formData.otherIncome}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="otherIncome"
+                                name="otherIncome"
+                                value={formData.otherIncome}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
                         <label htmlFor="withheldFederal">{t("1099.Federal taxes withheld")}:</label>
-                        <TextInput
-                            id="withheldFederal"
-                            name="withheldFederal"
-                            value={formData.withheldFederal}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="withheldFederal"
+                                name="withheldFederal"
+                                value={formData.withheldFederal}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
                         <label htmlFor="fishingBoat">{t("1099.Fishing boat proceeds")}:</label>
-                        <TextInput
-                            id="fishingBoat"
-                            name="fishingBoat"
-                            value={formData.fishingBoat}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="fishingBoat"
+                                name="fishingBoat"
+                                value={formData.fishingBoat}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
                         <label htmlFor="healthcare">{t("1099.Medical and healthcare payments")}:</label>
-                        <TextInput
-                            id="healthcare"
-                            name="healthcare"
-                            value={formData.healthcare}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="healthcare"
+                                name="healthcare"
+                                value={formData.healthcare}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
@@ -231,57 +249,72 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
 
                     <div>
                         <label htmlFor="substitute">{t("1099.Substitute payments in lieu of dividends or interest")}:</label>
-                        <TextInput
-                            id="substitute"
-                            name="substitute"
-                            value={formData.substitute}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="substitute"
+                                name="substitute"
+                                value={formData.substitute}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
                         <label htmlFor="cropInsurance">{t("1099.Crop insurance proceeds")}:</label>
-                        <TextInput
-                            id="cropInsurance"
-                            name="cropInsurance"
-                            value={formData.cropInsurance}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="cropInsurance"
+                                name="cropInsurance"
+                                value={formData.cropInsurance}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
                         <label htmlFor="attorney">{t("1099.Gross proceeds paid to an attorney")}:</label>
-                        <TextInput
-                            id="attorney"
-                            name="attorney"
-                            value={formData.attorney}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="attorney"
+                                name="attorney"
+                                value={formData.attorney}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
                         <label htmlFor="fishPurchased">{t("1099.Fish purchased for resale")}:</label>
-                        <TextInput
-                            id="fishPurchased"
-                            name="fishPurchased"
-                            value={formData.fishPurchased}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="fishPurchased"
+                                name="fishPurchased"
+                                value={formData.fishPurchased}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
                         <label htmlFor="deferrals">{t("1099.Section 409A deferrals")}:</label>
-                        <TextInput
-                            id="deferrals"
-                            name="deferrals"
-                            value={formData.deferrals}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="deferrals"
+                                name="deferrals"
+                                value={formData.deferrals}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
@@ -296,24 +329,30 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
 
                     <div>
                         <label htmlFor="goldenParachute">{t("1099.Excess golden parachute payments")}:</label>
-                        <TextInput
-                            id="goldenParachute"
-                            name="goldenParachute"
-                            value={formData.goldenParachute}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="goldenParachute"
+                                name="goldenParachute"
+                                value={formData.goldenParachute}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
                         <label htmlFor="nonqualifiedDeferrals">{t("1099.Nonqualified deferred compensation")}:</label>
-                        <TextInput
-                            id="nonqualifiedDeferrals"
-                            name="nonqualifiedDeferrals"
-                            value={formData.nonqualifiedDeferrals}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="nonqualifiedDeferrals"
+                                name="nonqualifiedDeferrals"
+                                value={formData.nonqualifiedDeferrals}
+                                type="text"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                 </CardBody>

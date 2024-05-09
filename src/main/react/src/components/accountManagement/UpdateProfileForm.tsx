@@ -1,11 +1,11 @@
-import { Fieldset, Label, TextInput, Button, Link, Alert } from '@trussworks/react-uswds';
+import { Fieldset, Label, TextInput, Button, Link, Alert, TextInputMask } from '@trussworks/react-uswds';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Form, useLocation } from 'react-router-dom';
 
 
 const UpdateProfileForm: React.FC<UserProfileFormProps> = ({ userProfile }: any) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const [editState, isEdit] = useState(false);
     const [showSocial, setShowSocial] = useState(false);
 
@@ -51,20 +51,22 @@ const UpdateProfileForm: React.FC<UserProfileFormProps> = ({ userProfile }: any)
                     <TextInput type="text" id="lastName" name="lastName" value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} disabled={!editState} />
                     <Label htmlFor="initial">{t("profile.name.middle")}</Label>
                     {/* TODO Just do middle name? */}
-                    <TextInput type="text" id="initial" name="initial" value={formData.initial} onChange={(e) => setFormData({ ...formData, initial: e.target.value })} disabled={!editState} />
+                    <TextInputMask type="text" id="initial" name="initial" mask='_' pattern='\w' charset="A" value={formData.initial} onChange={(e) => setFormData({ ...formData, initial: e.target.value })} disabled={!editState} />
                     <Label htmlFor="suffix">{t("profile.name.suffix")}</Label>
                     <TextInput type="text" id="suffix" name="suffix" value={formData.suffix} onChange={(e) => setFormData({ ...formData, suffix: e.target.value })} disabled={!editState} />
                     <Label htmlFor="address">{t("profile.address")}</Label>
                     <TextInput type="text" id="address" name="address" value={formData.address} onChange={(e) => setFormData({ ...formData, address: e.target.value })} disabled={!editState} />
                     <Label htmlFor="telephoneNumber">{t("profile.telephone")}</Label>
-                    <TextInput type="text" id="telephoneNumber" name="telephoneNumber" value={formData.telephoneNumber} onChange={(e) => setFormData({ ...formData, address: e.target.value })} disabled={!editState} />
+                    <TextInputMask type="tel" id="telephoneNumber" name="telephoneNumber" mask="___-___-____" pattern="\d{3}-\d{3}-\d{4}" value={formData.telephoneNumber} onChange={(e) => setFormData({ ...formData, telephoneNumber: e.target.value })} disabled={!editState} />
                     <Label htmlFor="social">{t("profile.ssn")}</Label>
-                    <TextInput type={showSocial ? 'text' : 'password'} id="ssn" name="ssn" value={formData.ssn} onChange={(e) => setFormData({ ...formData, ssn: e.target.value })} disabled={!editState}></TextInput>
+                    <TextInputMask type={showSocial ? 'text' : 'password'} id="ssn" name="ssn" mask="___ __ ____" pattern="^(?!(000|666|9))\d{3} (?!00)\d{2} (?!0000)\d{4}$" value={formData.ssn} onChange={(e) => setFormData({ ...formData, ssn: e.target.value })} disabled={!editState} />
                     <Button title="Show SSN" type="button" className="usa-show-password justify-self-end" aria-controls="ssn" onClick={(): void => setShowSocial(showSocial => !showSocial)}>
                         {showSocial ? t("Hide SSN") : t("Show SSN")}<br />
                     </Button>
-                    <Button type="button" onClick={() => { isEdit(editState => !editState); if (editState) { setShowSocial(false) } }}>{t("Edit")}</Button>
-                    <Button type="submit" disabled={!editState}>{t("Submit")}</Button><br />
+                    <div className='pt-3'>
+                        <Button type="button" onClick={() => { isEdit(editState => !editState); if (editState) { setShowSocial(false) } }}>{t("Edit")}</Button>
+                        <Button type="submit" disabled={!editState}>{t("Submit")}</Button><br />
+                    </div>
                     <Link variant="nav" href={'/changepassword'}>{t("Change Password")}</Link>
                 </Fieldset>
             </Form>

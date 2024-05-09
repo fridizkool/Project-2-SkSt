@@ -52,6 +52,7 @@
   "Save all W2 forms": "Enregistrez tous les W2 formulaires",
   "Add new W2": "Ajouter un nouveau W2",
   "Delete this form": "Supprimer ce formulaire",
+  "Employer information": "Renseignements sur l'employeur",
   "W2": {
     "form": "Formulaire IRS W2",
     "Employer ID": "Numéro d'employeur",
