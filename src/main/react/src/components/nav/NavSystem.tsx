@@ -43,9 +43,7 @@ export const NavSystem: React.FC<NavSystemProps> = ({ navOptions, enabled }) => 
         <div className="usa-navbar">
           <NavMenuButton label="Menu" onClick={toggleMobileNav} className="usa-menu-btn" />
         </div>
-        <PrimaryNav aria-label="Primary navigation" items={primaryNavItems} onToggleMobileNav={toggleMobileNav} mobileExpanded={mobileNavOpen}>
-        </PrimaryNav>
-
+        <PrimaryNav aria-label="Primary navigation" items={primaryNavItems} onToggleMobileNav={toggleMobileNav} mobileExpanded={mobileNavOpen} />
       </Header>
     }
   </>

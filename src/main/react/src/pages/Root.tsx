@@ -7,11 +7,9 @@ function Root() {
 
   return (
     <>
-      <div className="sticky top-0 left-0 z-50 bg-base-light">
+      <div className="sticky top-0 left-0 z-50 bg-base-lighter">
         <div className="left-0 px-4">
           <TitleBanner />
-        </div>
-        <div className="bg-base-lighter">
           <NavSystem navOptions={navOptions} enabled={true} />
         </div>
       </div>

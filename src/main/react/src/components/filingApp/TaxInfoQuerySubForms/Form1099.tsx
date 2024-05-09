@@ -161,7 +161,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="rents"
                                 name="rents"
                                 value={formData.rents}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -175,7 +175,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="royalties"
                                 name="royalties"
                                 value={formData.royalties}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -189,7 +189,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="otherIncome"
                                 name="otherIncome"
                                 value={formData.otherIncome}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -203,7 +203,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="withheldFederal"
                                 name="withheldFederal"
                                 value={formData.withheldFederal}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -217,7 +217,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="fishingBoat"
                                 name="fishingBoat"
                                 value={formData.fishingBoat}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -231,7 +231,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="healthcare"
                                 name="healthcare"
                                 value={formData.healthcare}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -255,7 +255,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="substitute"
                                 name="substitute"
                                 value={formData.substitute}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -269,7 +269,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="cropInsurance"
                                 name="cropInsurance"
                                 value={formData.cropInsurance}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -283,7 +283,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="attorney"
                                 name="attorney"
                                 value={formData.attorney}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -297,7 +297,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="fishPurchased"
                                 name="fishPurchased"
                                 value={formData.fishPurchased}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -311,7 +311,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="deferrals"
                                 name="deferrals"
                                 value={formData.deferrals}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -335,7 +335,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="goldenParachute"
                                 name="goldenParachute"
                                 value={formData.goldenParachute}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -349,7 +349,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                                 id="nonqualifiedDeferrals"
                                 name="nonqualifiedDeferrals"
                                 value={formData.nonqualifiedDeferrals}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>

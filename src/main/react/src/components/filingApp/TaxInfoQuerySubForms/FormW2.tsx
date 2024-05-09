@@ -103,7 +103,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                             id="allocatedTips"
                             name="allocatedTips"
                             value={formData.allocatedTips}
-                            type="text"
+                            type="number"
                             onChange={handleChangeText}
                         />
                     </InputGroup>
@@ -192,7 +192,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                                 id="income"
                                 name="income"
                                 value={formData.income}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -205,7 +205,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                                 id="withheldFederal"
                                 name="withheldFederal"
                                 value={formData.withheldFederal}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -218,7 +218,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                                 id="socialSecurity"
                                 name="socialSecurity"
                                 value={formData.socialSecurity}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -231,7 +231,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                                 id="withheldSS"
                                 name="withheldSS"
                                 value={formData.withheldSS}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -244,7 +244,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                                 id="medicare"
                                 name="medicare"
                                 value={formData.medicare}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -257,7 +257,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                                 id="withheldMedicare"
                                 name="withheldMedicare"
                                 value={formData.withheldMedicare}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -270,7 +270,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                                 id="socialSecurityTips"
                                 name="socialSecurityTips"
                                 value={formData.socialSecurityTips}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
@@ -284,7 +284,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                                 id="dependentCare"
                                 name="dependentCare"
                                 value={formData.dependentCare}
-                                type="text"
+                                type="number"
                                 onChange={handleChangeText}
                             />
                         </InputGroup>
