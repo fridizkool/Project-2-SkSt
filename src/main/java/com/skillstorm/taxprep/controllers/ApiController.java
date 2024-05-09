@@ -3,7 +3,6 @@ package com.skillstorm.taxprep.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.taxprep.models.AppUser;
+import com.skillstorm.taxprep.models.ReviewModel;
 import com.skillstorm.taxprep.models.TaxInfo;
 import com.skillstorm.taxprep.models.TaxInfo1099;
 import com.skillstorm.taxprep.models.TaxInfoW2;
@@ -36,9 +36,9 @@ public class ApiController {
     UserService userService;
 
     @GetMapping("/calculateTaxesOwed")
-    public ResponseEntity<String> calculateTaxesOwed(Authentication auth) {
+    public ResponseEntity<ReviewModel> calculateTaxesOwed(Authentication auth) {
         AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
-        String x = cS.calculateTaxesOwed(u.getId());
+        ReviewModel x = cS.getReview(u.getId());
         return new ResponseEntity<>(x, HttpStatus.OK);
     }
 
@@ -80,7 +80,7 @@ public class ApiController {
     @PostMapping("/submitW2List")
     public ResponseEntity<String> submitW2List(Authentication auth, @RequestBody List<TaxInfoW2> taxforms)
     {
-        List<TaxInfoW2> newList = new ArrayList();
+        List<TaxInfoW2> newList = new ArrayList<TaxInfoW2>();
         AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
         for (TaxInfoW2 info : taxforms){
             TaxInfoW2 newInfo = new TaxInfoW2(u, info);
@@ -106,7 +106,7 @@ public class ApiController {
     @PostMapping("/submit1099List")
     public ResponseEntity<String> submit1099List(Authentication auth, @RequestBody List<TaxInfo1099> taxforms)
     {
-        List<TaxInfo1099> newList = new ArrayList();
+        List<TaxInfo1099> newList = new ArrayList<TaxInfo1099>();
         AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
         for (TaxInfo1099 info : taxforms){
             TaxInfo1099 newInfo = new TaxInfo1099(u, info);
@@ -157,15 +157,15 @@ public class ApiController {
     }
 
     @GetMapping("/getReview")
-    public ResponseEntity<TaxInfo> getReview(Authentication auth) {
+    public ResponseEntity<ReviewModel> getReview(Authentication auth) {
         AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
         try {
-            TaxInfo t = dbS.selectMiscByUserId(u.getId());
+            ReviewModel review = cS.getReview(u.getId());
 
-            if(t == null){
-                return ResponseEntity.ok(new TaxInfo());
+            if(review == null){
+                return ResponseEntity.ok(new ReviewModel());
             } else {
-                return ResponseEntity.ok(t);
+                return ResponseEntity.ok(review);
             }
         } catch (Exception e){
             return ResponseEntity.ok(null);
