@@ -31,7 +31,7 @@ public class UserApiController {
     @PutMapping("/user")
     public ResponseEntity<String> updateUserProfile(Authentication authentication, @RequestBody AppUser user_update) {
         String user_name = authentication.getName(); 
-        System.out.println("\n\n\n --- \n\n\n" + user_name);
+        // System.out.println("\n\n\n --- \n\n\n" + user_name);
         try {
             userService.updateUser(user_name, user_update);
         } catch (Exception e){

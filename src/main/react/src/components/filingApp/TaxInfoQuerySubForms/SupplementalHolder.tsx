@@ -48,6 +48,7 @@ const SupplementalHolder: React.FC<{ existingForms: any }> = ({ existingForms })
   return (
     <>
       {/* <Button onClick={submitAllForms} type={'button'}>{t("Save supplemental information")}</Button> */}
+      {/* <Button onClick={submitAllForms} type={'button'}>{t("Save supplemental information")}</Button> */}
       <CardGroup>
         <FormMisc initInfo={existingForms} id={0} getDataCallback={updateSubmission} />
       </CardGroup>

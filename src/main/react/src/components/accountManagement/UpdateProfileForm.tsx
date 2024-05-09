@@ -29,9 +29,6 @@ const UpdateProfileForm: React.FC<UserProfileFormProps> = ({ userProfile }: any)
         setError(errorMessage);
     })
 
-
-
-
     return (
         <>
             {error && (
@@ -50,7 +47,6 @@ const UpdateProfileForm: React.FC<UserProfileFormProps> = ({ userProfile }: any)
                     <Label htmlFor="lastName">{t("profile.name.last")}</Label>
                     <TextInput type="text" id="lastName" name="lastName" value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} disabled={!editState} />
                     <Label htmlFor="initial">{t("profile.name.middle")}</Label>
-                    {/* TODO Just do middle name? */}
                     <TextInputMask type="text" id="initial" name="initial" mask='_' pattern='\w' charset="A" value={formData.initial} onChange={(e) => setFormData({ ...formData, initial: e.target.value })} disabled={!editState} />
                     <Label htmlFor="suffix">{t("profile.name.suffix")}</Label>
                     <TextInput type="text" id="suffix" name="suffix" value={formData.suffix} onChange={(e) => setFormData({ ...formData, suffix: e.target.value })} disabled={!editState} />
