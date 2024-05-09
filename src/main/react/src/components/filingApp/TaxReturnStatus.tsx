@@ -21,7 +21,7 @@ export default function TaxReturnStatus() {
                                 <p>{t("1099 income")}: {"$" + totals.income1099.toFixed(2)}</p>
                                 <p>{t("Supplemental income")}: {"$" + totals.incomePersonal.toFixed(2)}</p>
                                 <p>{t("Deductions")}: {"-$" + totals.deductions.toFixed(2)}</p>
-                                <p><strong>{t("Total taxable income")}</strong>=${(totals.incomePersonal + totals.income1099 + totals.incomeW2 - totals.deductions).toFixed(2)}</p>
+                                <p><strong>{t("Total taxable income")}</strong>: ${(totals.incomePersonal + totals.income1099 + totals.incomeW2 - totals.deductions).toFixed(2)}</p>
                             </div>
                         </ProcessListItem>
                         <ProcessListItem>
@@ -37,7 +37,7 @@ export default function TaxReturnStatus() {
                                 <p>{t("W2 withheld")}: {"$" + totals.withheldW2.toFixed(2)}</p>
                                 <p>{t("1099 withheld")}: {"$" + totals.withheld1099.toFixed(2)}</p>
                                 <p>{t("Additional withheld")}: {"$" + totals.withheldPersonal.toFixed(2)}</p>
-                                <p><strong>{t("Total withheld")}</strong>=${(totals.withheldPersonal + totals.withheld1099 + totals.withheldW2).toFixed(2)}</p>
+                                <p><strong>{t("Total withheld")}</strong>: ${(totals.withheldPersonal + totals.withheld1099 + totals.withheldW2).toFixed(2)}</p>
                             </div>
                         </ProcessListItem>
 
