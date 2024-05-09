@@ -72,6 +72,7 @@ public class TaxInfo {
     public TaxInfo(AppUser u, TaxInfo taxInfo) {
         //TODO Auto-generated constructor stub
         this.userId = u.getId();
+        this.id = taxInfo.id;
         this.user = u;
         this.supplementalIncome = taxInfo.supplementalIncome;
         this.additionalWithholdings = taxInfo.additionalWithholdings;

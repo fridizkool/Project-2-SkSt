@@ -50,15 +50,14 @@ public class CalculationService {
         try {
             TaxInfo userTaxInfo = dbS.selectMiscByUserId(userId);
             String status = userTaxInfo.getFilingStatus();
+            System.out.println(status);
 
             if (taxBrackets == null) { // lazy load
                 Resource bracketResource = context.getResource("classpath:static/tax_brackets.json");
-                TypeToken<Map<String, TaxStatus>> mapType = new TypeToken<Map<String, TaxStatus>>() {
-                };
+                TypeToken<Map<String, TaxStatus>> mapType = new TypeToken<Map<String, TaxStatus>>() { };
                 Gson taxJson = new Gson();
                 try {
-                    taxBrackets = taxJson.fromJson(bracketResource.getContentAsString(Charset.defaultCharset()),
-                            mapType);
+                    taxBrackets = taxJson.fromJson(bracketResource.getContentAsString(Charset.defaultCharset()), mapType);
                 } catch (JsonSyntaxException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -70,6 +69,7 @@ public class CalculationService {
                     e.printStackTrace();
                 }
             }
+            System.out.println(taxBrackets.get(status));
             double sum = 0.0;
             TaxStatus t = taxBrackets.get(status);
             TaxBracket[] x = t.getBrackets();
@@ -91,8 +91,7 @@ public class CalculationService {
         for (TaxBracket bracket : brackets) {
             if (taxable <= 0)
                 break;
-            Double taxedAtBracket = Math.min(bracket.getMax() - bracket.getMin() + 1, taxable); // clamp taxable for
-                                                                                                // this bracket
+            Double taxedAtBracket = Math.min(bracket.getMax() - bracket.getMin() + 1, taxable); // clamp taxable for this bracket
             tax += taxedAtBracket * bracket.getRate();
             taxable -= taxedAtBracket;
         }

@@ -9,8 +9,8 @@ public class TaxStatus
     public TaxStatus(String status, Double deduction, TaxBracket[] brackets)
     {
         this.status = status;
-        this.brackets = brackets;
         this.deduction = deduction;
+        this.brackets = brackets;
     }
 
     public String getStatus() {
