@@ -43,7 +43,7 @@ export default function Users() {
             <GridContainer className='usa-section'>
                 <Grid className='flex-justify-center' row>
                     <Grid col={12}>
-                        <div className="bg-gradient-to-r from-slate-400 to-slate-200 padding-y-3 padding-x-5 border border-base-lighter shadow-md">
+                        <div className="bg-white padding-y-3 padding-x-5 border border-base-lighter shadow-md">
                             <Table striped fullWidth className="bg-primary-lighter">
                                 <thead>
                                     <tr>

@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Card } from '@trussworks/react-uswds';
+import { Button, Card, CardGroup } from '@trussworks/react-uswds';
 import Form1099 from './Form1099';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
   [key: string]: any;
 }
 
 const C: React.FC<{ index: number; getDataCallback: (id: number, formData: FormData) => void, info: any; onDelete: () => void }> = ({ index, getDataCallback, info, onDelete }) => {
+  const { t } = useTranslation();
   return (
-    <Card>
+    <Card gridLayout={{ col: 12 }}>
       <Form1099 id={index} getDataCallback={getDataCallback} initInfo={info} />
-      <button onClick={onDelete}>Delete this form</button>
+      <Button onClick={onDelete} type={'button'} className='bg-error'>{t("Delete this form")}</Button>
     </Card>
   );
 };
 
-const ListOf1099: React.FC<{existingForms: any }> = ({existingForms }) => {
+const ListOf1099: React.FC<{ existingForms: any }> = ({ existingForms }) => {
+  const { t } = useTranslation();
   const [itemsMap, setItemsMap] = useState<{ [id: number]: FormData }>({});
   const [instances, setInstances] = useState<{ [key: string]: JSX.Element }>({});
   const [index, setIndex] = useState<number>(0);
@@ -42,21 +45,21 @@ const ListOf1099: React.FC<{existingForms: any }> = ({existingForms }) => {
     setInstances(listOfForms);
   }, []);
 
-    const handleSpawn = () => {
-        setInstances(prevInstances => ({
-            ...prevInstances,
-            [index]: <C key={index} index={index} getDataCallback={updateSubmission} info={{}} onDelete={() => handleDelete(index)} />
-        }));
-        setIndex(prevIndex => prevIndex + 1);
-        console.log(instances)
-    };
+  const handleSpawn = () => {
+    setInstances(prevInstances => ({
+      ...prevInstances,
+      [index]: <C key={index} index={index} getDataCallback={updateSubmission} info={{}} onDelete={() => handleDelete(index)} />
+    }));
+    setIndex(prevIndex => prevIndex + 1);
+    console.log(instances)
+  };
 
   const handleDelete = (deletedIndex: number) => {
     setInstances(prevInstances => {
-        const newState = { ...prevInstances };
-        delete newState[deletedIndex];
-        return newState;
-      });
+      const newState = { ...prevInstances };
+      delete newState[deletedIndex];
+      return newState;
+    });
 
     setItemsMap(prevState => {
       const newState = { ...prevState };
@@ -65,31 +68,33 @@ const ListOf1099: React.FC<{existingForms: any }> = ({existingForms }) => {
     });
   };
 
-  async function submitAllForms(){
-      const listOfW2Formdata = [];
-      for(let i in itemsMap){
-          listOfW2Formdata.push(itemsMap[i]);
-      }
+  async function submitAllForms() {
+    const listOfW2Formdata = [];
+    for (let i in itemsMap) {
+      listOfW2Formdata.push(itemsMap[i]);
+    }
 
-      const headers = {
-          'Content-Type': 'application/json',
-      };    
-      const response = await fetch('/submit1099List', {
-          method: 'POST',
-          headers: headers,
-          body: JSON.stringify(listOfW2Formdata)
-      });
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const response = await fetch('/submit1099List', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(listOfW2Formdata)
+    });
 
-      console.log(response);
+    console.log(response);
   };
 
   return (
     <div>
-        <button onClick={handleSpawn}>Add new 1099</button>
-            {Object.keys(instances).map(key => (
-                <div key={key}>{instances[key]}</div>
-            ))}
-        <button onClick={submitAllForms}>Save all 1099 forms</button>
+      <Button onClick={submitAllForms} type={'button'}>{t("Save all 1099 forms")}</Button>
+      <CardGroup>
+        {Object.keys(instances).map(key => (
+          <React.Fragment key={key}>{instances[key]}</React.Fragment>
+        ))}
+      </CardGroup>
+      <Button onClick={handleSpawn} type={'button'}>{t("Add new 1099")}</Button>
     </div>
   );
 };

@@ -12,7 +12,7 @@ export default function Account() {
             <GridContainer className='usa-section'>
                 <Grid className='flex-justify-center' row>
                     <Grid col={12}>
-                        <div className="bg-gradient-to-r from-slate-400 to-slate-200 padding-y-3 padding-x-5 border border-base-lighter">
+                        <div className="bg-white padding-y-3 padding-x-5 border border-base-lighter">
                             <Grid col={6}>
                                 <UpdateProfileForm userProfile={userProfile} />
                             </Grid>

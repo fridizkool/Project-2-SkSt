@@ -13,7 +13,7 @@ export default function TaxReturnStatus() {
                 <CardBody>
                     <div>
                         Total Federal Return
-                        {`${totalReturns}`}
+                        {` ${totalReturns}`}
                     </div>
 
                     <div>
@@ -21,7 +21,7 @@ export default function TaxReturnStatus() {
                     </div>
 
                     <div>
-                        Total deductions taken: 
+                        Total deductions taken:
                     </div>
                 </CardBody>
             </Card>

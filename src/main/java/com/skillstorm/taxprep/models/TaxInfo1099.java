@@ -96,11 +96,14 @@ public class TaxInfo1099 {
     public TaxInfo1099() {
     }
 
+    
+
     public TaxInfo1099(Long id, Long userId, AppUser user, String payerInformation, String payerTin,
-            String recipientTin, String recipientInformation, Long accountNumber, Double rents, Double royalties,
-            Double otherIncome, Double withheldFederal, Double fishingBoat, Double healthcare, Boolean over5000,
-            Double substitute, Double cropInsurance, Double attorney, Double fishPurchased, Double deferrals,
-            Boolean fatca, Double goldenParachute, Double nonqualifiedDeferrals) {
+            String recipientTin, String recipientName, String recipientAddress, String recipientLocation,
+            Long accountNumber, Double rents, Double royalties, Double otherIncome, Double withheldFederal,
+            Double fishingBoat, Double healthcare, Boolean over5000, Double substitute, Double cropInsurance,
+            Double attorney, Double fishPurchased, Double deferrals, Boolean fatca, Double goldenParachute,
+            Double nonqualifiedDeferrals) {
         this.id = id;
         this.userId = userId;
         this.user = user;
@@ -127,6 +130,8 @@ public class TaxInfo1099 {
         this.goldenParachute = goldenParachute;
         this.nonqualifiedDeferrals = nonqualifiedDeferrals;
     }
+
+
 
     public TaxInfo1099(AppUser u, TaxInfo1099 oldInfo) {
         this.user = u;

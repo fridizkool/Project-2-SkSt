@@ -245,7 +245,8 @@ export async function loadMiscPage() {
                 "filingStatus": "single",
                 "dependents": "2",
                 "studentStatus": true,
-                "specialDeductions": ""
+                "specialDeductions": "",
+                "isTakingStandardDeduction": ""
             }
 
             return (

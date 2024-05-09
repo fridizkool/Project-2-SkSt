@@ -5,7 +5,6 @@ export default function FormMiscInfoPage() {
     const existingForms: any = useLoaderData() as any;
 
     return <>
-        <p>FormMiscInfoPage</p>
         <SupplementalHolder existingForms={existingForms}/>
 
     </>

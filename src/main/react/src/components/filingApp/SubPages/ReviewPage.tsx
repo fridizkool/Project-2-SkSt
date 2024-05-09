@@ -4,7 +4,6 @@ export default function ReviewPage() {
     const totals: any = useLoaderData() as any;
 
     return <>
-        <p>ReviewPage</p>
         <p> Total Income {`${totals.totalIncome}`} </p>
 
 
