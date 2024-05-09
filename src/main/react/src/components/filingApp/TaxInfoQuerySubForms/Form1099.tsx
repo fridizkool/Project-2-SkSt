@@ -1,5 +1,5 @@
 import { CardBody, CardHeader, Checkbox, TextInput } from '@trussworks/react-uswds';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Form } from 'react-router-dom';
 const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) => {
@@ -42,11 +42,14 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
     const [formData, setFormData] = React.useState(mergedFormData);
 
 
-    const [_, setIsChecked] = useState(false);
-
-    const handleChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsChecked(event.target.checked);
+    function handleCheck(e: React.ChangeEvent<HTMLInputElement>) {
+        const { name, checked } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: checked
+        }));
     };
+
 
     // Handle form input change
     const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,19 +67,6 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
     const handleFormChange: React.ChangeEventHandler<HTMLFormElement> = (_) => {
         getDataCallback(id, formData);
     };
-
-    // const formItems: any = [{
-    //     title: "Misc Information",
-    //     content:
-    //         <Card>
-    //             {/* Misc form box items */}
-    //         </Card>,
-    //     expanded: false,
-    //     id: "general-info",
-    //     headingLevel: "h3",
-    // }
-
-    // ]
 
     return (
         <>
@@ -231,10 +221,10 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
 
                     <div>
                         <Checkbox
-                            id="over5000"
+                            id={"over5000" + id}
                             name="over5000"
                             checked={formData.over5000}
-                            onChange={handleChangeCheckbox}
+                            onChange={handleCheck}
                             label={t("1099.5000")}
                         />
                     </div>
@@ -296,11 +286,12 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
 
                     <div>
                         <Checkbox
-                            id="fatca"
+                            id={"fatca" + id}
                             name="fatca"
                             checked={formData.fatca}
-                            onChange={handleChangeCheckbox}
-                            label={t("1099.FATCA filing requirement")} />
+                            onChange={handleCheck}
+                            label={t("1099.FATCA filing requirement")}
+                        />
                     </div>
 
                     <div>

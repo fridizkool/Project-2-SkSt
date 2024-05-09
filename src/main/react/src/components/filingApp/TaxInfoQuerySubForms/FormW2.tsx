@@ -1,5 +1,5 @@
 import { Accordion, Card, CardBody, CardHeader, Checkbox, TextInput } from '@trussworks/react-uswds';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Form } from 'react-router-dom';
 const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
@@ -36,19 +36,20 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
     // Define state variable to store form data with the merged initial state
     const [formData, setFormData] = React.useState(mergedFormData);
 
-
-    const [_, setIsChecked] = useState(false);
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsChecked(event.target.checked);
-    };
-
     // Handle form input change
     const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
             ...prevState,
             [name]: value
+        }));
+    };
+
+    function handleCheck(e: React.ChangeEvent<HTMLInputElement>) {
+        const { name, checked } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: checked
         }));
     };
 
@@ -126,31 +127,31 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                 </div>
                 <div>
                     <Checkbox
-                        id="statutory"
+                        id={"statutory" + id}
                         name="statutory"
                         checked={formData.statutory}
                         label={t("W2.Statutory employment")}
-                        onChange={() => handleChange}
+                        onChange={handleCheck}
 
                     />
                 </div>
                 <div>
                     <Checkbox
-                        id="retirement"
+                        id={"retirement" + id}
                         name="retirement"
                         checked={formData.retirement}
                         label={t("W2.Retirement plan")}
-                        onChange={() => handleChange}
+                        onChange={handleCheck}
 
                     />
                 </div>
                 <div>
                     <Checkbox
-                        id="sickPay"
+                        id={"sickPay" + id}
                         name="sickPay"
                         checked={formData.sickPay}
                         label={t("W2.Third-party sick pay")}
-                        onChange={handleChange}
+                        onChange={handleCheck}
 
                     />
                 </div>
