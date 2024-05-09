@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import FormMisc from './FormMisc';
 import { Button, CardGroup } from '@trussworks/react-uswds';
+import { useTranslation } from 'react-i18next';
 
 
 const SupplementalHolder: React.FC<{ existingForms: any }> = ({ existingForms }) => {
+  const { t } = useTranslation();
   const [subFormData, setSubFormdata] = useState<any>();
 
 
@@ -28,7 +30,7 @@ const SupplementalHolder: React.FC<{ existingForms: any }> = ({ existingForms })
   };
   return (
     <>
-      <Button onClick={submitAllForms} type={'button'}>Save supplemental information</Button>
+      <Button onClick={submitAllForms} type={'button'}>{t("Save supplemental information")}</Button>
       <CardGroup>
         <FormMisc initInfo={existingForms} id={0} getDataCallback={updateSubmission} />
       </CardGroup>

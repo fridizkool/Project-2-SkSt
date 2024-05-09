@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import FormW2 from './FormW2';
 import { Button, Card, CardGroup } from '@trussworks/react-uswds';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
   [key: string]: any;
 }
 
 const C: React.FC<{ index: number; getDataCallback: (id: number, formData: FormData) => void, info: any; onDelete: () => void }> = ({ index, getDataCallback, info, onDelete }) => {
+  const { t } = useTranslation();
   return (
     <Card gridLayout={{ col: 12 }}>
       <FormW2 id={index} getDataCallback={getDataCallback} initInfo={info} />
-      <Button onClick={onDelete} type={'button'} className='bg-error object-cover w-full'>Delete this form</Button>
+      <Button onClick={onDelete} type={'button'} className='bg-error object-cover w-full'>{t("Delete this form")}</Button>
     </Card>
   );
 };
 
 const ListOfW2: React.FC<{ existingForms: any }> = ({ existingForms }) => {
+  const { t } = useTranslation();
   const [itemsMap, setItemsMap] = useState<{ [id: number]: FormData }>({});
   const [instances, setInstances] = useState<{ [key: string]: JSX.Element }>({});
   const [index, setIndex] = useState<number>(0);
@@ -84,13 +87,13 @@ const ListOfW2: React.FC<{ existingForms: any }> = ({ existingForms }) => {
 
   return (
     <div>
-    <Button onClick={submitAllForms} type={'button'}>Save all 1099 forms</Button>
+      <Button onClick={submitAllForms} type={'button'}>{t("Save all W2 forms")}</Button>
       <CardGroup>
         {Object.keys(instances).map(key => (
           <React.Fragment key={key}>{instances[key]}</React.Fragment>
         ))}
       </CardGroup>
-      <Button onClick={handleSpawn} type='button'>Add new W2</Button>
+      <Button onClick={handleSpawn} type='button'>{t("Add new W2")}</Button>
     </div>
   );
 };
