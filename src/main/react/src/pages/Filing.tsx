@@ -29,7 +29,6 @@ export default function Filing() {
     }
 
     const formStatus = useSelector((state:any) => state.formStatus.sendStatus)
-    const lastMessage = useSelector((state:any) => state.formStatus.lastMessage)
     const dispatch = useDispatch()
     
     useEffect( () => {
