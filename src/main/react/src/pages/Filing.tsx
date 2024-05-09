@@ -32,12 +32,14 @@ export default function Filing() {
     const dispatch = useDispatch()
     
     useEffect( () => {
+        console.log(goingForward)
         if(formStatus == 2){
             dispatch(setToWaiting())
             if(goingForward){
                 index < 5 ? setIndex(prev => prev + 1) : null
             } else {
                 index > 0 ? setIndex(prev => prev - 1) : null
+                setGoingForward(true)
             }
         }
     }, [formStatus])
