@@ -28,13 +28,13 @@ export default function Filing() {
         return "complete";
     }
 
-    const formStatus = useSelector((state:any) => state.formStatus.sendStatus)
+    const formStatus = useSelector((state: any) => state.formStatus.sendStatus)
     const dispatch = useDispatch()
-    
-    useEffect( () => {
-        if(formStatus == 2){
+
+    useEffect(() => {
+        if (formStatus == 2) {
             dispatch(setToWaiting())
-            if(goingForward){
+            if (goingForward) {
                 index < 5 ? setIndex(prev => prev + 1) : null
             } else {
                 index > 0 ? setIndex(prev => prev - 1) : null
@@ -45,7 +45,7 @@ export default function Filing() {
 
     const handleButtonClickForward = () => {
         setGoingForward(true)
-        if(index >= 1 && index <= 3){
+        if (index >= 1 && index <= 3) {
             dispatch(sendForm())
         } else {
             index < 5 ? setIndex(prev => prev + 1) : null
@@ -54,7 +54,7 @@ export default function Filing() {
 
     const handleButtonClickBackward = () => {
         setGoingForward(false)
-        if(index >= 1 && index <= 3){
+        if (index >= 1 && index <= 3) {
             dispatch(sendForm())
         } else {
             index > 0 ? setIndex(prev => prev - 1) : null
@@ -68,7 +68,7 @@ export default function Filing() {
                 <Grid row className='padding-1'>
                     <Grid col={12}>
                         <div className='inline-flex items-center'>
-                            
+
                             <Button type="submit" onClick={handleButtonClickBackward}>{t("Back")}</Button>
                             <StepIndicator centered headingLevel='h4' ofText={t("of")} stepText={t('Step')} className='bg-base-lightest'>
                                 <StepIndicatorStep label={t("Introduction")} status={isCurrent(index, 0)} />
@@ -80,9 +80,7 @@ export default function Filing() {
                             </StepIndicator>
                             <Button type="submit" onClick={handleButtonClickForward}>{t("Next")}</Button>
                         </div>
-                        {/* <SendFormSignalContext.Provider value={sendFormSignal}> */}
-                            <Outlet />
-                        {/* </SendFormSignalContext.Provider> */}
+                        <Outlet />
                     </Grid>
                 </Grid>
             </GridContainer>
