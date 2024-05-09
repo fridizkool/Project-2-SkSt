@@ -102,7 +102,7 @@ const ListOfW2: React.FC<{ existingForms: any }> = ({ existingForms }) => {
 
   return (
     <div>
-      <Button onClick={submitAllForms} type={'button'}>{t("Save all W2 forms")}</Button>
+      {/* <Button onClick={submitAllForms} type={'button'}>{t("Save all W2 forms")}</Button> */}
       <CardGroup>
         {Object.keys(instances).map(key => (
           <React.Fragment key={key}>{instances[key]}</React.Fragment>
