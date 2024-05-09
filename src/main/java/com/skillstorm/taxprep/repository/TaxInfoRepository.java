@@ -18,6 +18,9 @@ public interface TaxInfoRepository extends JpaRepository<TaxInfo, Long> {
     @Query("select sum(t.specialDeductions) from TaxInfo t where t.userId = ?1")
     public Optional<Double> findSpecialDeductionsByUserId(Long userId);
 
+    @Query("select sum(t.additionalWithholdings) from TaxInfo t where t.userId = ?1")
+    public Optional<Double> findAdditionalWithholdingsByUserId(Long userId);
+
     // @Query("select t from TaxInfoW2 t where t.userId = ?1")
     // public Optional<TaxInfo> selectByUserId(Long userId);
     

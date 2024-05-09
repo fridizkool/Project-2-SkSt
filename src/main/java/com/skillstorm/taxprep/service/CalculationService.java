@@ -50,14 +50,15 @@ public class CalculationService {
         try {
             TaxInfo userTaxInfo = dbS.selectMiscByUserId(userId);
             String status = userTaxInfo.getFilingStatus();
-    
-            if (taxBrackets == null) {  //lazy load
+
+            if (taxBrackets == null) { // lazy load
                 Resource bracketResource = context.getResource("classpath:static/tax_brackets.json");
                 TypeToken<Map<String, TaxStatus>> mapType = new TypeToken<Map<String, TaxStatus>>() {
                 };
                 Gson taxJson = new Gson();
                 try {
-                    taxBrackets = taxJson.fromJson(bracketResource.getContentAsString(Charset.defaultCharset()), mapType);
+                    taxBrackets = taxJson.fromJson(bracketResource.getContentAsString(Charset.defaultCharset()),
+                            mapType);
                 } catch (JsonSyntaxException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -76,23 +77,21 @@ public class CalculationService {
             sum -= getDeductionsById(userId, t);
             Double tax = doProgressiveTax(sum, x);
             tax -= getWithheldById(userId);
-    
-    
+
             return "" + tax;
-        } catch (Exception e){
+        } catch (Exception e) {
             return "0";
         }
-       
+
     }
 
-    private Double doProgressiveTax(Double taxable, TaxBracket[] brackets)
-    {
+    private Double doProgressiveTax(Double taxable, TaxBracket[] brackets) {
         Double tax = 0.0;
-        for(TaxBracket bracket : brackets)
-        {
-            if(taxable <= 0)
+        for (TaxBracket bracket : brackets) {
+            if (taxable <= 0)
                 break;
-            Double taxedAtBracket = Math.min(bracket.getMax() - bracket.getMin() + 1, taxable); //clamp taxable for this bracket
+            Double taxedAtBracket = Math.min(bracket.getMax() - bracket.getMin() + 1, taxable); // clamp taxable for
+                                                                                                // this bracket
             tax += taxedAtBracket * bracket.getRate();
             taxable -= taxedAtBracket;
         }
@@ -115,7 +114,7 @@ public class CalculationService {
 
     public Double getDeductionsById(Long userId, TaxStatus status) {
         Double sum = 0.0;
-        if(taxInfoRepository.findStandardDeductionByUserId(userId))
+        if (taxInfoRepository.findStandardDeductionByUserId(userId))
             return status.getDeduction();
         Optional<Double> specialDeductions = taxInfoRepository.findSpecialDeductionsByUserId(userId);
         if (specialDeductions.isPresent())
@@ -131,6 +130,9 @@ public class CalculationService {
             sum += withheldW2.get();
         Optional<Double> withheld1099 = taxInfo1099Repository.getAllWithheldByUserId(userId);
         if (withheld1099.isPresent())
+            sum += withheld1099.get();
+        Optional<Double> additional = taxInfoRepository.findAdditionalWithholdingsByUserId(userId);
+        if (additional.isPresent())
             sum += withheld1099.get();
         return sum;
     }

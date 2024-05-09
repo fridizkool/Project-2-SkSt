@@ -43,10 +43,6 @@ const ListOf1099: React.FC<{ existingForms: any }> = ({ existingForms }) => {
     ));
     setIndex(existingForms.length);
     setInstances(listOfForms);
-
-    return () => {
-      submitAllForms();
-    }
   }, []);
 
   const handleSpawn = () => {
