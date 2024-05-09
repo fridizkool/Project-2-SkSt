@@ -32,7 +32,6 @@ export default function Filing() {
     const dispatch = useDispatch()
     
     useEffect( () => {
-        console.log(goingForward)
         if(formStatus == 2){
             dispatch(setToWaiting())
             if(goingForward){
