@@ -80,7 +80,7 @@
             }
         },
         {
-            "label": "Tailwind updater",
+            "label": "Run tailwind updates",
             "type": "shell",
             "command": "build-scripts/runTailwind.bat",
             "group": {

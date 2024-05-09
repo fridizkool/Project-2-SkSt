@@ -24,7 +24,7 @@ public class SecurityConfig {
             // TODO Assign appropriate authorization requirements
 			.authorizeHttpRequests((authorize) -> authorize
                 .requestMatchers("/").permitAll()
-                .requestMatchers("/*").permitAll()
+                .requestMatchers("/**").permitAll()
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/user/**").hasAnyRole("ADMIN", "USER")
