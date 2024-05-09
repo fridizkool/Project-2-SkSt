@@ -30,9 +30,9 @@ export default function Filing() {
             <GridContainer className='bg-lightest min-h-screen'>
                 <Grid row className='padding-1'>
                     <Grid col={12}>
-                        <div className='bg-base-lightest inline-flex items-center'>
+                        <div className='inline-flex items-center'>
                             <Button type="submit" onClick={() => { index > 0 ? setIndex(prev => prev - 1) : null }}>{t("Back")}</Button>
-                            <StepIndicator centered headingLevel='h4' ofText={t("of")} stepText={t('Step')} className=' bg-base-lightest'>
+                            <StepIndicator centered headingLevel='h4' ofText={t("of")} stepText={t('Step')} className='bg-base-lightest'>
                                 <StepIndicatorStep label={t("Introduction")} status={isCurrent(index, 0)} />
                                 <StepIndicatorStep label={t("W2.form")} status={isCurrent(index, 1)} />
                                 <StepIndicatorStep label={t("1099.form")} status={isCurrent(index, 2)} />

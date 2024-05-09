@@ -12,7 +12,7 @@ const C: React.FC<{ index: number; getDataCallback: (id: number, formData: FormD
   return (
     <Card gridLayout={{ col: 12 }}>
       <Form1099 id={index} getDataCallback={getDataCallback} initInfo={info} />
-      <Button onClick={onDelete} type={'button'} className='bg-error object-cover w-full'>{t("Delete this form")}</Button>
+      <Button onClick={onDelete} type={'button'} className='bg-error'>{t("Delete this form")}</Button>
     </Card>
   );
 };

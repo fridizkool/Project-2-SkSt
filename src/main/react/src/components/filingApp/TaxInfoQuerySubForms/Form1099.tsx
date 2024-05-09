@@ -65,6 +65,19 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
         getDataCallback(id, formData);
     };
 
+    // const formItems: any = [{
+    //     title: "Misc Information",
+    //     content:
+    //         <Card>
+    //             {/* Misc form box items */}
+    //         </Card>,
+    //     expanded: false,
+    //     id: "general-info",
+    //     headingLevel: "h3",
+    // }
+
+    // ]
+
     return (
         <>
             <Form method="post" onBlur={handleFormChange}>
@@ -271,7 +284,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                     </div>
 
                     <div>
-                        <label htmlFor="deferrals">{t("Section 409A deferrals")}:</label>
+                        <label htmlFor="deferrals">{t("1099.Section 409A deferrals")}:</label>
                         <TextInput
                             id="deferrals"
                             name="deferrals"
