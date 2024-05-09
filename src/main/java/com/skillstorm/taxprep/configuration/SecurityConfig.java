@@ -18,6 +18,7 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
+            .cors(Customizer.withDefaults())
             //TODO Consider CSRF turning back on and only disable to necessary endpoints
             .csrf((csrf) -> csrf.
                 disable())
