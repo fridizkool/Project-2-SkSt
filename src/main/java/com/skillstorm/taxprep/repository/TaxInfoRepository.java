@@ -31,5 +31,5 @@ public interface TaxInfoRepository extends JpaRepository<TaxInfo, Long> {
     public TaxInfo getByUserId(Long userId);
 
     @Query("select t.isTakingStandardDeduction from TaxInfo t where t.userId = ?1")
-    public boolean findStandardDeductionByUserId(Long userId);
+    public Optional<Boolean> findStandardDeductionByUserId(Long userId);
 }

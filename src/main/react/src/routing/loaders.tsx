@@ -8,10 +8,10 @@ export async function loadNavBar() {
         showAdminPriviledgedInfo: false
     }
     const authStatus = await queryAuthStatus();
-    
-    if(authStatus.authenticated) navOptions.showUserPrivilegedInfo = true;        
 
-    if(authStatus.userRole === "ADMIN") navOptions.showAdminPriviledgedInfo = true;        
+    if (authStatus.authenticated) navOptions.showUserPrivilegedInfo = true;
+
+    if (authStatus.userRole === "ADMIN") navOptions.showAdminPriviledgedInfo = true;
 
     return navOptions;
 }
@@ -19,7 +19,7 @@ export async function loadNavBar() {
 
 export async function loadLoginPage() {
     const authStatus = await queryAuthStatus();
-    if(authStatus.authenticated){
+    if (authStatus.authenticated) {
         return redirect("/");
     } else {
         return null
@@ -28,7 +28,7 @@ export async function loadLoginPage() {
 
 export async function loadPasswordUpdatePage() {
     const authStatus = await queryAuthStatus();
-    if(authStatus.authenticated){
+    if (authStatus.authenticated) {
         return null;
     } else {
         return redirect("/");
@@ -37,7 +37,7 @@ export async function loadPasswordUpdatePage() {
 
 export async function loadFilingPage() {
     const authStatus = await queryAuthStatus();
-    if(authStatus.authenticated){
+    if (authStatus.authenticated) {
         return null;
     } else {
         return redirect("/login");
@@ -46,78 +46,78 @@ export async function loadFilingPage() {
 
 export async function loadW2Page() {
     const authStatus = await queryAuthStatus();
-    if(authStatus.authenticated){
+    if (authStatus.authenticated) {
 
-        if(import.meta.env.DEV){
+        if (import.meta.env.DEV) {
             const dataW2 = [
                 {
-                  "id": 48,
-                  "userId": 8,
-                  "employerId": null,
-                  "employerInformation": "",
-                  "controlNumber": null,
-                  "income": 1,
-                  "withheldFederal": null,
-                  "socialSecurity": null,
-                  "withheldSS": null,
-                  "medicare": null,
-                  "withheldMedicare": null,
-                  "socialSecurityTips": null,
-                  "allocatedTips": null,
-                  "dependentCare": null,
-                  "nonqualifiedPlan": "",
-                  "deferrals": "",
-                  "statutory": false,
-                  "retirement": false,
-                  "sickPay": false,
-                  "other": ""
+                    "id": 48,
+                    "userId": 8,
+                    "employerId": null,
+                    "employerInformation": "",
+                    "controlNumber": null,
+                    "income": 1,
+                    "withheldFederal": null,
+                    "socialSecurity": null,
+                    "withheldSS": null,
+                    "medicare": null,
+                    "withheldMedicare": null,
+                    "socialSecurityTips": null,
+                    "allocatedTips": null,
+                    "dependentCare": null,
+                    "nonqualifiedPlan": "",
+                    "deferrals": "",
+                    "statutory": false,
+                    "retirement": false,
+                    "sickPay": false,
+                    "other": ""
                 },
                 {
-                  "id": 49,
-                  "userId": 8,
-                  "employerId": null,
-                  "employerInformation": "",
-                  "controlNumber": null,
-                  "income": 2,
-                  "withheldFederal": null,
-                  "socialSecurity": null,
-                  "withheldSS": null,
-                  "medicare": null,
-                  "withheldMedicare": null,
-                  "socialSecurityTips": null,
-                  "allocatedTips": null,
-                  "dependentCare": null,
-                  "nonqualifiedPlan": "",
-                  "deferrals": "",
-                  "statutory": false,
-                  "retirement": false,
-                  "sickPay": false,
-                  "other": ""
+                    "id": 49,
+                    "userId": 8,
+                    "employerId": null,
+                    "employerInformation": "",
+                    "controlNumber": null,
+                    "income": 2,
+                    "withheldFederal": null,
+                    "socialSecurity": null,
+                    "withheldSS": null,
+                    "medicare": null,
+                    "withheldMedicare": null,
+                    "socialSecurityTips": null,
+                    "allocatedTips": null,
+                    "dependentCare": null,
+                    "nonqualifiedPlan": "",
+                    "deferrals": "",
+                    "statutory": false,
+                    "retirement": false,
+                    "sickPay": false,
+                    "other": ""
                 },
                 {
-                  "id": 50,
-                  "userId": 8,
-                  "employerId": null,
-                  "employerInformation": "",
-                  "controlNumber": null,
-                  "income": 3,
-                  "withheldFederal": null,
-                  "socialSecurity": null,
-                  "withheldSS": null,
-                  "medicare": null,
-                  "withheldMedicare": null,
-                  "socialSecurityTips": null,
-                  "allocatedTips": null,
-                  "dependentCare": null,
-                  "nonqualifiedPlan": "",
-                  "deferrals": "",
-                  "statutory": false,
-                  "retirement": false,
-                  "sickPay": false,
-                  "other": ""
+                    "id": 50,
+                    "userId": 8,
+                    "employerId": null,
+                    "employerInformation": "",
+                    "controlNumber": null,
+                    "income": 3,
+                    "withheldFederal": null,
+                    "socialSecurity": null,
+                    "withheldSS": null,
+                    "medicare": null,
+                    "withheldMedicare": null,
+                    "socialSecurityTips": null,
+                    "allocatedTips": null,
+                    "dependentCare": null,
+                    "nonqualifiedPlan": "",
+                    "deferrals": "",
+                    "statutory": false,
+                    "retirement": false,
+                    "sickPay": false,
+                    "other": ""
                 }
-              ]
-         
+            ]
+
             return (
                 dataW2
             )
@@ -126,9 +126,9 @@ export async function loadW2Page() {
             method: 'GET',
         });
 
-        
+
         try {
-            const formw2JSON = await formw2.json();    
+            const formw2JSON = await formw2.json();
             return formw2JSON;
         } catch (e) {
             return redirect("/error");
@@ -141,9 +141,9 @@ export async function loadW2Page() {
 
 export async function load1099Page() {
     const authStatus = await queryAuthStatus();
-    if(authStatus.authenticated){
+    if (authStatus.authenticated) {
 
-        if(import.meta.env.DEV){
+        if (import.meta.env.DEV) {
             const data1099 = [
                 {
                     "id": 123,
@@ -211,8 +211,8 @@ export async function load1099Page() {
                     "retirement": false,
                     "sickPay": true,
                     "other": "Some other details"
-                }                                
-                
+                }
+
             ]
             return (
                 data1099
@@ -222,9 +222,9 @@ export async function load1099Page() {
             method: 'GET',
         });
 
-        
+
         try {
-            const form1099JSON = await form1099.json();    
+            const form1099JSON = await form1099.json();
             return form1099JSON;
         } catch (e) {
             return redirect("/error");
@@ -236,10 +236,10 @@ export async function load1099Page() {
 
 export async function loadMiscPage() {
     const authStatus = await queryAuthStatus();
-    if(authStatus.authenticated){
+    if (authStatus.authenticated) {
 
-        if(import.meta.env.DEV){
-            const dataMisc ={
+        if (import.meta.env.DEV) {
+            const dataMisc = {
                 "supplementalIncome": "500",
                 "additionalWitholdings": "50",
                 "filingStatus": "single",
@@ -253,14 +253,14 @@ export async function loadMiscPage() {
                 dataMisc
             )
         }
-        
+
         const formMisc = await fetch('/getMisc', {
             method: 'GET',
         });
 
-        
+
         try {
-            const formJSON = await formMisc.json();    
+            const formJSON = await formMisc.json();
             return formJSON;
         } catch (e) {
             return redirect("/error");
@@ -273,15 +273,19 @@ export async function loadMiscPage() {
 
 export async function loadReview() {
     const authStatus = await queryAuthStatus();
-    if(authStatus.authenticated){
+    if (authStatus.authenticated) {
 
-        if(import.meta.env.DEV){
-            const data = 
-                {
-                    "totalIncome": 10000,
-                    "totalWithholdings": 1000,
-                    "totalDeductions": 13500
-                }
+        if (import.meta.env.DEV) {
+            const data =
+            {
+                "incomeW2": 10000,
+                "withheldW2": 1000,
+                "income1099": 20000,
+                "withheld1099": 2000,
+                "incomePersonal": 30000,
+                "withheldPersonal": 3000,
+                "deductions": 13500,
+            }
             return (
                 data
             )
@@ -291,9 +295,9 @@ export async function loadReview() {
             method: 'GET',
         });
 
-        
+
         try {
-            const formJSON = await form.json();    
+            const formJSON = await form.json();
             return formJSON;
         } catch (e) {
             return redirect("/error");
@@ -305,12 +309,22 @@ export async function loadReview() {
 
 export async function loadFinalCalculation() {
     const authStatus = await queryAuthStatus();
-    if(authStatus.authenticated){
+    if (authStatus.authenticated) {
 
-        if(import.meta.env.DEV){
-            const data = [
-                "1000"
-            ]
+        if (import.meta.env.DEV) {
+            const data =
+            {
+                "incomeW2": 10000,
+                "withheldW2": 1000,
+                "income1099": 20000,
+                "withheld1099": 2000,
+                "incomePersonal": 30000,
+                "withheldPersonal": 3000,
+                "deductions": 13500,
+                "taxReturn": 10231.28,
+                "tax": 1002,
+                "effective": "40.000%"
+            }
             return (
                 data
             )
@@ -320,9 +334,9 @@ export async function loadFinalCalculation() {
             method: 'GET',
         });
 
-        
+
         try {
-            const formJSON = await form.json();    
+            const formJSON = await form.json();
             return formJSON;
         } catch (e) {
             return redirect("/error");
@@ -334,11 +348,11 @@ export async function loadFinalCalculation() {
 
 export async function loadAccountPage() {
     const authStatus = await queryAuthStatus();
-    
-    if(authStatus.authenticated){
-        
+
+    if (authStatus.authenticated) {
+
         // DEBUG In dev mode with no server, return this:
-        if (import.meta.env.DEV){
+        if (import.meta.env.DEV) {
             return (
                 {
                     "id": 6,
@@ -354,21 +368,21 @@ export async function loadAccountPage() {
                     "ssn": "ssn",
                     "enabled": true,
                     "authorities": [
-                      {
-                        "authority": "ROLE_USER"
-                      }
+                        {
+                            "authority": "ROLE_USER"
+                        }
                     ],
                     "credentialsNonExpired": true,
                     "accountNonExpired": true,
                     "accountNonLocked": true
-                  }
+                }
             )
         }
 
         const response = await fetch('/user', {
             method: 'GET',
         });
-        
+
         // Convert the response to JSON
         try {
             const responseJSON = await response.json();
@@ -376,18 +390,18 @@ export async function loadAccountPage() {
         } catch (e) {
             return redirect("/error");
         }
-    } else {        
+    } else {
         return redirect("/inaccessible");
     }
 }
 
 export async function loadUsersPage() {
     const authStatus = await queryAuthStatus();
-    
-    if(authStatus.authenticated && authStatus.userRole === "ADMIN"){
+
+    if (authStatus.authenticated && authStatus.userRole === "ADMIN") {
 
         // DEBUG In dev mode with no server, return this:
-        if (import.meta.env.DEV){
+        if (import.meta.env.DEV) {
             return (
                 [{
                     "id": 1,
@@ -453,18 +467,18 @@ export async function loadUsersPage() {
 
 export async function loadAccountCreationPage() {
     const authStatus = await queryAuthStatus();
-    
-    if(authStatus.authenticated){
-        return redirect("/");        
+
+    if (authStatus.authenticated) {
+        return redirect("/");
     } else {
         return null;
     }
 }
 
-export async function loadLogout() {   
+export async function loadLogout() {
     let isLoggedOut = await handleLogout();
 
-    if(isLoggedOut){
+    if (isLoggedOut) {
         return redirect('/');
     } else {
         return redirect('/error');

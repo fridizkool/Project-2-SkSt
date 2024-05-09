@@ -31,7 +31,9 @@ const LoginForm = () => {
                     <Button title="Show password" type="button" className="usa-show-password justify-self-end" aria-controls="password-in" onClick={(): void => setShowPassword(showPassword => !showPassword)}>
                         {showPassword ? t('Hide password') : t('Show password')}
                     </Button>
-                    <Button type='submit' className="pt-3">{t("Sign in")}</Button>
+                    <div className='pt-3'>
+                        <Button type='submit' className="pt-3">{t("Sign in")}</Button>
+                    </div>
                 </Fieldset>
             </Form>
         </>

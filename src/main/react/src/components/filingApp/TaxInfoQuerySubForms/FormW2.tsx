@@ -1,4 +1,4 @@
-import { Accordion, Card, CardBody, CardHeader, Checkbox, TextInput } from '@trussworks/react-uswds';
+import { Accordion, Card, CardBody, CardHeader, Checkbox, InputGroup, InputPrefix, TextInput } from '@trussworks/react-uswds';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Form } from 'react-router-dom';
@@ -63,7 +63,7 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
 
  
     const formItems: any = [{
-        title: "Misc Information",
+        title: t("Employer information"),
         content:
             <Card>
                 <div>
@@ -98,13 +98,16 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
                 </div>
                 <div>
                     <label htmlFor="allocatedTips">{t("W2.Allocated tips")}:</label>
-                    <TextInput
-                        id="allocatedTips"
-                        name="allocatedTips"
-                        value={formData.allocatedTips}
-                        type="text"
-                        onChange={handleChangeText}
-                    />
+                    <InputGroup>
+                        <InputPrefix>$</InputPrefix>
+                        <TextInput
+                            id="allocatedTips"
+                            name="allocatedTips"
+                            value={formData.allocatedTips}
+                            type="number"
+                            onChange={handleChangeText}
+                        />
+                    </InputGroup>
                 </div>
                 <div>
                     <label htmlFor="nonqualifiedPlan">{t("W2.Nonqualified plans")}:</label>
@@ -185,84 +188,108 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
 
                     <div>
                         <label htmlFor="income">{t("W2.Income")}:</label>
-                        <TextInput
-                            id="income"
-                            name="income"
-                            value={formData.income}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="income"
+                                name="income"
+                                value={formData.income}
+                                type="number"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
                     <div>
                         <label htmlFor="withheldFederal">{t("W2.Federal taxes withheld")}:</label>
-                        <TextInput
-                            id="withheldFederal"
-                            name="withheldFederal"
-                            value={formData.withheldFederal}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="withheldFederal"
+                                name="withheldFederal"
+                                value={formData.withheldFederal}
+                                type="number"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
                     <div>
                         <label htmlFor="socialSecurity">{t("W2.Social Security wages")}:</label>
-                        <TextInput
-                            id="socialSecurity"
-                            name="socialSecurity"
-                            value={formData.socialSecurity}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="socialSecurity"
+                                name="socialSecurity"
+                                value={formData.socialSecurity}
+                                type="number"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
                     <div>
                         <label htmlFor="withheldSS">{t("W2.Social Security taxes withheld")}:</label>
-                        <TextInput
-                            id="withheldSS"
-                            name="withheldSS"
-                            value={formData.withheldSS}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="withheldSS"
+                                name="withheldSS"
+                                value={formData.withheldSS}
+                                type="number"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
                     <div>
                         <label htmlFor="medicare">{t("W2.Medicare Wages")}:</label>
-                        <TextInput
-                            id="medicare"
-                            name="medicare"
-                            value={formData.medicare}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="medicare"
+                                name="medicare"
+                                value={formData.medicare}
+                                type="number"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
                     <div>
                         <label htmlFor="withheldMedicare">{t("W2.Medicare taxes withheld")}:</label>
-                        <TextInput
-                            id="withheldMedicare"
-                            name="withheldMedicare"
-                            value={formData.withheldMedicare}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="withheldMedicare"
+                                name="withheldMedicare"
+                                value={formData.withheldMedicare}
+                                type="number"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
                     <div>
                         <label htmlFor="socialSecurityTips">{t("W2.Social Security tips")}:</label>
-                        <TextInput
-                            id="socialSecurityTips"
-                            name="socialSecurityTips"
-                            value={formData.socialSecurityTips}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="socialSecurityTips"
+                                name="socialSecurityTips"
+                                value={formData.socialSecurityTips}
+                                type="number"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
 
                     <div>
                         <label htmlFor="dependentCare">{t("W2.Dependent care")}:</label>
-                        <TextInput
-                            id="dependentCare"
-                            name="dependentCare"
-                            value={formData.dependentCare}
-                            type="text"
-                            onChange={handleChangeText}
-                        />
+                        <InputGroup>
+                            <InputPrefix>$</InputPrefix>
+                            <TextInput
+                                id="dependentCare"
+                                name="dependentCare"
+                                value={formData.dependentCare}
+                                type="number"
+                                onChange={handleChangeText}
+                            />
+                        </InputGroup>
                     </div>
                     <Accordion items={formItems} />
 

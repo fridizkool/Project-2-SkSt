@@ -9,7 +9,7 @@ const UserAccountDropdown: React.FC = () => {
 
   const testMenuItems = [
     <Link type="nav" to={'/account'}>{t("profile.profile")}</Link>,
-    <Link type="nav" to={'/logout'}>{t("logout")}</Link>,
+    <Link type="nav" to={'/logout'} reloadDocument>{t("logout")}</Link>,
   ];
   const onToggle = () => {
     setIsOpen(prevOpen => !prevOpen);

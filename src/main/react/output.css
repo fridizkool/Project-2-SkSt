@@ -590,12 +590,40 @@ video {
   width: 100%;
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-col-reverse {
+  flex-direction: column-reverse;
+}
+
+.place-items-end {
+  place-items: end;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
 .items-center {
   align-items: center;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-items-end {
+  justify-items: end;
 }
 
 .justify-self-end {
@@ -618,11 +646,6 @@ video {
 .object-contain {
   -o-object-fit: contain;
      object-fit: contain;
-}
-
-.object-cover {
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .object-fill {

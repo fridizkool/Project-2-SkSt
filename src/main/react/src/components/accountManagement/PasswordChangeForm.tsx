@@ -56,9 +56,9 @@ const PasswordChangeForm = () => {
                       </abbr>
                     </Label>
                     <TextInput id="password-create-account-confirm" name="password-confirm" type={showPassword ? 'text' : 'password'} autoCapitalize="off" autoCorrect="off" required={true} />
-
-
-                    <Button type='submit'>{t("Change Password")}</Button>
+                    <div className='pt-3'>
+                      <Button type='submit'>{t("Change Password")}</Button>
+                    </div>
                   </Fieldset>
                 </Form>
               </Grid>
