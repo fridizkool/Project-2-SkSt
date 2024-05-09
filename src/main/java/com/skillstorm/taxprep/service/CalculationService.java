@@ -50,14 +50,15 @@ public class CalculationService {
         try {
             TaxInfo userTaxInfo = dbS.selectMiscByUserId(userId);
             String status = userTaxInfo.getFilingStatus();
-            System.out.println(status);
 
             if (taxBrackets == null) { // lazy load
                 Resource bracketResource = context.getResource("classpath:static/tax_brackets.json");
-                TypeToken<Map<String, TaxStatus>> mapType = new TypeToken<Map<String, TaxStatus>>() { };
+                TypeToken<Map<String, TaxStatus>> mapType = new TypeToken<Map<String, TaxStatus>>() {
+                };
                 Gson taxJson = new Gson();
                 try {
-                    taxBrackets = taxJson.fromJson(bracketResource.getContentAsString(Charset.defaultCharset()), mapType);
+                    taxBrackets = taxJson.fromJson(bracketResource.getContentAsString(Charset.defaultCharset()),
+                            mapType);
                 } catch (JsonSyntaxException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -69,7 +70,6 @@ public class CalculationService {
                     e.printStackTrace();
                 }
             }
-            System.out.println(taxBrackets.get(status));
             double sum = 0.0;
             TaxStatus t = taxBrackets.get(status);
             TaxBracket[] x = t.getBrackets();
@@ -114,7 +114,8 @@ public class CalculationService {
 
     public Double getDeductionsById(Long userId, TaxStatus status) {
         Double sum = 0.0;
-        if (taxInfoRepository.findStandardDeductionByUserId(userId))
+        Optional<Boolean> standard = taxInfoRepository.findStandardDeductionByUserId(userId);
+        if (standard.isPresent() && standard.get())
             return status.getDeduction();
         Optional<Double> specialDeductions = taxInfoRepository.findSpecialDeductionsByUserId(userId);
         if (specialDeductions.isPresent())
@@ -126,7 +127,9 @@ public class CalculationService {
     public Double getDeductionsById(Long userId) {
         Double sum = 0.0;
         TaxStatus status = taxBrackets.get(taxInfoRepository.getByUserId(userId).getFilingStatus());
-        if (taxInfoRepository.findStandardDeductionByUserId(userId))
+        Optional<Boolean> standard = taxInfoRepository.findStandardDeductionByUserId(userId);
+        System.out.println(standard);
+        if (standard.isPresent() && standard.get())
             return status.getDeduction();
         Optional<Double> specialDeductions = taxInfoRepository.findSpecialDeductionsByUserId(userId);
         if (specialDeductions.isPresent())
