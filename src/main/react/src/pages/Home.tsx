@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import splash from "../assets/calculating.jpeg";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+    const { t } = useTranslation();
     return (
         <>
             <div className="top-0 left-0 z-0">
@@ -11,15 +13,14 @@ export default function Home() {
                 <div className="bg-primary-darker text-base-lighter border-base-light ">
                     <div className="usa-hero__callout">
                         <h1 className="usa-hero__heading">
-                            Start your taxes off right!
+                            {t("Start your taxes off right!")}
                         </h1>
                         <p>
                             <h2>
-                                Welcome to Clairvoyant Tax Prep!
-                                Please sign up and use our services to calculate your taxes!
+                                {t("Welcome to Clairvoyant Tax Prep! Please sign up and use our services to calculate your taxes!")}
                             </h2>
                         </p>
-                        <div className="pt-1"><Link to={"/create"} className="usa-button">Sign up</Link></div>
+                        <div className="pt-1"><Link to={"/create"} className="usa-button">{t("Sign up")}</Link></div>
                     </div>
                 </div>
             </div >
