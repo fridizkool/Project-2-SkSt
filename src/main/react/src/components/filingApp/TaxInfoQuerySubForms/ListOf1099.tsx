@@ -53,7 +53,7 @@ const ListOf1099: React.FC<{ existingForms: any }> = ({ existingForms }) => {
       [index]: <C key={index} index={index} getDataCallback={updateSubmission} info={{}} onDelete={() => handleDelete(index)} />
     }));
     setIndex(prevIndex => prevIndex + 1);
-    console.log(instances)
+    // console.log(instances)
   };
 
   const handleDelete = (deletedIndex: number) => {

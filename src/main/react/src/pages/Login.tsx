@@ -1,10 +1,11 @@
 import '@trussworks/react-uswds/lib/index.css';
 import '@trussworks/react-uswds/lib/uswds.css';
-import { Grid, GridContainer, Link } from '@trussworks/react-uswds';
+import { Grid, GridContainer } from '@trussworks/react-uswds';
 import LoginForm from '../components/accountManagement/LoginForm';
 import splash from '../assets/taxes-splash.jpg';
 import i18n from '../i18n/i18next';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     const { t } = useTranslation();
@@ -27,7 +28,7 @@ export default function Login() {
                         </div>
                         <p className="text-center">
                             {t("needAccount") + " "}
-                            <Link href="/create">{t("create")}</Link>.
+                            <Link to="/create">{t("create")}</Link>.
                         </p>
                     </Grid>
                 </Grid>

@@ -5,7 +5,7 @@ import { queryAuthStatus } from '../../service/authService';
 import { useTranslation } from 'react-i18next';
 
 const LoginStatus: React.FC = () => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const LoginStatus: React.FC = () => {
         };
 
         fetchAuthStatus();
-    }, []);
+    });
 
     return (
         <div>
