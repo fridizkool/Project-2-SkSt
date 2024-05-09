@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, CardGroup } from '@trussworks/react-uswds';
 import Form1099 from './Form1099';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { returnFromSentForm } from '../../../util/redux/counterSlice';
 
 interface FormData {
   [key: string]: any;
@@ -83,8 +85,21 @@ const ListOf1099: React.FC<{ existingForms: any }> = ({ existingForms }) => {
       body: JSON.stringify(listOfW2Formdata)
     });
 
-    console.log(response);
+    dispatch(returnFromSentForm(response.status)); 
+
   };
+
+
+  
+  const formStatus = useSelector((state:any) => state.formStatus.sendStatus)
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    if(formStatus == 1){
+      submitAllForms();
+    }
+  }, [formStatus]); // Only run the effect if yourReduxState changes
+  
 
   return (
     <div>
