@@ -3,23 +3,24 @@ package com.skillstorm.taxprep.service;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.skillstorm.taxprep.models.TaxInfoW2;
 import com.skillstorm.taxprep.repository.TaxInfo1099Repository;
 import com.skillstorm.taxprep.repository.TaxInfoRepository;
 import com.skillstorm.taxprep.repository.TaxInfoW2Repository;
+import com.skillstorm.taxprep.repository.UserRepository;
+import com.skillstorm.taxprep.models.AppUser;
 import com.skillstorm.taxprep.models.TaxInfo;
 
-class CalculationServiceTests {
+class DatabaseServiceTests {
 
     @Mock
-    private DatabaseService dbService;
+    private TaxInfoRepository taxInfoRepository;
 
     @Mock
     private TaxInfoW2Repository taxInfoW2Repository;
@@ -28,33 +29,32 @@ class CalculationServiceTests {
     private TaxInfo1099Repository taxInfo1099Repository;
 
     @Mock
-    private TaxInfoRepository taxInfoRepository;
+    private UserRepository userRepository;
 
     @InjectMocks
-    private CalculationService calculationService;
+    private DatabaseService databaseService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
+
     @Test
-    void testCalculateTaxes() throws Exception {
-        Long userId = 1L;
+    void testSubmit() {
         TaxInfo taxInfo = new TaxInfo();
-        taxInfo.setFilingStatus("SINGLE");
-        when(dbService.selectMiscByUserId(userId)).thenReturn(taxInfo);
-        Double result = calculationService.calculateTaxes(userId);
-
-        assertEquals(0.0, result); 
+        when(taxInfoRepository.save(taxInfo)).thenReturn(taxInfo);
+        try {
+            databaseService.submit(taxInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    void testGetIncomeById() {
-        Long userId = 1L;
-        when(taxInfoW2Repository.getAllIncomeByUserId(userId)).thenReturn(Optional.of(50000.0));
-        when(taxInfo1099Repository.getAllIncomeByUserId(userId)).thenReturn(Optional.of(10000.0));
-        when(taxInfoRepository.getSupplementalIncomeByUserId(userId)).thenReturn(Optional.of(2000.0));
+    void testGetUserByName() {
+        String name = "testUser";
+        AppUser result = databaseService.getUserByName(name);
+        assertEquals(null, result);
     }
-
 }

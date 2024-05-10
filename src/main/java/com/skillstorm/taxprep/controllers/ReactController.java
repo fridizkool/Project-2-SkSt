@@ -53,9 +53,4 @@ public class ReactController {
         return new ModelAndView("forward:/");
     }
 
-
-    // @RequestMapping("/error")
-    // public ModelAndView toErrorPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //     return new ModelAndView("forward:/");
-    // }
 }
