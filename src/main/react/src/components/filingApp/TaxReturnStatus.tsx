@@ -10,7 +10,8 @@ export default function TaxReturnStatus() {
         <CardGroup>
             <Card gridLayout={{ col: 12 }}>
                 <CardHeader>
-                    <h3 className="usa-card__heading">{t("Calculations")}</h3>
+                    <h1 className="usa-card__heading">{t("Calculations")}</h1>
+                    <hr/>
                 </CardHeader>
                 <CardBody>
                     <ProcessList>

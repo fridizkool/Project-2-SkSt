@@ -182,7 +182,8 @@ const FormW2: React.FC<FormW2Props> = ({ id, getDataCallback, initInfo }) => {
         <>
             <Form method="post" onBlur={handleFormChange}>
                 <CardHeader>
-                    <h1>{t("W2.form")}</h1>
+                    <h1 className="usa-card__heading">{t("W2.form")}</h1>
+                    <hr />
                 </CardHeader>
                 <CardBody>
 
