@@ -14,13 +14,17 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins( 
                     "https://group5proj2.skillstorm-congo.com", 
                     "group5proj2.skillstorm-congo.com",
-                    "team5alt.skillstorm-congo.com",
-                    "https://team5alt.skillstorm-congo.com",
+                    "team5backup.skillstorm-congo.com",
+                    "https://team5backup.skillstorm-congo.com",
                     "http://group5proj2taxprep-env-fallback.eba-ieynwx8g.us-east-1.elasticbeanstalk.com",
                     "https://group5proj2taxprep-env-fallback.eba-ieynwx8g.us-east-1.elasticbeanstalk.com",
-                    "group5proj2taxprep-env-fallback.eba-ieynwx8g.us-east-1.elasticbeanstalk.com"
+                    "group5proj2taxprep-env-fallback.eba-ieynwx8g.us-east-1.elasticbeanstalk.com",
+                    "team5.skillstorm-congo.com",
+                    "https://team5.skillstorm-congo.com",
+                    "http://group5proj2taxprep-env.eba-ieynwx8g.us-east-1.elasticbeanstalk.com",
+                    "https://group5proj2taxprep-env.eba-ieynwx8g.us-east-1.elasticbeanstalk.com",
+                    "group5proj2taxprep-env.eba-ieynwx8g.us-east-1.elasticbeanstalk.com"
 
-                    
                     ) 
                 .allowedMethods("GET", "POST", "PUT", "DELETE") 
                 .allowedHeaders("*"); 
