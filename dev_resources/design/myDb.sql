@@ -61,7 +61,8 @@ CREATE TABLE tax_info_1099 (
     deferrals_12 NUMERIC(15, 2),
     fatca_13 BOOLEAN,
     golden_parachute_14 NUMERIC(15, 2),
-    nonqualified_deferrals_15 NUMERIC(15, 2)
+    nonqualified_deferrals_15 NUMERIC(15, 2),
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 CREATE TABLE tax_info (
@@ -69,7 +70,7 @@ CREATE TABLE tax_info (
     user_id INTEGER,
     supplemental_income NUMERIC(15, 2),
     additional_withholdings NUMERIC(15, 2),
-    filing_status VARCHAR(50) NOT NULL,
+    filing_status VARCHAR(50) 'single',
     dependents INTEGER,
     student_status BOOLEAN,
     standard_deduction BOOLEAN,

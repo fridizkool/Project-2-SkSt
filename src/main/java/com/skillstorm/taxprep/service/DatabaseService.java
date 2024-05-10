@@ -35,8 +35,22 @@ public class DatabaseService {
         this.taxInfoRepo = taxInfoRepo;
     }
 
+    public TaxInfo fixTaxInfo(TaxInfo info)
+    {
+        info.setFilingStatus((info.getFilingStatus().equals("single") || info.getFilingStatus().equals("marriedJoint") || info.getFilingStatus().equals("marriedSeparate") || info.getFilingStatus().equals("headOfHousehold") ? info.getFilingStatus() : "single"));
+        info.setIsTakingStandardDeduction((info.getIsTakingStandardDeduction() == null ? false : info.getIsTakingStandardDeduction()));
+        if(info.getIsTakingStandardDeduction())
+            info.setSpecialDeductions(0.0);
+        else
+            info.setSpecialDeductions((info.getSpecialDeductions() == null ? 0.0 : info.getSpecialDeductions()));
+        info.setAdditionalWithholdings((info.getAdditionalWithholdings() == null ? 0.0 : info.getAdditionalWithholdings()));
+        info.setSupplementalIncome((info.getSupplementalIncome() == null ? 0.0 : info.getSupplementalIncome()));
+        return info;
+    }
+
     @Transactional
     public void submit(TaxInfo taxInfo) {
+        taxInfo = fixTaxInfo(taxInfo);
         taxInfoRepo.save(taxInfo);
     }
 
@@ -189,6 +203,7 @@ public class DatabaseService {
 
     @Transactional
     public void saveMisc(TaxInfo taxInfo, Long id) {
+        taxInfo = fixTaxInfo(taxInfo);
         taxInfoRepo.deleteAllByUserId(id);
         taxInfoRepo.save(taxInfo);
     }
