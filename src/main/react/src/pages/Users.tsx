@@ -38,8 +38,8 @@ export default function Users() {
     return (
         <>
             {msg && (
-                <Alert type="info" heading="Error status" headingLevel="h4">
-                    {msg}
+                <Alert type="info" headingLevel="h4" slim>
+                    {t(`${msg}`)}
                 </Alert>
             )}
             <GridContainer className='usa-section'>

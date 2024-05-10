@@ -67,9 +67,9 @@ export default function Filing() {
             <GridContainer className='bg-lightest min-h-screen'>
                 <Grid row className='padding-1'>
                     <Grid col={12}>
-                        <div className='inline-flex items-center'>
+                        <div className='inline-flex items-baseline'>
 
-                            <Button type="submit" onClick={handleButtonClickBackward}>{t("Back")}</Button>
+                            <Button type="submit" onClick={handleButtonClickBackward} disabled={index <= 0} className=''>{t("Back")}</Button>
                             <StepIndicator centered headingLevel='h4' ofText={t("of")} stepText={t('Step')} className='bg-base-lightest'>
                                 <StepIndicatorStep label={t("Introduction")} status={isCurrent(index, 0)} />
                                 <StepIndicatorStep label={t("W2.form")} status={isCurrent(index, 1)} />
@@ -78,7 +78,7 @@ export default function Filing() {
                                 <StepIndicatorStep label={t("Review")} status={isCurrent(index, 4)} />
                                 <StepIndicatorStep label={t("Calculations")} status={isCurrent(index, 5)} />
                             </StepIndicator>
-                            <Button type="submit" onClick={handleButtonClickForward}>{t("Next")}</Button>
+                            <Button type="submit" onClick={handleButtonClickForward} disabled={index >= 5} className=''>{t("Next")}</Button>
                         </div>
                         <Outlet />
                     </Grid>
