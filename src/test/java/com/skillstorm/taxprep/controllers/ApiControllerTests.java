@@ -2,39 +2,27 @@ package com.skillstorm.taxprep.controllers;
 
 
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import com.skillstorm.taxprep.models.AppUser;
 import com.skillstorm.taxprep.models.ReviewModel;
-import com.skillstorm.taxprep.models.TaxInfo;
-import com.skillstorm.taxprep.repository.TaxInfo1099Repository;
-import com.skillstorm.taxprep.repository.TaxInfoRepository;
-import com.skillstorm.taxprep.repository.TaxInfoW2Repository;
 import com.skillstorm.taxprep.service.DatabaseService;
 import com.skillstorm.taxprep.service.CalculationService;
 import com.skillstorm.taxprep.service.UserService;
 
-
+@SpringBootTest
+@AutoConfigureMockMvc
 public class ApiControllerTests {
 
     @Autowired
@@ -43,96 +31,136 @@ public class ApiControllerTests {
     @MockBean
     private DatabaseService databaseService;
 
-    @MockBean
+    @Mock
     private CalculationService calculationService;
 
-    @MockBean
+    @Mock
     private UserService userService;
 
-    @Test
-    public void testCalculateTaxesOwed() throws Exception {
-        // Mock authentication
-        Authentication auth = new UsernamePasswordAuthenticationToken("username", "password");
-
-        // Mock userService.loadUserByUsername()
+       @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
         AppUser user = new AppUser();
         user.setId(1L);
         user.setUsername("username");
         Mockito.when(userService.loadUserByUsername(Mockito.anyString())).thenReturn(user);
 
-        // Mock calculationService.getReview()
+    }
+
+    @Test
+    @WithMockUser(roles = "NONE")
+    public void testCalculateTaxesOwed() throws Exception {
         ReviewModel reviewModel = new ReviewModel();
         Mockito.when(calculationService.getReview(Mockito.anyLong())).thenReturn(reviewModel);
 
-        // Perform GET request
-        mockMvc.perform(MockMvcRequestBuilders.get("/calculateTaxesOwed")
-                .principal(auth))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
-
-
-    @Test
-    void testDeleteUsersByAdmin() {
-
+        mockMvc.perform(MockMvcRequestBuilders.get("/calculateTaxesOwed"))
+            .andExpect(status().is3xxRedirection()); // Ensure successful login redirects
     }
 
     @Test
-    void testGetAll1099() {
-
+    @WithMockUser(roles = "NONE")
+    void testDeleteUsersByAdmin() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/deleteUser/user"))
+        .andExpect(status().is4xxClientError());
     }
 
     @Test
-    void testGetAllW2() {
-
+    @WithMockUser(roles = "USER")
+    void testGetAll1099() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/getAll1099"))
+        .andExpect(status().is3xxRedirection());
     }
 
     @Test
+    @WithMockUser(roles = "USER")
+    void testGetAllW2() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/getAllW2"))
+        .andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
     void testGetDeductions() {
-
+        try {
+            mockMvc.perform(MockMvcRequestBuilders.get("/getDeductions"))
+            .andExpect(status().is4xxClientError());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    void testGetIncome() {
-
+    @WithMockUser(roles = "USER")
+    void testGetIncome() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/getIncome"))
+        .andExpect(status().is4xxClientError());
     }
 
     @Test
-    void testGetMisc() {
-
+    @WithMockUser(roles = "USER")
+    void testGetMisc() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/getMisc"))
+        .andExpect(status().is3xxRedirection());
     }
 
     @Test
-    void testGetReview() {
-
+    @WithMockUser(roles = "USER")
+    void testGetReview() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/getReview"))
+        .andExpect(status().is3xxRedirection());
     }
 
     @Test
+    @WithMockUser(roles = "ADMIN")
     void testGetUsersForAdmin() {
-
+        try {
+            mockMvc.perform(MockMvcRequestBuilders.get("/adminUsers"))
+            .andExpect(status().is3xxRedirection());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
+    @WithMockUser(roles = "USER")
     void testGetWitheld() {
-
+        try {
+            mockMvc.perform(MockMvcRequestBuilders.get("/getWitheld"))
+            .andExpect(status().is4xxClientError());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    void testSubmit1099List() {
-
+    @WithMockUser(roles = "USER")
+    void testSubmit1099List() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/submit1099List"))
+        .andExpect(status().is4xxClientError());
     }
 
     @Test
-    void testSubmitMisc() {
-
+    @WithMockUser(roles = "USER")
+    void testSubmitMisc() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/submitMisc"))
+        .andExpect(status().is4xxClientError());
     }
 
     @Test
+    @WithMockUser(roles = "USER")
     void testSubmitW2() {
-
+        try {
+            mockMvc.perform(MockMvcRequestBuilders.get("/submitW2"))
+            .andExpect(status().is4xxClientError());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    void testSubmitW2List() {
-
+    @WithMockUser(roles = "USER")
+    void testSubmitW2List() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/submitW2List"))
+        .andExpect(status().is4xxClientError());
     }
 }

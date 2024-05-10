@@ -45,8 +45,6 @@ public class ApiController {
     @GetMapping("/income")
     public ResponseEntity<Double> getIncome(Authentication auth, @RequestParam Long userid)
     {
-        // AppUser u = (AppUser) userService.loadUserByUsername(auth.getName());
-
         return ResponseEntity.ok(cS.getIncomeById(userid));
     }
 
