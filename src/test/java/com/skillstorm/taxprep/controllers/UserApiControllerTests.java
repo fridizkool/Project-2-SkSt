@@ -10,20 +10,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skillstorm.taxprep.models.AppUser;
-import com.skillstorm.taxprep.models.ReviewModel;
-import com.skillstorm.taxprep.models.TaxInfo;
-import com.skillstorm.taxprep.repository.TaxInfo1099Repository;
-import com.skillstorm.taxprep.repository.TaxInfoRepository;
-import com.skillstorm.taxprep.repository.TaxInfoW2Repository;
-import com.skillstorm.taxprep.service.DatabaseService;
-import com.skillstorm.taxprep.service.CalculationService;
 import com.skillstorm.taxprep.service.UserService;
 
 @SpringBootTest

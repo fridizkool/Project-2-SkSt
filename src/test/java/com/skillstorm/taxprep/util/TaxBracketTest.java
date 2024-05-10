@@ -3,8 +3,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.skillstorm.taxprep.util.TaxBracket;
-
 class TaxBracketTests {
 
     @Test

@@ -16,11 +16,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.skillstorm.taxprep.models.AppUser;
-import com.skillstorm.taxprep.models.ReviewModel;
-import com.skillstorm.taxprep.models.TaxInfo;
-import com.skillstorm.taxprep.repository.TaxInfo1099Repository;
-import com.skillstorm.taxprep.repository.TaxInfoRepository;
-import com.skillstorm.taxprep.repository.TaxInfoW2Repository;
 import com.skillstorm.taxprep.service.DatabaseService;
 import com.skillstorm.taxprep.service.CalculationService;
 import com.skillstorm.taxprep.service.UserService;
@@ -29,11 +24,7 @@ import org.springframework.security.core.Authentication;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import org.springframework.security.core.Authentication;
 
 @SpringBootTest
 @AutoConfigureMockMvc

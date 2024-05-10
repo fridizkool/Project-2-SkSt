@@ -13,7 +13,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.skillstorm.taxprep.models.AppUser;
-import com.skillstorm.taxprep.repository.UserRepository;
 
 @DataJpaTest
 class UserRepositoryTests {

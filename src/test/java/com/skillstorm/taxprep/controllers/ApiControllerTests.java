@@ -2,44 +2,21 @@ package com.skillstorm.taxprep.controllers;
 
 
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import org.springframework.security.core.Authentication;
-
-
 import com.skillstorm.taxprep.models.AppUser;
 import com.skillstorm.taxprep.models.ReviewModel;
-import com.skillstorm.taxprep.models.TaxInfo;
-import com.skillstorm.taxprep.repository.TaxInfo1099Repository;
-import com.skillstorm.taxprep.repository.TaxInfoRepository;
-import com.skillstorm.taxprep.repository.TaxInfoW2Repository;
 import com.skillstorm.taxprep.service.DatabaseService;
 import com.skillstorm.taxprep.service.CalculationService;
 import com.skillstorm.taxprep.service.UserService;

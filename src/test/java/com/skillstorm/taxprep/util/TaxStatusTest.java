@@ -4,9 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.skillstorm.taxprep.util.TaxBracket;
-import com.skillstorm.taxprep.util.TaxStatus;
-
 class TaxStatusTests {
 
     @Test
