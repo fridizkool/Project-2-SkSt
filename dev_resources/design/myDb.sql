@@ -70,7 +70,7 @@ CREATE TABLE tax_info (
     user_id INTEGER,
     supplemental_income NUMERIC(15, 2),
     additional_withholdings NUMERIC(15, 2),
-    filing_status VARCHAR(50) 'single',
+    filing_status VARCHAR(50) DEFAULT 'single',
     dependents INTEGER,
     student_status BOOLEAN,
     standard_deduction BOOLEAN,
