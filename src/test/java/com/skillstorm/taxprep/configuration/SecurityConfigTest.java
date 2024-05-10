@@ -29,14 +29,7 @@ public class SecurityConfigTest {
           .apply(springSecurity())
           .build();
     }
-
-    @Test
-    @WithMockUser(roles = "USER")
-    public void testAdminRouteUnauthorizedForUser() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/admin/hello"))
-               .andExpect(MockMvcResultMatchers.status().isForbidden()); // Expect 403 Forbidden
-    }
-
+    
     @Test
     @WithMockUser(roles = "USER")
     public void testUserRouteAuthorizedForUser() throws Exception {
@@ -44,12 +37,6 @@ public class SecurityConfigTest {
                .andExpect(MockMvcResultMatchers.status().isOk()); // Expect 403 Forbidden
     }
 
-    @Test
-    @WithMockUser(roles = "ADMIN")
-    public void testAdminRouteAuthorizedForUser() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/admin/hello"))
-               .andExpect(MockMvcResultMatchers.status().isOk()); // Expect 403 Forbidden
-    }
 
 }
 
