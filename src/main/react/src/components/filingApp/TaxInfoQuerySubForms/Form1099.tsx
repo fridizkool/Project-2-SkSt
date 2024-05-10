@@ -148,7 +148,7 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
                         onChange={handleChangeText}
                     />
                 </div>
-                
+
                 <div>
                     <label htmlFor="goldenParachute">{t("1099.Excess golden parachute payments")}:</label>
                     <InputGroup>
@@ -192,7 +192,8 @@ const Form1099: React.FC<Form1099Props> = ({ id, getDataCallback, initInfo }) =>
         <>
             <Form method="post" onBlur={handleFormChange}>
                 <CardHeader>
-                    <h1>{t("1099.form")}</h1>
+                    <h1 className="usa-card__heading">{t("1099.form")}</h1>
+                    <hr />
                 </CardHeader>
                 <CardBody>
                     {/*Form box items */}

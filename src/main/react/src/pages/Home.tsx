@@ -36,7 +36,7 @@ export default function Home() {
                                     {t("Welcome to Clairvoyant Tax Prep!")}
                                 </h2>
                             </p>
-                            <div className="pt-1"><Link to={"/filing"} className="usa-button">{t("Calcuate taxes now!")}</Link></div>
+                            <div className="pt-1"><Link to={"/filing"} className="usa-button">{t("Calculate taxes now")}!</Link></div>
                         </>
                         }
                     </div>
